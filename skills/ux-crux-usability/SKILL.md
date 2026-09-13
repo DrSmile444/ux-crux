@@ -4,7 +4,7 @@ description: Use when the user wants to review task flow, interaction friction/e
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.6"
+  version: "0.1.8"
 ---
 
 Review task flow, interaction efficiency, navigation, forms, system status, and error recovery for the evidence provided (screenshot, description, code, or running build).
