@@ -17,9 +17,11 @@ Review goal clarity, information architecture, and content for the evidence prov
 4. Check navigation, labeling, and categorization against the information-architecture rules (`references/core.md`'s IA01-IA02): is the structure organized around user mental models and content rather than internal system/department structure, and has it been validated with tree testing rather than visual review alone?
 5. Check content and copy (`references/core.md`'s Content rules): does it use the user's vocabulary, describe the actual action/problem, and avoid vague labels like generic "OK" where a specific action is describable?
 6. Check any feature, permission request, or onboarding flow against `references/core.md`'s P08: does it name a concrete user value, why it's the best available way to serve that value, and explicit operating boundaries for its use — distinct from P06's narrower identity/data-gating check?
-7. Tag every finding with evidence status, severity, and confidence, and report using `../../shared/report-contract.md`.
+7. If the evidence is a product-detail page built around one featured item, also check `references/core.md`'s P09 (cross-sell placement); if the evidence is text-heavy or web-rendered content (an article, landing page, or long-form informational page), also check `references/web.md`'s text-scanning and typography rules (C07-C12).
+8. Tag every finding with evidence status, severity, and confidence, and report using `../../shared/report-contract.md`.
 
 ## References
 
-- `references/core.md` — purpose/task-model rules (P01-P08), information-architecture rules (IA01-IA02), and content/UX-writing rules (C01-C06).
+- `references/core.md` — purpose/task-model rules (P01-P09), information-architecture rules (IA01-IA02), and content/UX-writing rules (C01-C06).
+- `references/web.md` — text-scanning and typography rules (C07-C12) for text-heavy or web-rendered content; apply in addition to `core.md`, not instead of it.
 - `../../shared/evidence-model.md`, `severity-model.md`, `report-contract.md`.
