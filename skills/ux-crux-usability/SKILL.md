@@ -4,15 +4,15 @@ description: Use when the user wants to review task flow, interaction friction/e
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.11"
+  version: "0.1.12"
 ---
 
 Review task flow, interaction efficiency, navigation, forms, system status, and error recovery for the evidence provided (screenshot, description, code, or running build).
 
 ## Procedure
 
-1. Identify the primary task and check whether the flow adds unnecessary steps, decisions, or mode switches (see `references/core.md`'s Actions/Forms/System status rules).
-2. Check whether any explicit user-initiated action (e.g. tapping Search) is followed by immediate readiness for the implied next action — see `references/mobile.md`'s worked example on autofocus after Search, and the interaction-efficiency rules in both files.
+1. Identify the primary task and check whether the flow adds unnecessary steps, decisions, or mode switches (see `references/core.md`'s Actions/Forms/System status rules) — including whether a persistent mode is visibly indicated (A11R) and whether a reused icon/signifier carries conflicting meanings nearby (A12R).
+2. Check whether any explicit user-initiated action (e.g. tapping Search) is followed by immediate readiness for the implied next action — see `references/mobile.md`'s worked example on autofocus after Search, and the interaction-efficiency rules in both files. If the evidence includes a search/discovery flow, also check that query terms and context persist across a non-linear session (D07), and if it spans multiple devices, check that scoping/containment defaults stay consistent (N17R).
 3. Build a state matrix for the evidence: loading, empty, no-results, offline, validation error, backend error, destructive recovery. Report which states are shown, which are missing, and which cannot be assessed from this evidence (`shared/evidence-model.md`).
 4. Before flagging a common "folk rule" violation (hamburger menu, thumb zone, skeleton-vs-spinner, step count, disabled buttons, gestures, animation), check `references/core.md`'s "Folk-rule guards" table for the contextual encoding — do not fail a design solely for matching the folk rule's surface pattern.
 5. If the evidence names a platform (iOS/Android), apply `references/mobile.md`'s platform-contract rules (navigation, touch/gesture ergonomics, adaptive layout) using the correct platform's specifics — do not apply one platform's numbers to the other.

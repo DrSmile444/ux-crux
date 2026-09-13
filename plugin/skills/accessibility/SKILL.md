@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.11"
+  version: "0.1.12"
 ---
 
 Review WCAG conformance and inclusive interaction for the evidence provided.

@@ -1,6 +1,6 @@
-# Product: goal, value, information architecture, content
+# Product: goal, value, content
 
-Platform-agnostic. Covers rules P01-P07 (purpose & task), IA01-IA02 (information architecture), and C01-C06 (content) from the source catalog. See `../../../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
+Platform-agnostic. Covers rules P01-P09 (purpose & task) and C01-C17 (content) from the source catalog. Information-architecture rules (IA01-IA05) live in `information-architecture.md`, not here. See `../../../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
 
 ## Purpose & task
 
@@ -21,15 +21,6 @@ Platform-agnostic. Covers rules P01-P07 (purpose & task), IA01-IA02 (information
 **Applicability note:** P08 is distinct from P06 — P06 covers only identity/personal-data gating, while P08 covers any feature or permission whose stated benefit is too vague to bound its use, whether or not identity/data is involved. When the evidence does not show whether an alternative approach was considered or why this approach best serves the stated value, report P08 as `NOT ASSESSABLE` rather than assuming the flow passes or fails.
 
 **Applicability note:** P09 applies only to a product-detail page organized around one featured item (a single product, listing, or article page with cross-sell/recommendation modules attached). It does not apply to browse, category, or listing pages where recommendation or "you might also like" modules are themselves the primary content — on those pages, judge hierarchy under the general P02 rule instead. P09 is a specific, citable instance of P02's general hierarchy concern for this one common layout, not a replacement for it.
-
-## Information architecture
-
-| ID | Rule | Evidence | Default severity | Sources |
-|---|---|---|---|---|
-| IA01 | Navigation, labeling, and categorization sit at the intersection of user mental models, content structure/volume, and business or technical context — not on internal organizational or system structure alone. | Strong | Major | Rosenfeld, Morville & Arango, *Information Architecture for the Web and Beyond* |
-| IA02 | When an IA structure's findability has not been validated with users, recommend tree testing over relying on visual-comp review alone. | Strong | Moderate | Donna Spencer, tree testing methodology |
-
-**Applicability note:** IA01 requires visibility into the business/technical context behind a navigation or categorization choice (content volume, existing structure, technical constraints). If that context is missing from the evidence, report `NOT ASSESSABLE` rather than assuming the structure is right or wrong.
 
 ## Content / UX writing
 
@@ -55,7 +46,7 @@ Platform-agnostic. Covers rules P01-P07 (purpose & task), IA01-IA02 (information
 
 1. Start every review by identifying the single primary user goal for the reviewed screen/flow (P01). If none is identifiable, that is itself a P01 finding, not a gap to skip past.
 2. Check P02 (hierarchy) and C01-C06 plus C13-C16 (content) against that same stated goal — content quality is judged by whether it serves the goal, not by taste. If the reviewed screen is a product-detail page built around one featured item, also check P09: cross-sell/recommendation modules must not sit above the primary product's own details. Do not apply P09 to browse/category/listing pages, where recommendation modules can legitimately be the primary content — judge those under P02 alone. Once content is checked, also check the copy's voice and tone against `references/voice-tone.md`'s VT01-VT05 — this is a distinct evaluative axis from content clarity, not a restatement of it.
-3. Check navigation, labeling, and categorization against IA01 — is the structure organized around user mental models and content, or around internal department/system structure? If the reviewed IA has only been checked via visual-comp review, recommend tree testing (IA02) as the next validation step rather than treating visual review as sufficient evidence of findability.
+3. Check navigation, labeling, and categorization against `information-architecture.md`'s IA01-IA05 — is the structure organized around user mental models and content (including a situational entry point for users who haven't yet identified their task), or around internal department/system structure? If the reviewed IA has only been checked via visual-comp review, recommend tree testing (IA02) as the next validation step. If the evidence is a catalog/repository forced into one rigid hierarchy, check IA03 (faceted classification); if navigation or sign-in exposes internal organizational divisions, check IA04; if a UI metaphor's containment logic or a merged-source label could mislead the user, check IA05.
 4. P06, P07, and IA01 all require product context (is this a first-use screen? is identity intrinsic? what's the business/technical context behind this IA choice?). If that context is missing, report the finding as `NOT ASSESSABLE` per the evidence model rather than assuming either answer.
 5. Do not report a P03 "too many steps" finding without checking whether the steps are dependent (each needs the previous) or independent (could be reordered/removed) — dependency changes whether reduction is actually possible.
 6. Check any feature, permission request, or onboarding flow against P08: can you name the concrete user value, why this is the best available way to serve it, and the explicit operating boundaries for its use? A flow whose only justification is a vague, open-ended value proposition ("stay connected," "never miss out") fails P08 regardless of whether P06 also applies — P06 is specifically about identity/personal-data gating, while P08 covers any feature or permission, with or without a data/identity component. If the evidence does not show whether an alternative approach was considered, report P08 as `NOT ASSESSABLE` rather than assuming the flow passes or fails; do not report the same fact twice under both P06 and P08 on the same screen.
