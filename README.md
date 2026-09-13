@@ -29,30 +29,6 @@ Every finding carries:
 
 A review never collapses to one opaque score. It reports blockers and majors first, category health per lens, what states/context couldn't be assessed, and a top-3 highest-impact list. See `src/shared/evidence-model.md`, `severity-model.md`, and `report-contract.md` for the full model.
 
-## Repository layout
-
-```
-src/skills/<domain>/        canonical source: SKILL.md + references/ (edit here)
-src/shared/                 evidence, severity, and report models (single source of truth)
-skills/                     generated — standalone distribution (ux-crux-<domain>), for skills.sh
-plugin/                     generated — Claude/Codex plugin distribution:
-  .claude-plugin/plugin.json   Claude plugin manifest
-  .codex-plugin/plugin.json    Codex plugin manifest
-  skills/<domain>/            short skill names (review, usability, ...), metadata.internal:
-                               true so skills.sh doesn't also list these under their short names
-.claude-plugin/marketplace.json   repo-root marketplace pointer: "source": "./plugin" —
-                                    the only reason this one file lives at the root
-evals/                      trigger evals (routing) and output evals (one fixture per domain)
-scripts/                    build.mjs, sync-version.mjs, validate.mjs, test.mjs
-skills.sh.json              skills.sh marketplace page grouping
-```
-
-Never edit files under `skills/` or `plugin/skills/` by hand — they are generated from `src/` and will be overwritten by the next build.
-
-`plugin.json` deliberately stays nested inside `plugin/`, not at the repo root, for both Claude and Codex. Claude Code auto-discovers *any* directory literally named `skills/` sitting next to a plugin's manifest, on top of whatever `plugin.json`'s own `skills` array declares. The repo root already has its own `skills/` (the skills.sh distribution, different names) — if `plugin.json` lived there too, installing the plugin would expose all 12 directories as 12 separate skills instead of 6 (verified by comparing `claude plugin details ux-crux` before/after: 12 vs. 6). `marketplace.json` doesn't have that problem — it's a thin pointer, not a component-discovery root — so it lives at the repo root (required for a bare `owner/repo` marketplace source to resolve) with `"source": "./plugin"` telling both `claude plugin marketplace add` and `codex plugin marketplace add` (which reads the same file) where the actual plugin content is. No clone-then-point-at-a-subdirectory step needed.
-
-This repo's own OpenSpec workflow skills (`.claude/skills/openspec-*`, `.agents/skills/openspec-*` — used to plan and build ux-crux itself, not part of what ux-crux ships) are marked `metadata.internal: true` too, so they don't get swept into a bare `npx skills add DrSmile444/ux-crux` alongside the six ux-crux skills.
-
 ## Install
 
 Each of these installs the whole plugin/repo by default — a skills.sh install lets you (or, if you're scripting it non-interactively, installs) pick from the skills it finds; Claude/Codex installs bring all six skills together as one plugin, same as any Claude/Codex plugin.
@@ -84,6 +60,30 @@ codex plugin add ux-crux@ux-crux
 ```
 
 All three are verified end to end against the real public repo (marketplace add → install → list → uninstall), with no clone step for any of them.
+
+## Repository layout
+
+```
+src/skills/<domain>/        canonical source: SKILL.md + references/ (edit here)
+src/shared/                 evidence, severity, and report models (single source of truth)
+skills/                     generated — standalone distribution (ux-crux-<domain>), for skills.sh
+plugin/                     generated — Claude/Codex plugin distribution:
+  .claude-plugin/plugin.json   Claude plugin manifest
+  .codex-plugin/plugin.json    Codex plugin manifest
+  skills/<domain>/            short skill names (review, usability, ...), metadata.internal:
+                               true so skills.sh doesn't also list these under their short names
+.claude-plugin/marketplace.json   repo-root marketplace pointer: "source": "./plugin" —
+                                    the only reason this one file lives at the root
+evals/                      trigger evals (routing) and output evals (one fixture per domain)
+scripts/                    build.mjs, sync-version.mjs, validate.mjs, test.mjs
+skills.sh.json              skills.sh marketplace page grouping
+```
+
+Never edit files under `skills/` or `plugin/skills/` by hand — they are generated from `src/` and will be overwritten by the next build.
+
+`plugin.json` deliberately stays nested inside `plugin/`, not at the repo root, for both Claude and Codex. Claude Code auto-discovers *any* directory literally named `skills/` sitting next to a plugin's manifest, on top of whatever `plugin.json`'s own `skills` array declares. The repo root already has its own `skills/` (the skills.sh distribution, different names) — if `plugin.json` lived there too, installing the plugin would expose all 12 directories as 12 separate skills instead of 6 (verified by comparing `claude plugin details ux-crux` before/after: 12 vs. 6). `marketplace.json` doesn't have that problem — it's a thin pointer, not a component-discovery root — so it lives at the repo root (required for a bare `owner/repo` marketplace source to resolve) with `"source": "./plugin"` telling both `claude plugin marketplace add` and `codex plugin marketplace add` (which reads the same file) where the actual plugin content is. No clone-then-point-at-a-subdirectory step needed.
+
+This repo's own OpenSpec workflow skills (`.claude/skills/openspec-*`, `.agents/skills/openspec-*` — used to plan and build ux-crux itself, not part of what ux-crux ships) are marked `metadata.internal: true` too, so they don't get swept into a bare `npx skills add DrSmile444/ux-crux` alongside the six ux-crux skills.
 
 ## Run locally
 
