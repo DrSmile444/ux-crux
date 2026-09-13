@@ -1,6 +1,16 @@
 # UX Crux
 
+[![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-CC785C)](#install)
+[![Codex plugin](https://img.shields.io/badge/Codex-plugin-000000)](#install)
+[![skills.sh compatible](https://img.shields.io/badge/skills.sh-compatible-2EA44F)](#install)
+
 Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score.
+
+Quickest way in — works with any agent `npx skills` supports:
+
+```bash
+npx skills add DrSmile444/ux-crux
+```
 
 ![ux-crux banner](assets/banner.png)
 
