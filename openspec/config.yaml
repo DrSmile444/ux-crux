@@ -102,6 +102,12 @@ rules:
       per-change boilerplate. It covers the build only; publishing (commit,
       push, making a repo public) is never implied by this and is out of
       scope for tasks.md.
+    - Any task list that adds rule content traced to a named book or research
+      source not already listed in README.md's "Evidence base" section must
+      include a task to add it there, alongside (not instead of) the
+      CHANGELOG.md entry task - per this repo's CLAUDE.md rule to cite every
+      book used, README.md's Evidence base list is the other place that
+      applies, and it is easy to update the changelog while forgetting it.
 
 # Per-operation guidance
 operations:
