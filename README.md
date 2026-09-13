@@ -34,10 +34,12 @@ src/skills/<domain>/        canonical source: SKILL.md + references/ (edit here)
 src/shared/                 evidence, severity, and report models (single source of truth)
 skills/                     generated — standalone distribution (ux-crux-<domain>), for skills.sh
 plugin/                     generated — Claude/Codex plugin distribution:
-  .claude-plugin/             Claude plugin + marketplace manifest
-  .codex-plugin/               Codex plugin manifest
+  .claude-plugin/plugin.json   Claude plugin manifest
+  .codex-plugin/plugin.json    Codex plugin manifest
   skills/<domain>/            short skill names (review, usability, ...), metadata.internal:
                                true so skills.sh doesn't also list these under their short names
+.claude-plugin/marketplace.json   repo-root marketplace pointer: "source": "./plugin" —
+                                    the only reason this one file lives at the root
 evals/                      trigger evals (routing) and output evals (one fixture per domain)
 scripts/                    build.mjs, sync-version.mjs, validate.mjs, test.mjs
 skills.sh.json              skills.sh marketplace page grouping
@@ -45,41 +47,41 @@ skills.sh.json              skills.sh marketplace page grouping
 
 Never edit files under `skills/` or `plugin/skills/` by hand — they are generated from `src/` and will be overwritten by the next build.
 
-`.claude-plugin/` and `.codex-plugin/` deliberately live inside `plugin/`, not at the repo root. Claude Code auto-discovers *any* directory literally named `skills/` sitting next to a plugin's manifest, on top of whatever `plugin.json`'s own `skills` array declares. The repo root already has its own `skills/` (the skills.sh distribution, different names) — if the manifests lived there too, installing the plugin would expose all 12 directories as 12 separate skills instead of 6. Keeping the manifests inside `plugin/`, where the only `skills/` sibling is the intended one, avoids that; verified by comparing `claude plugin details ux-crux` before and after (6 vs. 12).
+`plugin.json` deliberately stays nested inside `plugin/`, not at the repo root, for both Claude and Codex. Claude Code auto-discovers *any* directory literally named `skills/` sitting next to a plugin's manifest, on top of whatever `plugin.json`'s own `skills` array declares. The repo root already has its own `skills/` (the skills.sh distribution, different names) — if `plugin.json` lived there too, installing the plugin would expose all 12 directories as 12 separate skills instead of 6 (verified by comparing `claude plugin details ux-crux` before/after: 12 vs. 6). `marketplace.json` doesn't have that problem — it's a thin pointer, not a component-discovery root — so it lives at the repo root (required for a bare `owner/repo` marketplace source to resolve) with `"source": "./plugin"` telling both `claude plugin marketplace add` and `codex plugin marketplace add` (which reads the same file) where the actual plugin content is. No clone-then-point-at-a-subdirectory step needed.
+
+This repo's own OpenSpec workflow skills (`.claude/skills/openspec-*`, `.agents/skills/openspec-*` — used to plan and build ux-crux itself, not part of what ux-crux ships) are marked `metadata.internal: true` too, so they don't get swept into a bare `npx skills add DrSmile444/ux-crux` alongside the six ux-crux skills.
 
 ## Install
+
+Each of these installs the whole plugin/repo by default — a skills.sh install lets you (or, if you're scripting it non-interactively, installs) pick from the skills it finds; Claude/Codex installs bring all six skills together as one plugin, same as any Claude/Codex plugin.
 
 ### skills.sh (any agent `npx skills` supports)
 
 ```bash
-npx skills add DrSmile444/ux-crux --skill ux-crux-review
-# or install all six:
-npx skills add DrSmile444/ux-crux --skill '*'
+npx skills add DrSmile444/ux-crux
 ```
 
-Verified against the public repo end to end.
+Only picks up the six `ux-crux-<domain>` skills — the plugin's own short-named copies and this repo's OpenSpec tooling are both marked internal and excluded. If you already know you only want one lens:
+
+```bash
+npx skills add DrSmile444/ux-crux --skill ux-crux-review
+```
 
 ### Claude Code plugin
 
-Because the manifest lives under `plugin/` rather than the repo root (see above), a bare `owner/repo` marketplace source doesn't resolve — clone first, then point at the subdirectory:
-
 ```bash
-git clone https://github.com/DrSmile444/ux-crux.git
-claude plugin marketplace add ./ux-crux/plugin
+claude plugin marketplace add DrSmile444/ux-crux
 claude plugin install ux-crux@ux-crux
 ```
 
 ### Codex plugin
 
-Same reason, same shape:
-
 ```bash
-git clone https://github.com/DrSmile444/ux-crux.git
-codex plugin marketplace add ./ux-crux/plugin
+codex plugin marketplace add DrSmile444/ux-crux
 codex plugin add ux-crux@ux-crux
 ```
 
-All three are verified end to end (marketplace add → install → list → uninstall against a real clone of the public repo), not just against the local working copy.
+All three are verified end to end against the real public repo (marketplace add → install → list → uninstall), with no clone step for any of them.
 
 ## Run locally
 
@@ -110,10 +112,10 @@ To validate the manifest itself without starting a session:
 claude plugin validate ./plugin --strict
 ```
 
-To try the local repo as a marketplace without publishing anything:
+To try the local repo as a marketplace without publishing anything (uses the root `marketplace.json`, same as a real install would):
 
 ```bash
-claude plugin marketplace add ./plugin
+claude plugin marketplace add ./
 claude plugin install ux-crux@ux-crux
 ```
 
@@ -126,7 +128,7 @@ python3 ~/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py ./plug
 validates `plugin/.codex-plugin/plugin.json` against the Codex plugin schema. To actually use the skills locally:
 
 ```bash
-codex plugin marketplace add ./plugin
+codex plugin marketplace add .
 codex plugin add ux-crux@ux-crux
 ```
 
@@ -136,7 +138,7 @@ codex plugin add ux-crux@ux-crux
 npx skills add . --list
 ```
 
-lists what the standalone `skills/` distribution exposes without installing anything — useful for confirming all six `ux-crux-<domain>` skills are discoverable after a build.
+lists what's discoverable without installing anything — should show exactly the six `ux-crux-<domain>` skills (not the OpenSpec tooling, not the plugin's short-named copies) after a build.
 
 ### 5. Keep versions in sync
 
