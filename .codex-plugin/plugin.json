@@ -15,7 +15,7 @@
     "usability",
     "design-review"
   ],
-  "skills": "./skills/",
+  "skills": "./plugin/skills/",
   "interface": {
     "displayName": "UX Crux",
     "shortDescription": "Evidence-driven UX review for AI coding agents",

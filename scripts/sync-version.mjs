@@ -8,8 +8,8 @@ import { ROOT, readPackageVersion } from "./lib.mjs";
 const version = readPackageVersion();
 
 const targets = [
-  path.join(ROOT, "plugin", ".claude-plugin", "plugin.json"),
-  path.join(ROOT, "plugin", ".codex-plugin", "plugin.json"),
+  path.join(ROOT, ".claude-plugin", "plugin.json"),
+  path.join(ROOT, ".codex-plugin", "plugin.json"),
 ];
 
 let changed = 0;

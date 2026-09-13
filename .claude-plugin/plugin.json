@@ -8,11 +8,11 @@
     "email": "drsmile444@gmail.com"
   },
   "skills": [
-    "./skills/review",
-    "./skills/usability",
-    "./skills/psychology",
-    "./skills/accessibility",
-    "./skills/product",
-    "./skills/trust"
+    "./plugin/skills/review",
+    "./plugin/skills/usability",
+    "./plugin/skills/psychology",
+    "./plugin/skills/accessibility",
+    "./plugin/skills/product",
+    "./plugin/skills/trust"
   ]
 }
