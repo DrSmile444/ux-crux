@@ -63,6 +63,19 @@ export function rewriteSharedPathsNestedDomainReference(content) {
   return content.replaceAll("../../../shared/", "../../shared/");
 }
 
+export function markFrontmatterInternal(content) {
+  // Marks the plugin distribution's SKILL.md as internal (metadata.internal:
+  // true) so skills.sh's discovery hides it from normal listing/install -
+  // the standalone ux-crux-<domain> copy is the one meant to be discovered
+  // there. Without this, plugin/skills/<domain> (short names) would show up
+  // as loose top-level skills alongside the intentional ux-crux-<domain>
+  // ones once .claude-plugin/ and .codex-plugin/ moved to the repo root.
+  if (/^(---\n(?:.*\n)*?  internal: )/m.test(content)) {
+    return content.replace(/^(---\n(?:.*\n)*?  internal: )(true|false)(\n)/m, `$1true$3`);
+  }
+  return content.replace(/^(---\n(?:.*\n)*?metadata:\n)/m, `$1  internal: true\n`);
+}
+
 export function ensureEmptyDir(dir) {
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });

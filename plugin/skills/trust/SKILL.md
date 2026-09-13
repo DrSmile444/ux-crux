@@ -3,8 +3,9 @@ name: trust
 description: Use when the user wants review of permission-request timing, onboarding necessity, destructive-action safety (undo vs. confirmation), notification honesty, or other trust/safety signals in a flow. Not for general task-flow review (use `usability`) or persuasive-mechanism ethics unrelated to trust/permissions (use `psychology`).
 license: MIT
 metadata:
+  internal: true
   author: ux-crux
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 Review permission/onboarding/interruption timing, destructive-action safety, and trust signals for the evidence provided.

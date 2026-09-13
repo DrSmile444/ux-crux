@@ -3,8 +3,9 @@ name: product
 description: Use when the user wants review of a screen or flow's primary goal clarity, information hierarchy, content/UX writing, or whether onboarding/registration is justified before value is shown — whether the design serves user intent vs. internal product structure. Not for interaction mechanics (use `usability`) or persuasive-mechanism ethics (use `psychology`).
 license: MIT
 metadata:
+  internal: true
   author: ux-crux
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 Review goal clarity, information architecture, and content for the evidence provided.

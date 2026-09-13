@@ -3,8 +3,9 @@ name: review
 description: Use when the user asks for a broad, comprehensive, general, or end-to-end UX review of a feature, screen, flow, app, or implementation — across multiple dimensions (usability, accessibility, psychology, product, trust) rather than one specific angle. If the request already narrows to one angle (e.g. "check accessibility", "is this manipulative"), prefer the matching domain skill instead.
 license: MIT
 metadata:
+  internal: true
   author: ux-crux
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 Review the user-facing product, feature, flow, screen, or implementation described or shown, across every UX dimension relevant to the evidence provided. Never invent behavior that cannot be observed — see `shared/evidence-model.md`.

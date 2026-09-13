@@ -19,6 +19,7 @@ import {
   rewriteSharedPathsSkillMd,
   rewriteSharedPathsReference,
   rewriteSharedPathsNestedDomainReference,
+  markFrontmatterInternal,
   ensureEmptyDir,
 } from "./lib.mjs";
 
@@ -26,7 +27,7 @@ const version = readPackageVersion();
 const sharedDir = path.join(ROOT, "src", "shared");
 const sharedFiles = fs.readdirSync(sharedDir).filter((f) => f.endsWith(".md"));
 
-function buildOne(domain, { outDir, skillName }) {
+function buildOne(domain, { outDir, skillName, internal = false }) {
   const srcDir = path.join(ROOT, "src", "skills", domain);
   ensureEmptyDir(outDir);
 
@@ -35,6 +36,7 @@ function buildOne(domain, { outDir, skillName }) {
   skillMd = rewriteFrontmatterName(skillMd, skillName);
   skillMd = rewriteFrontmatterVersion(skillMd, version);
   skillMd = rewriteSharedPathsSkillMd(skillMd);
+  if (internal) skillMd = markFrontmatterInternal(skillMd);
   fs.writeFileSync(path.join(outDir, "SKILL.md"), skillMd);
 
   // references/
@@ -72,6 +74,14 @@ for (const domain of DOMAINS) {
     buildOne(domain, {
       outDir: path.join(ROOT, "plugin", "skills", domain),
       skillName: domain,
+      // Hidden from skills.sh discovery: since .claude-plugin/ and
+      // .codex-plugin/ moved to the repo root (required for `owner/repo`
+      // remote plugin installs to work), plugin/skills/<domain> now reads
+      // as an ordinary top-level skill dir to a generic crawler too. Without
+      // this it would be discoverable twice, under both its short name here
+      // and its ux-crux-<domain> name in skills/ - metadata.internal hides
+      // this copy so ux-crux-<domain> is the only one skills.sh lists.
+      internal: true,
     })
   );
 }

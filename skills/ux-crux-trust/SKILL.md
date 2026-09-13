@@ -4,7 +4,7 @@ description: Use when the user wants review of permission-request timing, onboar
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 Review permission/onboarding/interruption timing, destructive-action safety, and trust signals for the evidence provided.

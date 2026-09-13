@@ -3,8 +3,9 @@ name: psychology
 description: Use when the user wants analysis of attention, cognitive load, motivation, emotion, behavioral economics (defaults, anchoring, loss aversion, scarcity, urgency), social proof, habit formation, or persuasive/dark-pattern ethics in a UI or feature — including questions like "is this manipulative" or "why would this motivate users". Not for general task-flow/navigation review (use `usability`) or accessibility (use `accessibility`).
 license: MIT
 metadata:
+  internal: true
   author: ux-crux
-  version: "0.1.2"
+  version: "0.1.3"
 ---
 
 Analyze the psychological mechanisms present in the reviewed evidence — cognitive, attentional, motivational, emotional, behavioral-economic, social, and habit-related — and evaluate whether their use is ethical, not just whether it is effective.
