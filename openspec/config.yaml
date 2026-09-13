@@ -33,9 +33,12 @@ context: |
   v1 scope is mobile UX (iOS/Android), fully covered. Each domain's
   references/ is split into core.md (platform-agnostic) plus mobile.md
   (platform-specific) so a future web.md addendum can be added per domain
-  without restructuring. Web/desktop content, book-sourced rules, deterministic
-  measurement scripts, and curated-marketplace submission are explicitly
-  deferred, not yet in scope.
+  without restructuring. Web/desktop content, deterministic measurement
+  scripts, and curated-marketplace submission are explicitly deferred, not
+  yet in scope. A targeted rule addition backed by a named, verifiable source
+  (NN/g, WCAG SC, an Apple HIG/Android guideline, or a named academic study)
+  is in scope regardless of which secondary text first surfaced it; a
+  wholesale import of an external book's full rule set remains deferred.
 
   Versioning is one SemVer for the whole plugin (package.json is the source of
   truth), synced into both plugin manifests via `scripts/sync-version.mjs`.
