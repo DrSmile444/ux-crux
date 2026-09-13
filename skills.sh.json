@@ -1,0 +1,22 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Complete Review",
+      "description": "Full-spectrum UX audit across every applicable lens.",
+      "skills": ["ux-crux-review"]
+    },
+    {
+      "title": "Specialized Reviews",
+      "description": "Independent single-lens reviews: usability, psychology, accessibility, product, and trust.",
+      "skills": [
+        "ux-crux-usability",
+        "ux-crux-psychology",
+        "ux-crux-accessibility",
+        "ux-crux-product",
+        "ux-crux-trust"
+      ]
+    }
+  ]
+}

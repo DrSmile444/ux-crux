@@ -1,0 +1,15 @@
+{
+  "name": "ux-crux",
+  "description": "Self-hosted marketplace for the ux-crux UX review plugin.",
+  "owner": {
+    "name": "Dmytro Vakulenko",
+    "email": "drsmile444@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "ux-crux",
+      "source": "./",
+      "description": "Evidence-driven UX review skills for AI coding agents: a full-audit entry point plus usability, psychology, accessibility, product, and trust lenses."
+    }
+  ]
+}

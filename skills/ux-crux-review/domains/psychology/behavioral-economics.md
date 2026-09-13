@@ -1,0 +1,22 @@
+# Psychology: behavioral economics and choice architecture
+
+See `../../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules. Read `ethics.md` before treating any mechanism below as a recommendation rather than a description — several rules in this file are ethical guardrails, not techniques to recommend.
+
+| ID | Rule | Evidence | Default severity | Sources |
+|---|---|---|---|---|
+| PB01 | Defaults are behaviorally powerful. Choose a safe, common, user-benefiting default when one is justified; avoid defaults chosen primarily to increase spend/data sharing. | Psychological mechanism + ethical | Major | Johnson & Goldstein, "Do Defaults Save Lives?" (2003); NN/g The Power of Defaults; NN/g Deceptive Patterns in UX |
+| PB02 | Make material consequences of a default visible before commitment and keep alternative choices reasonably easy to select. | Ethical guardrail | Major | NN/g The Power of Defaults; NN/g Deceptive Patterns in UX |
+| PB03 | Treat price/order anchors as influence mechanisms. They must not hide total cost, distort comparison, or make a deliberately inferior option look artificially attractive. | Contextual + ethical | Major | NN/g The Anchoring Principle; NN/g Deceptive Patterns in UX |
+| PB04 | Loss-framed messaging may change behavior, but should not create disproportionate fear, shame, or anxiety to serve business goals. | Contextual + ethical | Major | NN/g Prospect Theory and Loss Aversion; NN/g The Vortex; NN/g Deceptive Patterns in UX |
+| PB05 | Language such as "your progress" or user-created collections can reinforce legitimate ownership, but the product must not exploit invested effort to make exit/export/cancellation unfairly difficult. | Contextual + ethical | Major | Kahneman, Knetsch & Thaler, "Experimental Tests of the Endowment Effect and the Coase Theorem" (1990); NN/g Deceptive Patterns in UX |
+| PB06 | Social proof must be truthful, current enough to be meaningful, and relevant to the decision; fabricated viewers, purchases, reviews, or norms are deceptive. | Strong + ethical | Blocker | NN/g Social Proof in the User Experience; NN/g Deceptive Patterns in UX |
+| PB07 | Authority/endorsement claims must be verifiable and relevant to the decision; visual authority cues must not impersonate independent or regulatory approval. | Ethical guardrail | Blocker | NN/g Deceptive Patterns in UX |
+| PB08 | Scarcity and countdown urgency must reflect a real constraint; resetting timers or fake low-stock claims are deceptive patterns. | Ethical guardrail | Blocker | NN/g Deceptive Patterns in UX; NN/g The Vortex |
+| PB09 | Provide meaningful value before requesting disproportionate information or commitment where possible; never frame a normal product feature as a debt the user must repay. | Contextual + ethical | Moderate | NN/g The Reciprocity Principle |
+| PB10 | Information-gap/curiosity techniques may invite exploration, but must not conceal information needed for informed choice or bait users with withheld promised value. | Contextual + ethical | Major | Loewenstein, "The Psychology of Curiosity: A Review and Reinterpretation" (1994); NN/g Deceptive Patterns in UX |
+| PB11 | Progress, streaks, and open loops should help users pursue a goal they value; do not create avoidable anxiety or punish healthy disengagement. | Contextual + ethical | Major | NN/g The Principle of Commitment and Behavioral Consistency; NN/g The Vortex |
+| PB12 | Do not treat variable rewards as a default UX best practice. If used, require an explicit wellbeing/ethics review because unpredictability can increase compulsive engagement. | Ethical guardrail | Major | NN/g The Vortex; NN/g Deceptive Patterns in UX |
+
+## How the psychology skill should apply these
+
+This file contains the mechanisms most likely to be misapplied as "growth hacks." PB06, PB07, and PB08 are fabrication-based deceptive patterns (fake social proof, fake authority, fake scarcity) — these are never contextual, they are blocker-severity findings the moment fabrication is confirmed. PB01-PB05 and PB09-PB12 are genuinely context-dependent mechanisms with real, non-deceptive uses; every one of them must still pass all four gates in `ethics.md` (evidence, applicability, user benefit, agency & truthfulness) before this skill recommends using it — describing that a mechanism would likely work is not the same as endorsing it.
