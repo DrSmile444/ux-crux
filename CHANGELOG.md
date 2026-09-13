@@ -2,6 +2,14 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.4 — remote install verified; manifest-location false start reverted
+
+Added a `README.md` "Install" section with commands for skills.sh, the Claude Code plugin, and the Codex plugin — verified against the real public repo, not just locally.
+
+Along the way, `.claude-plugin/`/`.codex-plugin/` were briefly moved to the repo root to make `claude plugin marketplace add owner/repo` resolve without a subdirectory. That broke something more important: Claude Code auto-discovers *any* directory literally named `skills/` next to a plugin's manifest, regardless of what `plugin.json`'s own `skills` array declares — with the manifest at the repo root, the repo's own top-level `skills/` (the skills.sh standalone distribution) got swept in too, doubling the installed skill count from 6 to 12. Reverted to the original, collision-free layout (manifests nested under `plugin/`). Remote Claude/Codex installs need a clone-then-point-at-subdirectory step instead of a bare `owner/repo` one-liner; skills.sh's remote install is unaffected and stays one line. `metadata.internal: true` was added to the plugin distribution's `SKILL.md` files as defense-in-depth against the same class of duplicate-listing issue.
+
+Also added GitHub repo topics and five domain-specific issue labels (`review`, `usability`, `psychology`, `product`, `trust`; `accessibility` already existed as a GitHub default).
+
 ## 0.1.2 — review self-containment fix
 
 Fixed: `review`'s generated package previously carried no rule content of its own — only lens-selection methodology — and relied on the five domain skills' packages being installed alongside it. Confirmed (research + a real isolated `npx skills add --skill ux-crux-review` install) that skills.sh has no dependency mechanism between skills, so a standalone `review` install had nothing to apply. `scripts/build.mjs` now bundles a generated copy of every domain's `references/` into review's own package under `domains/<domain>/`, in both distributions; `scripts/validate.mjs` gained a matching drift check. Also tightened a same-class cross-reference in `trust/references/core.md` that named another skill's file by path in prose.
