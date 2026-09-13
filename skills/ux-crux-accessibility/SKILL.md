@@ -4,7 +4,7 @@ description: Use when accessibility, WCAG conformance, screen readers (VoiceOver
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.4"
+  version: "0.1.5"
 ---
 
 Review WCAG conformance and inclusive interaction for the evidence provided.
