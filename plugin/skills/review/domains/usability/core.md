@@ -15,6 +15,18 @@ Platform-agnostic. See `../../shared/evidence-model.md` and `severity-model.md` 
 | A07R | Alerts/dialogs are reserved for interruption-worthy information or a narrowly scoped task; low-priority feedback stays in context. | Strong | Major | Apple HIG Alerts, Modality, Feedback; Android Snackbar, Dialog |
 | A08R | A control that appears interactive is actually interactive, and a disabled control is visually distinguishable and not the only explanation of unmet prerequisites. | Strong | Moderate | NN/g Ten Usability Heuristics; Apple HIG Feedback |
 
+### Confirmation-dialogue simplification technique
+
+When an A05R or A06R finding flags a confirmation dialog whose title, body copy, and button labels are misaligned, apply this refinement sequence rather than editing the wording ad hoc:
+
+1. **Extract the discrete facts** the dialog currently states (what will happen, what conditions apply, what is reversible or not).
+2. **Prioritize destructive/irreversible consequences first** — move the most consequential fact to the top; secondary details follow.
+3. **Phrase the title as a direct question** rather than a statement or label (for example "Limit sharing to domain users?" instead of "Sharing settings").
+4. **Align the button labels to literally answer that question** (for example "Yes"/"No") instead of generic or jargon verbs ("Enable"/"Cancel") that do not restate the question's answer.
+5. **Strip jargon and redundant technical explanation** the buttons or title already made clear.
+
+This is a technique for satisfying A05R (specific, consequence-naming confirmation) and A06R (outcome-stating choices), not a separate rule competing with them — a dialog can fail A05R/A06R without this sequence being the right fix (for example if the real problem is that no confirmation was needed at all, per A04R).
+
 ## Forms & input
 
 | ID | Rule | Evidence | Default severity | Sources |
@@ -135,4 +147,4 @@ These are the exact kinds of oversimplified rules a review is likely to hallucin
 
 ## How the usability skill should apply these
 
-Start from the primary task (handed off from, or checked alongside, the `product` lens), then work through state-completeness (System status, Errors & recovery — is every state in `evidence-model.md`'s sense actually shown or knowably absent?), then interaction efficiency (does every explicit user intent get continued without redundant taps?), then the folk-rule guard table before finalizing any finding that resembles a popular "always/never" rule. When the evidence includes a form, also check the layout-ergonomics rules (F13-F17: button alignment, label proximity, sample-data contamination, single-column question layout, cross-step memory); when it includes navigation menus, a dropdown/mega-menu, or a list of options to compare, check N13R-N14R and D06 alongside the rest of Navigation and Search/discovery. When a finding could be explained by either a genuine usability defect or a legitimate contextual exception (progressive disclosure, secondary navigation, a deliberately browse-first search state), report it with the appropriate `evidence-model.md` status and name the exception condition rather than asserting a defect outright.
+Start from the primary task (handed off from, or checked alongside, the `product` lens), then work through state-completeness (System status, Errors & recovery — is every state in `evidence-model.md`'s sense actually shown or knowably absent?), then interaction efficiency (does every explicit user intent get continued without redundant taps?), then the folk-rule guard table before finalizing any finding that resembles a popular "always/never" rule. When the evidence includes a form, also check the layout-ergonomics rules (F13-F17: button alignment, label proximity, sample-data contamination, single-column question layout, cross-step memory); when it includes navigation menus, a dropdown/mega-menu, or a list of options to compare, check N13R-N14R and D06 alongside the rest of Navigation and Search/discovery. When a finding could be explained by either a genuine usability defect or a legitimate contextual exception (progressive disclosure, secondary navigation, a deliberately browse-first search state), report it with the appropriate `evidence-model.md` status and name the exception condition rather than asserting a defect outright. When an A05R/A06R finding involves a confirmation dialog whose title, body, and buttons are misaligned, recommend the Confirmation-dialogue simplification technique (in this file's Actions section) as the concrete fix rather than a generic "make this clearer" recommendation.
