@@ -1,24 +1,4 @@
-# ux-crux/product Specification
-
-## Purpose
-
-Defines the product lens covering goal clarity, user intent, information architecture, and content/UX writing.
-
-## Requirements
-
-### Requirement: Primary goal and hierarchy check
-The product skill SHALL evaluate whether each reviewed screen has a clear primary user goal, whether the primary action is visually prioritized over secondary actions, and whether content and controls serve that goal rather than internal product structure.
-
-#### Scenario: Competing calls to action
-- **WHEN** a reviewed screen presents two visually equal calls to action for a task with one clear primary next step
-- **THEN** the product skill flags the lack of visual hierarchy as a finding
-
-### Requirement: Registration and data-minimization check
-The product skill SHALL flag cases where a flow requires registration or personal data before demonstrating value, unless identity or the data is intrinsic to the task or required for safety/security.
-
-#### Scenario: Login wall before value
-- **WHEN** a reviewed flow requires account creation before showing any core functionality
-- **THEN** the product skill flags this as a contextual finding requiring justification
+## MODIFIED Requirements
 
 ### Requirement: Information architecture check
 The product skill SHALL evaluate a reviewed screen or flow's navigation, labeling, and categorization at the intersection of user mental models, content structure/volume, and business or technical context, rather than accepting a structure based solely on internal organizational or system architecture. The evaluation SHALL be grounded in the three materials of information architecture — labels/ontology (what terms mean), relationships/taxonomy (how labeled concepts are categorized and connected), and rules/choreography (the conditional logic governing how structure is placed into interaction flow) — rather than treated as a single undifferentiated "navigation" concern.
@@ -85,21 +65,6 @@ When a reviewed product applies a conceptual model (for example, whether an item
 - **WHEN** a reviewed interface simulates a physical-world mechanic (for example turning a magazine page, or laying out controls to mimic a physical counter/desk) in a way that constrains navigation or interaction with no demonstrated digital benefit over a non-literal equivalent
 - **THEN** the product skill flags the literal-metaphor overload as a finding
 
-### Requirement: Label-to-structure fidelity check
-The product skill SHALL flag a UI metaphor whose container/item relationship contradicts the real-world referent it invokes (for example nesting a "roll" of items inside an "album" when the physical referent is the reverse: a roll produces the album). The skill SHALL also flag a single, unified label that silently merges multiple underlying objects or data sources with different visibility or permission scopes, when the evidence shows this could cause a viewer to misjudge who else can see an item grouped under that label.
-
-#### Scenario: UI metaphor inverts the real-world containment relationship
-- **WHEN** a reviewed interface nests one concept inside another in a way that contradicts the physical-world relationship the metaphor's own labels invoke (for example placing "Camera Roll" inside "Albums" when a film roll physically produces the album, not the reverse)
-- **THEN** the product skill flags the metaphor-fidelity mismatch as a finding
-
-#### Scenario: One label merges sources with different visibility scopes
-- **WHEN** a reviewed unified view (for example a single "Calendar") merges personal items with subscribed or externally-sourced items that other viewers cannot see, with no visual differentiation between the two
-- **THEN** the product skill flags the reified-label misalignment, since a viewer could reasonably but incorrectly assume every item under that label is equally visible to others
-
-#### Scenario: Merged sources are visually differentiated
-- **WHEN** a reviewed unified view distinguishes personal items from subscribed/external items using a distinct visual treatment (for example a different color, texture, or explicit badge) and states which items are private to the viewer
-- **THEN** the product skill does not flag a reified-label misalignment finding
-
 ### Requirement: Content clarity check
 The product skill SHALL evaluate whether button/action labels, error copy, and instructional content use the user's vocabulary and describe the actual action or problem, rather than vague or internal terminology. The same action across the reviewed product SHALL use one consistent label rather than introducing synonyms that force recall instead of recognition, unless a distinct underlying outcome justifies the different wording. Copy SHALL be evaluated on a concision-precision spectrum: exact technical precision that makes a message unreadably long for its container is itself a finding, but so is over-concise copy that omits a decision-critical fact; when no position on the spectrum is both accurate and readable, the underlying system logic being described, not the copy, is the root finding. Established domain terminology SHALL NOT be flagged as a plain-language violation when the verified target audience is domain specialists using a professional/expert tool. An opt-out or decline control SHALL NOT be flagged as a content-clarity pass if it forces the user to select a derogatory, self-deprecating, or guilt-inducing statement in order to decline; neutral decline language SHALL be recommended instead. Language describing disability or human traits SHALL avoid tragic ("confined to") or patronizing/heroic ("bravely overcame") framing in favor of neutral, objective phrasing. Product copy referring to an unspecified third party SHALL default to singular "they"/"them"/"their" rather than "(s)he" or "he/she" constructions.
 
@@ -140,48 +105,3 @@ When a reviewed product provides FAQ or help content, the skill SHALL flag conte
 #### Scenario: FAQ content is grounded in validated user inquiries
 - **WHEN** a reviewed help or FAQ section's questions are shown to derive from actual support-log analytics or validated frequent user inquiries
 - **THEN** the product skill does not flag a format-vs-purpose finding
-
-### Requirement: Voice and tone evaluation
-The product skill SHALL evaluate reviewed copy's tone against the user's likely emotional state and journey stage, in addition to its existing content-clarity check. Copy SHALL be evaluated for clarity first, concision second, and human warmth third, in that priority order — clever or warm phrasing SHALL NOT be recommended at the expense of clarity. Tone SHALL be treated as a contextual spectrum shaped by the user's journey stage and emotional state (for example, more instructive/reassuring during an error or high-stress task, more motivational during onboarding), not as a single fixed personality applied uniformly everywhere. Celebratory, congratulatory, or lifecycle copy SHALL be flagged if it relies on a culturally specific idiom, sitcom/pop-culture reference, or rhetorical humor unlikely to translate cleanly for a non-native or international audience. A finding about copy's warmth or personality SHALL distinguish between the product's own task-level voice and a separate marketing/brand voice, and SHALL NOT penalize appropriately restrained, low-key product copy for lacking marketing-style personality.
-
-#### Scenario: Cheerful tone during a high-stress task
-- **WHEN** a reviewed flow uses an upbeat, exclamation-heavy tone in a context where the user is reporting a problem, loss, or emergency (for example an insurance claim or account-security incident)
-- **THEN** the product skill flags the tone mismatch and recommends a more restrained, instructive, or supportive tone appropriate to that moment
-
-#### Scenario: Clever phrasing obscures the outcome
-- **WHEN** reviewed copy is witty or stylistically distinctive but leaves the user unsure what will actually happen if they proceed
-- **THEN** the product skill flags the clarity failure ahead of any tone/voice concern, per the clear-before-concise-before-human priority
-
-#### Scenario: Culturally specific idiom in celebratory copy
-- **WHEN** a reviewed celebratory or lifecycle message (for example a year-in-review or milestone screen) relies on a culturally specific idiom or pop-culture reference
-- **THEN** the product skill flags the risk that international or non-native-speaking users will misread the message literally or find it confusing, and recommends translatable phrasing
-
-#### Scenario: Restrained product copy is not penalized for lacking brand personality
-- **WHEN** reviewed task-level product copy (for example a form label or system message) is plain and low-key rather than stylistically distinctive
-- **THEN** the product skill does not flag this as a tone deficiency, provided the copy remains clear and appropriately human, since product voice and marketing brand voice are evaluated separately
-
-### Requirement: Feature and permission justification
-The product skill SHALL flag a feature, permission request, or onboarding flow that does not identify (a) a concrete user value it serves, (b) why it is the best available way to serve that value, and (c) explicit operating boundaries for when and how it is used. A flow whose only stated justification is a vague, open-ended value proposition (for example "stay connected" or "never miss out") used to justify unconstrained, unbounded access SHALL be flagged as a finding, distinct from the existing registration-before-value requirement, which addresses only identity/personal-data gating.
-
-#### Scenario: Vague, open-ended value proposition
-- **WHEN** a permission request or onboarding screen states only a vague benefit (for example "never miss a moment") with no scoped use case and no stated operating boundary
-- **THEN** the product skill flags it as failing the feature-justification check, as a finding distinct from any separate registration-before-value finding
-
-#### Scenario: Feature has a scoped, justified rationale
-- **WHEN** a feature states a concrete user value, a stated reason it is the best available approach, and explicit operating boundaries (for example, restricted to a specific context or usage window)
-- **THEN** the product skill does not flag it under this requirement
-
-#### Scenario: Justification context is missing
-- **WHEN** the evidence provided does not indicate whether an alternative approach was considered or why this approach best serves the stated value
-- **THEN** the product skill reports the finding as `NOT ASSESSABLE` per the evidence model rather than assuming the flow passes or fails
-
-### Requirement: Opt-in/opt-out phrasing avoids double-negative or inverted logic
-The product skill SHALL flag opt-in/opt-out checkbox or form logic that uses a double negative or inverted logic (for example a checkbox where checking it means declining something) that requires the user to work out what checking or unchecking the control actually does, distinct from the existing confirm-shaming rule, which addresses emotionally loaded language rather than logical inversion.
-
-#### Scenario: Checkbox phrased as a double negative
-- **WHEN** the reviewed evidence shows a checkbox labeled with a double negative (for example "Uncheck this box if you do not want to not receive updates") or an inverted-logic construction where checking the box means declining an offer
-- **THEN** the product skill flags this as a Trick Questions finding
-
-#### Scenario: Opt-in/opt-out control uses plain affirmative phrasing
-- **WHEN** the reviewed evidence shows a single, plain-language affirmative checkbox (for example "Send me weekly updates") that defaults to unchecked
-- **THEN** the product skill does not flag a Trick Questions finding

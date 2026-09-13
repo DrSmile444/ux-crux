@@ -1,6 +1,6 @@
 # Product: goal, value, content
 
-Platform-agnostic. Covers rules P01-P09 (purpose & task) and C01-C17 (content) from the source catalog. Information-architecture rules (IA01-IA05) live in `information-architecture.md`, not here. See `../../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
+Platform-agnostic. Covers rules P01-P09 (purpose & task) and C01-C18 (content) from the source catalog. Information-architecture rules (IA01-IA08) live in `information-architecture.md`, not here. See `../../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
 
 ## Purpose & task
 
@@ -37,6 +37,7 @@ Platform-agnostic. Covers rules P01-P09 (purpose & task) and C01-C17 (content) f
 | C15 | Language describing disability or human traits avoids tragic ("confined to a wheelchair") or patronizing/heroic ("bravely overcame") framing in favor of neutral, objective phrasing ("uses a wheelchair"). | Strong | Moderate | Apple HIG Inclusion (extends this file's own C05 inclusive-language guidance) |
 | C16 | Product copy referring to an unspecified third party (for example a future support agent) defaults to singular "they"/"them"/"their" rather than "(s)he" or "he/she" constructions. | Strong | Minor | Apple HIG Inclusion; Android Localize your app (extends this file's own C05 inclusive-language guidance) |
 | C17 | Opt-in/opt-out checkbox and form logic does not use a double negative or inverted logic (for example a checkbox that must be checked to decline an offer) that forces the user to work out what checking or unchecking the control actually does. Distinct from C13 (confirm-shaming, which addresses emotionally loaded language): C17 addresses logical inversion, whether or not the phrasing is emotionally loaded. | Strong | Major | Falbe, Frederiksen & Andersen, *White Hat UX* (Trick Questions pattern) |
+| C18 | Help/FAQ content is structured around actual user task goals and empirically validated frequent inquiries (for example support-log analytics), not arbitrary questions invented by internal staff to fill out a format. | Strong | Moderate | Jesse James Garrett, *The Elements of User Experience* (format-vs-purpose FAQ trap) |
 
 **Applicability note:** C01's plain-language expectation does not apply when the verified target audience is domain specialists using a professional/expert tool (for example an engineering component-sizing calculator); established domain terminology ("torque", "viscosity") is correct there, not a violation, and should not be flagged for lacking a consumer-friendly explanation.
 

@@ -1,0 +1,22 @@
+# Visual hierarchy & consistency
+
+Platform-agnostic. Covers rules VH01-VH02 from the source catalog. See `../../../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
+
+This is the "Surface plane" of a reviewed product: the deliberate use of visual contrast to signal meaning, and the grid-based consistency that holds a multi-screen or multi-team product together as one coherent system. It is distinct from the Actions/Forms/Navigation sections of `core.md` (which govern what controls exist and how they behave) and from `product`'s content/voice-tone rules (which govern wording) — this file governs what the eye perceives before any wording or interaction is evaluated.
+
+| ID | Rule | Evidence | Default severity | Sources |
+|---|---|---|---|---|
+| VH01 | Visual differences between adjacent elements (color, weight, size) are bold and deliberate when they signal a real functional difference; near-identical-but-not-quite-identical styling between elements that should either clearly match or clearly differ creates cognitive friction ("is this a mistake?"). Elements that are functionally identical are styled identically. | Strong | Moderate | Jesse James Garrett, *The Elements of User Experience* (intentional contrast vs. confusing near-uniformity) |
+| VH02 | Layouts use a shared grid system for internal consistency (a central style guide prevents fragmented styles across sub-sections/teams) and external consistency (brand credibility across the whole product); the grid is revisited and updated when it no longer accommodates new functionality, rather than being treated as an untouchable constraint that forces new content into an outdated layout. | Strong | Moderate | Jesse James Garrett, *The Elements of User Experience* (grid-based layouts, internal/external consistency) |
+
+**Applicability note:** VH01 requires a stated or reasonably inferable functional difference (or lack of one) between the compared elements. If the evidence does not show whether two similarly-styled elements are meant to be the same or different, report `NOT ASSESSABLE` rather than assuming an inconsistency.
+
+**Applicability note:** VH02's "outdated grid" scenario requires evidence that the current grid actually fails to accommodate needed content or functionality (e.g. visible cramping, overflow, or ad hoc exceptions to the grid). A grid that is merely old, with no demonstrated failure to fit current content, is not itself a finding.
+
+### The Squint test (technique, not a separate rule)
+
+To evaluate whether a layout's visual hierarchy matches its task priority (`product`'s P02) and whether contrast is used deliberately (VH01), blur or squint at the layout and check two things: (1) which element the eye lands on first, and (2) whether the eye is then guided through the remaining options in priority order. If a decorative or secondary element dominates the blurred view while the primary call-to-action recedes into the background, that is the same P02/VH01 finding stated concretely — this technique is a way to surface and demonstrate that finding, not a rule competing with P02 or VH01.
+
+## How the usability skill should apply these
+
+Check VH01 and VH02 whenever the evidence includes a visual layout (a screenshot, a design comp, or a description of one) rather than only a textual flow description. Apply the Squint test above alongside `product`'s P02 to ground any visual-hierarchy finding in a concrete, repeatable check rather than a subjective taste call. When multiple screens or sections of the same product are in evidence, compare their grids and styling for VH02's internal-consistency scenario before judging any single screen in isolation.

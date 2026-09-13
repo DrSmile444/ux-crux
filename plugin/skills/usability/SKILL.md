@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.12"
+  version: "0.1.13"
 ---
 
 Review task flow, interaction efficiency, navigation, forms, system status, and error recovery for the evidence provided (screenshot, description, code, or running build).
@@ -17,10 +17,12 @@ Review task flow, interaction efficiency, navigation, forms, system status, and 
 3. Build a state matrix for the evidence: loading, empty, no-results, offline, validation error, backend error, destructive recovery. Report which states are shown, which are missing, and which cannot be assessed from this evidence (`shared/evidence-model.md`).
 4. Before flagging a common "folk rule" violation (hamburger menu, thumb zone, skeleton-vs-spinner, step count, disabled buttons, gestures, animation), check `references/core.md`'s "Folk-rule guards" table for the contextual encoding — do not fail a design solely for matching the folk rule's surface pattern.
 5. If the evidence names a platform (iOS/Android), apply `references/mobile.md`'s platform-contract rules (navigation, touch/gesture ergonomics, adaptive layout) using the correct platform's specifics — do not apply one platform's numbers to the other.
-6. Tag every finding with evidence status, severity, and confidence, and report using `shared/report-contract.md`.
+6. If the evidence includes a visual layout (a screenshot, design comp, or description of one), also check `references/visual-hierarchy.md`'s VH01-VH02 (deliberate contrast, grid-based consistency), applying its Squint test alongside `product`'s P02.
+7. Tag every finding with evidence status, severity, and confidence, and report using `shared/report-contract.md`.
 
 ## References
 
 - `references/core.md` — platform-agnostic task, action, form, system-status, error-recovery, search, responsiveness, and interaction-efficiency rules, plus folk-rule guards.
 - `references/mobile.md` — iOS/Android navigation, gesture/thumb-zone ergonomics, adaptive layout, and platform-API focus-management rules, plus the Search-autofocus worked example.
+- `references/visual-hierarchy.md` — visual hierarchy/consistency rules (VH01-VH02): deliberate contrast vs. confusing near-uniformity, grid-based internal/external consistency, plus the Squint test technique; apply in addition to `core.md`, not instead of it.
 - `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`.
