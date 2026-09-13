@@ -2,6 +2,14 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.6 — five targeted rule additions from an external UX-research comparison pass
+
+Added a small number of specific, named-source rule additions found while comparing this project's existing catalog against a well-known secondary synthesis of classic UX psychology research. Not a wholesale import of that synthesis — each addition traces to a named, verifiable primary source (NN/g, an academic study, or existing platform guidance), consistent with every other rule in this project.
+
+- `usability`: new folk-rule guard debunking "Miller's Law caps navigation at 7 visible items" (the law governs active recall, not recognition of continuously visible choices); new `R06R` distinguishing the sub-400ms flow-state finding (Doherty & Thadani, 1982) from the existing 0.1s/1s/10s perceived-response heuristic (`R01R`), so the two are no longer easy to conflate; `L07` gained a concrete "~300%" text-expansion example.
+- `psychology`: new `PA09` (banner blindness) — legitimate content styled like an ad banner gets filtered out by selective attention, the mirror-image failure to `PA01`/`PA03`/`PA04`'s over-emphasis concern.
+- `trust`: new `E08` — deliberate, brief friction/staging as a trust signal for high-stakes/security-sensitive actions, explicitly distinct from the existing destructive-action-confirmation rules (which prevent accidental loss, not build perceived trust), and explicitly guarded against over-applying friction to routine actions.
+
 ## 0.1.4 — remote install verified; manifest-location false start reverted
 
 Added a `README.md` "Install" section with commands for skills.sh, the Claude Code plugin, and the Codex plugin — verified against the real public repo, not just locally.

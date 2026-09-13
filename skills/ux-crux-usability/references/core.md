@@ -78,6 +78,7 @@ Note: destructive-action confirmation wording and discard-on-cancel protection a
 | R03R | Long waits expose progress/status and, where safe, let users continue other work. | Strong | Moderate | Apple HIG Loading; Android Progress indicators |
 | R04R | Avoid layout shifts or late-loading controls that cause accidental taps or move the user's target. | Strong | Major | NN/g Ten Usability Heuristics |
 | R05R | Repeated taps on a slow CTA cannot accidentally trigger duplicate irreversible operations. | Engineering-informed UX | Blocker | Apple HIG Feedback; NN/g Ten Usability Heuristics |
+| R06R | A sustained system response time under roughly 400ms keeps users in an uninterrupted task flow; this is a distinct research finding from R01R's general 0.1s/1s/10s perceptual thresholds — treat the two as separate evidence, not interchangeable numbers for the same claim. | Research principle | Moderate | Doherty & Thadani, "The Economic Value of Rapid Response Time" (1982) |
 
 ## Navigation (platform-agnostic principles)
 
@@ -122,6 +123,7 @@ These are the exact kinds of oversimplified rules a review is likely to hallucin
 | "Swipe actions are bad." | Swipe can be an efficient shortcut for contextual actions, but must stay consistent, discoverable, and not the only access path to important functionality (see `mobile.md` T06). |
 | "Animations are bad/good." | Motion must communicate state or continuity, remain responsive, and respect reduced-motion settings; decorative motion should not impede tasks. |
 | "More steps are always worse." | A short staged flow can reduce complexity and errors; the cost depends on dependency between steps, frequency, and information needed for decisions (see `product` skill P03). |
+| "Miller's Law means navigation/menus must cap out at 7 (or 5) visible items." | Miller's Law describes active working-memory retention (holding items in mind without looking), not recognition of options that stay visible on screen — it does not set a maximum count for always-visible navigation or menus. Apply semantic chunking instead (see `psychology` skill PC07), and only reduce the number of choices when decision complexity actually warrants it (Hick's Law, see this file's Actions/Forms sections and the `product` skill). |
 
 ## How the usability skill should apply these
 
