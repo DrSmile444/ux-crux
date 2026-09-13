@@ -31,6 +31,11 @@ Platform-agnostic. See `../shared/evidence-model.md` and `severity-model.md` for
 | F10 | Password/authentication flows support password managers/autofill or another non-memory-only method; avoid unnecessary cognitive tests. | Accessibility | Major | WCAG 2.2 Accessible Authentication Minimum (SC 3.3.8); NN/g Checklist for Registration and Login |
 | F11 | Password creation requirements are disclosed before submission; users can reveal the entered password when appropriate. | Strong | Moderate | NN/g Checklist for Registration and Login |
 | F12 | Form layout remains understandable with the software keyboard open and at large text sizes. | Strong | Major | Baymard mobile checkout forms; Apple HIG Accessibility; Android Grids and units |
+| F13 | The primary action button (e.g. "Next"/"Submit") is aligned under the left edge of the input-field column; "Previous"/"Back" is placed to the left of "Next"/"Continue". | Strong | Moderate | Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) |
+| F14 | Field labels are positioned directly above their input box (top-aligned); if a label must be left-aligned instead, it is kept tight against the field rather than separated by wide whitespace. | Strong | Moderate | Matteo Penzo, "Label Placement in Forms" (UXmatters, 2006); Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) |
+| F15 | Illustration or example graphics placed next to an input field do not show realistic, copyable sample data (e.g. a legible sample ID number); obscure or abstract example content instead. | Strong | Moderate | Baymard checkout/form design research; Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) |
+| F16 | Distinct questions are arranged in a single vertical column, never side-by-side in separate columns, since users routinely miss an entire column of questions; a double-banked (two-column) layout is reserved for grouping answer *choices* within one question, not for separate questions. | Strong | Major | Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) |
+| F17 | Multi-step forms show previously entered key data (e.g. a selected date/time or location) as a persistent summary on later steps, rather than requiring the user to recall or navigate back to check it. | Strong | Moderate | Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) |
 
 ## System status
 
@@ -59,7 +64,7 @@ Note: destructive-action confirmation wording and discard-on-cancel protection a
 | E04 | The user can recover without redoing unrelated work. | Strong | Blocker | NN/g Ten Usability Heuristics; Apple HIG Design principles |
 | E06 | Retry behavior is idempotent or otherwise protected from duplicate submissions/purchases where repeated taps are plausible. | Engineering-informed UX | Blocker | NN/g Ten Usability Heuristics; Apple HIG Feedback |
 
-## Search & discovery
+## Search, discovery & comparison
 
 | ID | Rule | Evidence | Default severity | Sources |
 |---|---|---|---|---|
@@ -68,6 +73,7 @@ Note: destructive-action confirmation wording and discard-on-cancel protection a
 | D03 | Search reduces typing with useful suggestions, recent queries, completions, or corrections when privacy permits. | Strong | Moderate | Apple HIG Searching |
 | D04 | No-results states distinguish "no data exists" from "filters/query excluded results" and offer meaningful recovery. | Strong | Moderate | NN/g Designing Empty States; Apple HIG Searching |
 | D05 | Frequently used filters/sorts expose current selections and avoid forcing users to remember hidden state. | Strong | Moderate | NN/g Ten Usability Heuristics; Baymard mobile e-commerce UX research |
+| D06 | When a list of options must be compared (e.g. price and schedule, spec and cost), keep the compared parameters in tight horizontal proximity rather than spreading them across the full page width; wide separation forces long, repetitive back-and-forth saccades that increase comparison effort and hesitation. | Strong | Major | Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) (KLM flight-search redesign case) |
 
 ## Responsiveness
 
@@ -91,6 +97,8 @@ Platform-specific navigation contracts (tab bars, back behavior, safe areas, fol
 | N07R | Navigation labels use user language and stable terminology; identical concepts are not renamed across screens. | Strong | Moderate | NN/g Ten Usability Heuristics; Apple HIG Writing |
 | N08R | Icon-only navigation/actions are limited to highly familiar symbols or supplemented with labels/accessibility names. | Strong | Moderate | Apple HIG Buttons, Gestures; Android accessibility principles |
 | N09R | Hierarchy is not deeper than task complexity requires; users receive enough context to know where they are. | Strong | Moderate | NN/g Ten Usability Heuristics, Mobile UX Study Guide |
+| N13R | Utility navigation (Contact, Help, Cart, Sign-in/Account) is placed in the standard top-right header or footer location; avoid sidebars or mid-page body placement, where users take much longer to find it. | Strong | Moderate | Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) |
+| N14R | Dynamic dropdown/mega-menu items are ordered by priority: the most critical items at the very top (1-2 positions), the next-most-critical at the bottom, and lower-priority items in the middle — matching the sweep-then-top-then-bottom-then-middle order users actually scan in, rather than a random or purely alphabetical order for short, non-alphabetic-lookup lists. | Strong | Moderate | Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design* (2014) |
 
 ## Interaction efficiency (general principles)
 
@@ -114,7 +122,7 @@ These are the exact kinds of oversimplified rules a review is likely to hallucin
 |---|---|
 | "Never use a hamburger menu." | Penalize hidden **primary/high-frequency** navigation when discoverability matters; allow it for secondary/large sets of destinations (see N06R). |
 | "All primary actions must be at the bottom because of the thumb zone." | Consider reachability and frequency, but do not assume a single grip; thumb-zone reasoning is a heuristic, not a layout law (see `mobile.md` T07). |
-| "Always show onboarding." | Default to no standalone onboarding; require it only when setup, unfamiliar mechanics, safety, or unavoidable conceptual complexity justify it (product-lens concern, see `product` skill). |
+| "Always show onboarding." | Default to no standalone onboarding; require it only when setup, unfamiliar mechanics, safety, or unavoidable conceptual complexity justify it (product-lens concern, see `product` skill). A modal instruction pop-up is a particularly weak substitute: an eye-tracking study of a tablet app found most users dismissed an instructional pop-up in well under a second of fixation, and all subsequently failed the custom-gesture task it was meant to teach (Romano Bergstrom & Schall (eds.), *Eye Tracking in User Experience Design*, 2014). |
 | "Always confirm delete." | Prefer undo for routine reversible deletion (A04R); confirm serious, unusual, irreversible, expensive, or security-sensitive actions (A05R, and trust-lens destructive-action rules). |
 | "Never use dialogs." | Use dialogs for truly interruptive, narrowly scoped tasks or critical decisions; avoid them for ordinary informational feedback (A07R). |
 | "Always use a skeleton instead of a spinner." | Show useful structure/content early when it improves comprehension (S03); use determinate/indeterminate progress according to what is actually known (S04). |
@@ -127,4 +135,4 @@ These are the exact kinds of oversimplified rules a review is likely to hallucin
 
 ## How the usability skill should apply these
 
-Start from the primary task (handed off from, or checked alongside, the `product` lens), then work through state-completeness (System status, Errors & recovery — is every state in `evidence-model.md`'s sense actually shown or knowably absent?), then interaction efficiency (does every explicit user intent get continued without redundant taps?), then the folk-rule guard table before finalizing any finding that resembles a popular "always/never" rule. When a finding could be explained by either a genuine usability defect or a legitimate contextual exception (progressive disclosure, secondary navigation, a deliberately browse-first search state), report it with the appropriate `evidence-model.md` status and name the exception condition rather than asserting a defect outright.
+Start from the primary task (handed off from, or checked alongside, the `product` lens), then work through state-completeness (System status, Errors & recovery — is every state in `evidence-model.md`'s sense actually shown or knowably absent?), then interaction efficiency (does every explicit user intent get continued without redundant taps?), then the folk-rule guard table before finalizing any finding that resembles a popular "always/never" rule. When the evidence includes a form, also check the layout-ergonomics rules (F13-F17: button alignment, label proximity, sample-data contamination, single-column question layout, cross-step memory); when it includes navigation menus, a dropdown/mega-menu, or a list of options to compare, check N13R-N14R and D06 alongside the rest of Navigation and Search/discovery. When a finding could be explained by either a genuine usability defect or a legitimate contextual exception (progressive disclosure, secondary navigation, a deliberately browse-first search state), report it with the appropriate `evidence-model.md` status and name the exception condition rather than asserting a defect outright.

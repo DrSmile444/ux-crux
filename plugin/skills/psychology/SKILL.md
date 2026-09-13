@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.8"
+  version: "0.1.9"
 ---
 
 Analyze the psychological mechanisms present in the reviewed evidence — cognitive, attentional, motivational, emotional, behavioral-economic, social, and habit-related — and evaluate whether their use is ethical, not just whether it is effective.
