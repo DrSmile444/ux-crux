@@ -35,7 +35,7 @@ Target size, spacing, and dragging-alternative requirements are accessibility co
 | L04 | Navigation pattern adapts with window size where platform guidance calls for it (for example bar to rail on larger Android windows). | Platform contract | Moderate | Android Layouts and navigation patterns, Adapt layouts |
 | L05 | Light, dark, and increased-contrast appearances remain legible; custom colors define suitable variants. | Strong | Major | Apple HIG Color; Android Core app quality guidelines |
 | L06 | Layout survives portrait/landscape and resizing without losing task continuity. | Strong | Major | Apple HIG Layout; Android Core app quality guidelines |
-| L07 | Localization supports text expansion, locale formats, and right-to-left mirroring where applicable. | Strong | Major | Apple HIG Layout, Inclusion, Right to left; Android Localize your app |
+| L07 | Localization supports text expansion, locale formats, and right-to-left mirroring where applicable; some target languages (for example German, Italian, or Finnish translated from English) can expand a string by up to roughly 300%, so fixed-width containers sized only for the source-language string are not a safe assumption. | Strong | Major | Apple HIG Layout, Inclusion, Right to left; Android Localize your app |
 | L08 | Font sizes use scalable units and spacing/layout does not assume a single density. | Platform contract | Major | Android Grids and units; Apple HIG Typography |
 
 ## Interaction efficiency (platform APIs and focus management)
