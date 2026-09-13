@@ -1,0 +1,14 @@
+{
+  "name": "ux-crux",
+  "private": true,
+  "version": "0.1.2",
+  "description": "Evidence-driven UX review skills for AI coding agents (Claude Code, Codex).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "sync-version": "node scripts/sync-version.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "node scripts/test.mjs"
+  },
+  "license": "MIT"
+}
