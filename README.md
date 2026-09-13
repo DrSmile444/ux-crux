@@ -33,13 +33,53 @@ A review never collapses to one opaque score. It reports blockers and majors fir
 src/skills/<domain>/        canonical source: SKILL.md + references/ (edit here)
 src/shared/                 evidence, severity, and report models (single source of truth)
 skills/                     generated — standalone distribution (ux-crux-<domain>), for skills.sh
-plugin/                     generated — Claude/Codex plugin distribution (short skill names)
+plugin/                     generated — Claude/Codex plugin distribution:
+  .claude-plugin/             Claude plugin + marketplace manifest
+  .codex-plugin/               Codex plugin manifest
+  skills/<domain>/            short skill names (review, usability, ...), metadata.internal:
+                               true so skills.sh doesn't also list these under their short names
 evals/                      trigger evals (routing) and output evals (one fixture per domain)
 scripts/                    build.mjs, sync-version.mjs, validate.mjs, test.mjs
 skills.sh.json              skills.sh marketplace page grouping
 ```
 
 Never edit files under `skills/` or `plugin/skills/` by hand — they are generated from `src/` and will be overwritten by the next build.
+
+`.claude-plugin/` and `.codex-plugin/` deliberately live inside `plugin/`, not at the repo root. Claude Code auto-discovers *any* directory literally named `skills/` sitting next to a plugin's manifest, on top of whatever `plugin.json`'s own `skills` array declares. The repo root already has its own `skills/` (the skills.sh distribution, different names) — if the manifests lived there too, installing the plugin would expose all 12 directories as 12 separate skills instead of 6. Keeping the manifests inside `plugin/`, where the only `skills/` sibling is the intended one, avoids that; verified by comparing `claude plugin details ux-crux` before and after (6 vs. 12).
+
+## Install
+
+### skills.sh (any agent `npx skills` supports)
+
+```bash
+npx skills add DrSmile444/ux-crux --skill ux-crux-review
+# or install all six:
+npx skills add DrSmile444/ux-crux --skill '*'
+```
+
+Verified against the public repo end to end.
+
+### Claude Code plugin
+
+Because the manifest lives under `plugin/` rather than the repo root (see above), a bare `owner/repo` marketplace source doesn't resolve — clone first, then point at the subdirectory:
+
+```bash
+git clone https://github.com/DrSmile444/ux-crux.git
+claude plugin marketplace add ./ux-crux/plugin
+claude plugin install ux-crux@ux-crux
+```
+
+### Codex plugin
+
+Same reason, same shape:
+
+```bash
+git clone https://github.com/DrSmile444/ux-crux.git
+codex plugin marketplace add ./ux-crux/plugin
+codex plugin add ux-crux@ux-crux
+```
+
+All three are verified end to end (marketplace add → install → list → uninstall against a real clone of the public repo), not just against the local working copy.
 
 ## Run locally
 
@@ -70,13 +110,25 @@ To validate the manifest itself without starting a session:
 claude plugin validate ./plugin --strict
 ```
 
+To try the local repo as a marketplace without publishing anything:
+
+```bash
+claude plugin marketplace add ./plugin
+claude plugin install ux-crux@ux-crux
+```
+
 ### 3. Load and test skills locally in Codex
 
 ```bash
 python3 ~/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py ./plugin
 ```
 
-validates `plugin/.codex-plugin/plugin.json` against the real Codex plugin schema. To actually use the skills locally with the Codex CLI, add this repo's `plugin/` directory as a local marketplace source and install from it (see `codex plugin marketplace add --help` and `codex plugin add --help` for the exact flags in your installed Codex CLI version), then invoke a skill in a Codex session the same way as above.
+validates `plugin/.codex-plugin/plugin.json` against the Codex plugin schema. To actually use the skills locally:
+
+```bash
+codex plugin marketplace add ./plugin
+codex plugin add ux-crux@ux-crux
+```
 
 ### 4. Try it against skills.sh's install path
 

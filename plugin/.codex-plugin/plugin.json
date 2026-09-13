@@ -1,6 +1,6 @@
 {
   "name": "ux-crux",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Evidence-driven UX review skills for AI coding agents: a full-audit entry point plus usability, psychology, accessibility, product, and trust lenses.",
   "author": {
     "name": "Dmytro Vakulenko",
@@ -15,7 +15,7 @@
     "usability",
     "design-review"
   ],
-  "skills": "./plugin/skills/",
+  "skills": "./skills/",
   "interface": {
     "displayName": "UX Crux",
     "shortDescription": "Evidence-driven UX review for AI coding agents",
