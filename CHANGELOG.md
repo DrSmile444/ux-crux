@@ -2,6 +2,13 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.7 — information-architecture rule and validation-technique guidance from a UX-practice book comparison pass
+
+Added a small number of specific, named-source rule additions found while comparing this project's existing catalog against a UX-team-of-one practice book. Not a wholesale import of that book's ~25 extracted items (its own frameworks and process/evangelism content stay deferred per `openspec/config.yaml`) — each addition traces to a named, verifiable primary source, consistent with every other rule in this project.
+
+- `product`: new `IA01`/`IA02` — information architecture (navigation/labeling/categorization) evaluated at the user/content/context intersection (Rosenfeld, Morville & Arango, *Information Architecture for the Web and Beyond*), with tree testing (Donna Spencer) recommended over visual-comp review alone to validate findability.
+- `review`: new `V06` — when a finding is `NOT ASSESSABLE`/`LIKELY`, name a concrete low-cost technique to close the gap: a Five-Second Test (Christine Perfetti/User Interface Engineering) for hierarchy/first-impression claims, a Black Hat Session (Edward de Bono, "Six Thinking Hats") for structured critical review; `V02` gained a cited usability-test sample-size figure (Jakob Nielsen/NN/g's "five users" finding and its 2012 revisit).
+
 ## 0.1.6 — five targeted rule additions from an external UX-research comparison pass
 
 Added a small number of specific, named-source rule additions found while comparing this project's existing catalog against a well-known secondary synthesis of classic UX psychology research. Not a wholesale import of that synthesis — each addition traces to a named, verifiable primary source (NN/g, an academic study, or existing platform guidance), consistent with every other rule in this project.
