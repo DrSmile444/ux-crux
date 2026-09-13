@@ -49,6 +49,7 @@ From there, the catalog has grown through deliberate research-comparison passes,
 - Jennifer Romano Bergstrom & Andrew Schall (eds.), *Eye Tracking in User Experience Design* (Morgan Kaufmann/Elsevier, 2014)
 - Cal Newport, *Digital Minimalism*
 - Leah Buley & Rob Natoli, *The User Experience Team of One* (Rosenfeld Media, 2nd ed.)
+- Trine Falbe, Martin Michael Frederiksen & Kim Andersen, *White Hat UX: The Next Generation in User Experience*
 - additional passes against other well-known UX-psychology reference works, where each added rule is attributed to the underlying named primary study or guideline rather than to the secondary text that surfaced it
 
 Individual rules also carry citations to specific named studies and frameworks behind them — among others, Melanie Polkosky's usability factor-analysis study, Doherty & Thadani's response-time research, Kahneman et al.'s Peak-End research, Reber/Schwarz/Winkielman's processing-fluency research, Matteo Penzo's label-placement study, the Fogg Behavior Model, Donna Spencer's tree-testing methodology, Christine Perfetti's Five-Second Test, Edward de Bono's Six Thinking Hats, and Rosenfeld/Morville/Arango's *Information Architecture for the Web and Beyond*.
