@@ -29,6 +29,22 @@ Every finding carries:
 
 A review never collapses to one opaque score. It reports blockers and majors first, category health per lens, what states/context couldn't be assessed, and a top-3 highest-impact list. See `src/shared/evidence-model.md`, `severity-model.md`, and `report-contract.md` for the full model.
 
+## Evidence base
+
+Every rule in ux-crux is traced to a named, independently verifiable source, cited in the `Sources` column right next to the rule — this isn't a list of opinions or folk rules an author wrote down. The initial catalog was a ~190-rule base spanning platform contracts, accessibility, usability, and ethically-gated psychology, backed by 125 cited sources: Nielsen Norman Group research articles, WCAG 2.1/2.2 success criteria, Apple Human Interface Guidelines, Android/Material Design guidance, ISO 9241-210, and Google Research's HEART framework.
+
+From there, the catalog has grown through deliberate research-comparison passes, each one comparing this project's existing rules against a specific book or research synthesis, adding only what's a genuine gap traced to an independent named source — never a wholesale import of someone else's rule list:
+
+- Michael J. Metts & Andy Welfle, *Writing Is Designing: Words and the User Experience* (Rosenfeld Media, 2nd ed., 2020)
+- Jennifer Romano Bergstrom & Andrew Schall (eds.), *Eye Tracking in User Experience Design* (Morgan Kaufmann/Elsevier, 2014)
+- Cal Newport, *Digital Minimalism*
+- Leah Buley & Rob Natoli, *The User Experience Team of One* (Rosenfeld Media, 2nd ed.)
+- additional passes against other well-known UX-psychology reference works, where each added rule is attributed to the underlying named primary study or guideline rather than to the secondary text that surfaced it
+
+Individual rules also carry citations to specific named studies and frameworks behind them — among others, Melanie Polkosky's usability factor-analysis study, Doherty & Thadani's response-time research, Kahneman et al.'s Peak-End research, Reber/Schwarz/Winkielman's processing-fluency research, Matteo Penzo's label-placement study, the Fogg Behavior Model, Donna Spencer's tree-testing methodology, Christine Perfetti's Five-Second Test, Edward de Bono's Six Thinking Hats, and Rosenfeld/Morville/Arango's *Information Architecture for the Web and Beyond*.
+
+`CHANGELOG.md` is the audit trail for this: every comparison pass records what it added, exactly which rule IDs and sources, and — just as deliberately — what it left out and why (process/strategy content, a book's own unattributed framework, or something already covered).
+
 ## Install
 
 Each of these installs the whole plugin/repo by default — a skills.sh install lets you (or, if you're scripting it non-interactively, installs) pick from the skills it finds; Claude/Codex installs bring all six skills together as one plugin, same as any Claude/Codex plugin.
