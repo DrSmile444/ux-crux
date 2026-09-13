@@ -1,4 +1,4 @@
-# UX Crux
+# UX Crux 👁️
 
 [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-CC785C)](#install)
 [![Codex plugin](https://img.shields.io/badge/Codex-plugin-000000)](#install)
