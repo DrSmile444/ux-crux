@@ -1,0 +1,113 @@
+schema: spec-driven
+
+# Project context
+context: |
+  ux-crux is an Agent Skills plugin: evidence-driven UX review for AI coding
+  agents (Claude Code, Codex). Node.js/ESM build tooling only, no runtime
+  dependencies; the shipped content is Markdown (SKILL.md + references)
+  following the Agent Skills open standard.
+
+  Repository shape (do not confuse these three trees):
+    src/skills/<domain>/   canonical source (SKILL.md + references/) - edit here
+    src/shared/            evidence-model.md, severity-model.md, report-contract.md
+                            - the single source of truth every skill uses
+    skills/                GENERATED standalone distribution (name: ux-crux-<domain>),
+                            for skills.sh / `npx skills add`
+    plugin/                GENERATED Claude+Codex plugin distribution (short skill
+                            names, e.g. `review`), plus plugin/evals/ (also generated,
+                            copied from root evals/ because `claude plugin eval`
+                            looks for the eval dir below the plugin root)
+  `scripts/build.mjs` regenerates skills/ and plugin/ from src/ (and evals/ ->
+  plugin/evals/). Never hand-edit generated output; edit the source and rebuild.
+
+  Six skills, all model-invocable (no disable-model-invocation): `review` (full
+  multi-lens audit, entry point) plus five independently-invocable domain
+  lenses - `usability`, `psychology`, `accessibility`, `product`, `trust`. Domain
+  skills never require `review` to run first.
+
+  Every finding from every skill uses the shared model in src/shared/: an
+  evidence status (VERIFIED/SUPPORTED/LIKELY/RISK/NOT ASSESSABLE), a severity
+  (blocker/major/moderate/minor), and a confidence level. Reports never
+  collapse to a single opaque score - see report-contract.md's required shape.
+
+  v1 scope is mobile UX (iOS/Android), fully covered. Each domain's
+  references/ is split into core.md (platform-agnostic) plus mobile.md
+  (platform-specific) so a future web.md addendum can be added per domain
+  without restructuring. Web/desktop content, book-sourced rules, deterministic
+  measurement scripts, and curated-marketplace submission are explicitly
+  deferred, not yet in scope.
+
+  Versioning is one SemVer for the whole plugin (package.json is the source of
+  truth), synced into both plugin manifests via `scripts/sync-version.mjs`.
+  `scripts/validate.mjs` fails the build if distributed content changed without
+  a version bump, or if a generated shared/ copy drifted from src/shared/.
+
+  This repo's CLAUDE.md forbids referencing the private, gitignored `local/`
+  research folder by path or filename anywhere in specs, designs, or shipped
+  content. Content drawn from it must be transcribed into the proper src/
+  location instead - never linked to or cited by its local path.
+
+# Per-artifact rules
+rules:
+  proposal:
+    - Map every new capability to one of the six existing skills (review,
+      usability, psychology, accessibility, product, trust) or to the
+      distribution/build-pipeline capability. Proposing a seventh skill or a
+      new top-level lens is a scope decision for the user, not a default.
+    - State which domain(s) and which file(s) (core.md, mobile.md, a
+      psychology topic file, or a future web.md) any rule-content change
+      belongs to.
+  specs:
+    - Any requirement about a domain skill's findings must stay consistent
+      with src/shared/evidence-model.md and severity-model.md - do not invent
+      a parallel evidence/severity vocabulary in a spec.
+    - A requirement that adds or moves rule content must preserve the
+      one-rule-ID-to-exactly-one-destination-file invariant (see the
+      rule-coverage-checklist convention used in build-ux-crux-v1) - flag it
+      if a change would duplicate or drop a rule ID across domains.
+  design:
+    - State explicitly whether a new or changed skill is model-invocable by
+      default; the v1 default is yes for all six skills, so deviating
+      (disable-model-invocation or an explicit-only equivalent) needs a
+      stated reason.
+    - Prefer generating provider-specific artifacts (Claude plugin, Codex
+      plugin, skills.sh standalone) from one canonical src/ source via
+      scripts/build.mjs, rather than hand-maintaining separate copies.
+  tasks:
+    - Any task that would edit generated output directly (skills/,
+      plugin/skills/, plugin/evals/) instead of its src/ or root evals/
+      source is wrong - it will be silently overwritten by the next build.
+    - Prefer a verification step that uses the real tooling where available
+      (`claude plugin validate`, the Codex plugin-creator's
+      validate_plugin.py, `npx skills add --list`, `claude plugin eval`)
+      over asserting correctness from reading the code alone.
+    - Every task list that changes distributed skill content (src/skills/**,
+      src/shared/**, or root evals/) must end with a task that runs
+      `npm run build && npm run sync-version && npm run validate` and
+      confirms success - this is the standing release gate, not optional
+      per-change boilerplate. It covers the build only; publishing (commit,
+      push, making a repo public) is never implied by this and is out of
+      scope for tasks.md.
+
+# Per-operation guidance
+operations:
+  apply:
+    guidance:
+      - Never edit files under skills/, plugin/skills/, or plugin/evals/
+        directly - edit src/ (or root evals/ for eval cases) and run
+        `npm run build`.
+      - After changing distributed skill content, run `npm run sync-version`
+        and `npm run validate` before considering the task done; validate.mjs
+        will fail on a missed version bump or shared-model drift.
+      - >-
+        `claude plugin eval --live` (or `npm run test -- --live`) runs real
+        agent sessions against the user's own Claude account/subscription and
+        has a real cost. Never run it, or otherwise call `claude plugin eval`
+        for real, without the user's separate explicit go-ahead for that
+        specific run - a general apply/build approval does not cover it.
+  archive:
+    guidance:
+      - Summarize which domain(s) and rule IDs were touched, and confirm the
+        rule-coverage checklist still accounts for every source rule exactly
+        once with no duplication before archiving a change that touched rule
+        content.
