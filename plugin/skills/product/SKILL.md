@@ -15,10 +15,11 @@ Review goal clarity, information architecture, and content for the evidence prov
 1. Identify the single primary user goal for the reviewed screen/flow. If none is identifiable, that is itself a finding (see `references/core.md`'s P01).
 2. Check whether the primary action is visually prioritized over secondary actions, and whether content/controls serve the stated goal rather than internal product structure.
 3. Check whether registration, login, or personal-data collection is required before the user sees any value, and whether that requirement is justified (identity intrinsic to the task, or safety/security) — if product context is missing, mark this `NOT ASSESSABLE` rather than assuming either answer (`shared/evidence-model.md`).
-4. Check content and copy (`references/core.md`'s Content rules): does it use the user's vocabulary, describe the actual action/problem, and avoid vague labels like generic "OK" where a specific action is describable?
-5. Tag every finding with evidence status, severity, and confidence, and report using `shared/report-contract.md`.
+4. Check navigation, labeling, and categorization against the information-architecture rules (`references/core.md`'s IA01-IA02): is the structure organized around user mental models and content rather than internal system/department structure, and has it been validated with tree testing rather than visual review alone?
+5. Check content and copy (`references/core.md`'s Content rules): does it use the user's vocabulary, describe the actual action/problem, and avoid vague labels like generic "OK" where a specific action is describable?
+6. Tag every finding with evidence status, severity, and confidence, and report using `shared/report-contract.md`.
 
 ## References
 
-- `references/core.md` — purpose/task-model rules (P01-P07) and content/UX-writing rules (C01-C06).
+- `references/core.md` — purpose/task-model rules (P01-P07), information-architecture rules (IA01-IA02), and content/UX-writing rules (C01-C06).
 - `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`.

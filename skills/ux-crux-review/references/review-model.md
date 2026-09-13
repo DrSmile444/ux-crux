@@ -2,19 +2,20 @@
 
 This file is the only place the `review` skill's own logic lives beyond its `SKILL.md`. It does not duplicate the shared evidence, severity, or report models — see `../shared/evidence-model.md`, `severity-model.md`, and `report-contract.md`, which every skill (including this one) uses identically.
 
-It covers rules V01-V05 (validation methodology) from the source catalog, plus the procedure for selecting which lenses apply and combining their output.
+It covers rules V01-V06 (validation methodology) from the source catalog, plus the procedure for selecting which lenses apply and combining their output.
 
-## Validation methodology (V01-V05)
+## Validation methodology (V01-V06)
 
 | ID | Rule | Evidence | Default severity | Sources |
 |---|---|---|---|---|
 | V01 | Heuristic review is prevalidation, not proof of usability; critical flows still require observation with representative users. | Research principle | Major | ISO 9241-210; NN/g Ten Usability Heuristics |
-| V02 | For each core flow, measure task success, error/recovery, time/effort, and qualitative confidence/satisfaction. | Research principle | Moderate | ISO 9241-210; Google Research HEART |
+| V02 | For each core flow, measure task success, error/recovery, time/effort, and qualitative confidence/satisfaction. When recommending a qualitative usability-test sample size, cite Jakob Nielsen's finding that ~5 participants surfaces the large majority of usability issues, including his 2012 revisit confirming that testing meaningfully more participants does not yield appreciably more insight — not an uncited or arbitrary number. | Research principle | Moderate | ISO 9241-210; Google Research HEART; Jakob Nielsen / NN/g, "Why You Only Need to Test with 5 Users" and its 2012 revisit |
 | V03 | Use HEART selectively (Happiness, Engagement, Adoption, Retention, Task Success); do not optimize engagement when the product goal is rapid task completion. | Research principle | Moderate | Google Research, "Measuring the User Experience on a Large Scale" (HEART) |
 | V04 | Test realistic adverse states: slow/offline network, denied permissions, empty data, server error, interrupted session, large text, dark mode, and small/large windows. | Research principle | Major | ISO 9241-210; Apple HIG Accessibility; Android adaptive-layout guidance |
 | V05 | The reviewer records uncertainty and applicability instead of inventing a violation when product context is missing. | Skill architecture | Major | ISO 9241-210 |
+| V06 | When a finding is reported `NOT ASSESSABLE` or `LIKELY`, name a concrete, low-cost technique to close the gap rather than stopping at stating uncertainty: a Five-Second Test for an unconfirmed information-hierarchy/first-impression claim, or a Black Hat Session for a claim that depends on structured, candid team critique rather than end-user testing. | Research principle | Moderate | Christine Perfetti / User Interface Engineering (Five-Second Test); Edward de Bono, "Six Thinking Hats" (Black Hat Session) |
 
-These five rules are why the `review` skill (and every domain skill) must say `NOT ASSESSABLE` or `LIKELY` rather than asserting a defect it cannot support (V05, tied directly to the evidence model), and why a full review's output should point at what still needs a running build or real users (V01, V04) instead of presenting itself as a final verdict.
+These six rules are why the `review` skill (and every domain skill) must say `NOT ASSESSABLE` or `LIKELY` rather than asserting a defect it cannot support (V05, tied directly to the evidence model); why a full review's output should point at what still needs a running build or real users (V01, V04) instead of presenting itself as a final verdict; and why, once a finding is flagged uncertain, the reviewer names a specific, low-cost way to resolve it (V06) rather than leaving the uncertainty unaddressed.
 
 ## Lens-selection procedure
 
@@ -44,4 +45,4 @@ When multiple lenses produce findings on the same reviewed evidence:
 
 ## How the review skill should apply this file
 
-Use the lens-selection procedure before reading any `domains/<lens>/` file in depth — decide scope first, then load only the references needed for the applicable lenses, consistent with progressive disclosure (do not load all five domains' full reference sets for a narrowly-scoped request). Apply V01-V05 as a standing constraint on every report this skill produces, regardless of which lenses were selected.
+Use the lens-selection procedure before reading any `domains/<lens>/` file in depth — decide scope first, then load only the references needed for the applicable lenses, consistent with progressive disclosure (do not load all five domains' full reference sets for a narrowly-scoped request). Apply V01-V06 as a standing constraint on every report this skill produces, regardless of which lenses were selected.

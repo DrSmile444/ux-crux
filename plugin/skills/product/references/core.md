@@ -1,6 +1,6 @@
 # Product: goal, value, information architecture, content
 
-Platform-agnostic. Covers rules P01-P07 (purpose & task) and C01-C06 (content) from the source catalog. See `../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
+Platform-agnostic. Covers rules P01-P07 (purpose & task), IA01-IA02 (information architecture), and C01-C06 (content) from the source catalog. See `../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
 
 ## Purpose & task
 
@@ -15,6 +15,15 @@ Platform-agnostic. Covers rules P01-P07 (purpose & task) and C01-C06 (content) f
 | P07 | The design distinguishes first-use, repeat-use, and expert-use needs; it does not optimize exclusively for first-time explanation. | Strong | Moderate | NN/g Progressive Disclosure, Mobile-App Onboarding, Mobile UX Study Guide |
 
 **Applicability note:** P06 is contextual, not a hard fail — some products legitimately require identity before any value can be shown (e.g. a service tied to a personal account by nature). Ask what the product actually is before flagging.
+
+## Information architecture
+
+| ID | Rule | Evidence | Default severity | Sources |
+|---|---|---|---|---|
+| IA01 | Navigation, labeling, and categorization sit at the intersection of user mental models, content structure/volume, and business or technical context — not on internal organizational or system structure alone. | Strong | Major | Rosenfeld, Morville & Arango, *Information Architecture for the Web and Beyond* |
+| IA02 | When an IA structure's findability has not been validated with users, recommend tree testing over relying on visual-comp review alone. | Strong | Moderate | Donna Spencer, tree testing methodology |
+
+**Applicability note:** IA01 requires visibility into the business/technical context behind a navigation or categorization choice (content volume, existing structure, technical constraints). If that context is missing from the evidence, report `NOT ASSESSABLE` rather than assuming the structure is right or wrong.
 
 ## Content / UX writing
 
@@ -31,5 +40,6 @@ Platform-agnostic. Covers rules P01-P07 (purpose & task) and C01-C06 (content) f
 
 1. Start every review by identifying the single primary user goal for the reviewed screen/flow (P01). If none is identifiable, that is itself a P01 finding, not a gap to skip past.
 2. Check P02 (hierarchy) and C01-C06 (content) against that same stated goal — content quality is judged by whether it serves the goal, not by taste.
-3. P06 and P07 require product context (is this a first-use screen? is identity intrinsic?). If that context is missing, report the finding as `NOT ASSESSABLE` per the evidence model rather than assuming either answer.
-4. Do not report a P03 "too many steps" finding without checking whether the steps are dependent (each needs the previous) or independent (could be reordered/removed) — dependency changes whether reduction is actually possible.
+3. Check navigation, labeling, and categorization against IA01 — is the structure organized around user mental models and content, or around internal department/system structure? If the reviewed IA has only been checked via visual-comp review, recommend tree testing (IA02) as the next validation step rather than treating visual review as sufficient evidence of findability.
+4. P06, P07, and IA01 all require product context (is this a first-use screen? is identity intrinsic? what's the business/technical context behind this IA choice?). If that context is missing, report the finding as `NOT ASSESSABLE` per the evidence model rather than assuming either answer.
+5. Do not report a P03 "too many steps" finding without checking whether the steps are dependent (each needs the previous) or independent (could be reordered/removed) — dependency changes whether reduction is actually possible.

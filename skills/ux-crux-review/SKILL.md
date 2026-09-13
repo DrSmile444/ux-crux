@@ -20,7 +20,7 @@ Review the user-facing product, feature, flow, screen, or implementation describ
 
 ## References
 
-- `references/review-model.md` — lens selection, cross-lens synthesis, and the validation-methodology rules (V01-V05) that govern how confident this skill is allowed to be.
+- `references/review-model.md` — lens selection, cross-lens synthesis, and the validation-methodology rules (V01-V06) that govern how confident this skill is allowed to be.
 - `domains/usability/`, `domains/psychology/`, `domains/accessibility/`, `domains/product/`, `domains/trust/` — a generated, self-contained copy of each domain skill's own reference material (kept in sync with that domain's `src/skills/<domain>/references/` by the build step). Read these directly; do not assume the sibling domain skills are installed alongside this one.
 - `shared/evidence-model.md`, `severity-model.md`, `report-contract.md` — shared across every ux-crux skill; read these once, they are not repeated here.
 
