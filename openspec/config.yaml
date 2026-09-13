@@ -30,15 +30,24 @@ context: |
   (blocker/major/moderate/minor), and a confidence level. Reports never
   collapse to a single opaque score - see report-contract.md's required shape.
 
-  v1 scope is mobile UX (iOS/Android), fully covered. Each domain's
-  references/ is split into core.md (platform-agnostic) plus mobile.md
-  (platform-specific) so a future web.md addendum can be added per domain
-  without restructuring. Web/desktop content, deterministic measurement
-  scripts, and curated-marketplace submission are explicitly deferred, not
-  yet in scope. A targeted rule addition backed by a named, verifiable source
-  (NN/g, WCAG SC, an Apple HIG/Android guideline, or a named academic study)
-  is in scope regardless of which secondary text first surfaced it; a
-  wholesale import of an external book's full rule set remains deferred.
+  v1 scope is mobile UX (iOS/Android), fully covered. Web is also in scope
+  going forward, not deferred: most of this project's rules are platform-
+  agnostic and already apply to web as-is (they live in each domain's
+  core.md). A domain gains its own web.md addendum only when a rule is
+  evidenced as genuinely web-specific rather than already-covered
+  platform-agnostic content - see `product/references/web.md` (added from
+  an eye-tracking-research comparison pass) for the precedent. Each
+  domain's references/ stays split into core.md (platform-agnostic) plus
+  mobile.md (iOS/Android-specific) and, where warranted, web.md
+  (web-specific), so a future desktop addendum could follow the same
+  pattern without restructuring. Desktop content, deterministic
+  measurement scripts, and curated-marketplace submission remain
+  explicitly deferred, not yet in scope. A targeted rule addition backed
+  by a named, verifiable source (NN/g, WCAG SC, an Apple HIG/Android
+  guideline, a W3C/web-platform guideline, or a named academic study) is
+  in scope regardless of which secondary text first surfaced it or which
+  platform (mobile or web) it targets; a wholesale import of an external
+  book's full rule set remains deferred.
 
   Versioning is one SemVer for the whole plugin (package.json is the source of
   truth), synced into both plugin manifests via `scripts/sync-version.mjs`.
@@ -58,8 +67,10 @@ rules:
       distribution/build-pipeline capability. Proposing a seventh skill or a
       new top-level lens is a scope decision for the user, not a default.
     - State which domain(s) and which file(s) (core.md, mobile.md, a
-      psychology topic file, or a future web.md) any rule-content change
-      belongs to.
+      psychology topic file, or web.md) any rule-content change belongs to.
+      Before adding to or creating a domain's web.md, confirm the rule is
+      genuinely web-specific rather than platform-agnostic content that
+      already belongs in core.md.
   specs:
     - Any requirement about a domain skill's findings must stay consistent
       with src/shared/evidence-model.md and severity-model.md - do not invent

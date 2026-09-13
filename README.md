@@ -17,7 +17,7 @@ One full-audit entry point plus five domain lenses. Every one of the six is inde
 | `product` | Primary goal clarity, information architecture, content/UX writing. |
 | `trust` | Permission/onboarding timing, destructive-action safety, notification honesty. |
 
-v1 covers mobile UX (iOS/Android) in full; each domain's reference material is split into a platform-agnostic core and a mobile addendum, so a web/desktop addendum can be added later without restructuring.
+v1 covers mobile UX (iOS/Android) in full. Web is in scope too — most rules are platform-agnostic and already apply to web as-is; a domain gains its own `web.md` addendum only when a rule is genuinely web-specific (see `product/references/web.md`, added from an eye-tracking-research comparison pass). Each domain's reference material is split into a platform-agnostic core, a mobile addendum, and — where warranted — a web addendum, so a future desktop addendum can follow the same pattern without restructuring.
 
 ## How findings are reported
 
