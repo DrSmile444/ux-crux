@@ -2,6 +2,8 @@
 
 Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score.
 
+![ux-crux banner](assets/banner.png)
+
 ## What's in the plugin
 
 One full-audit entry point plus five domain lenses. Every one of the six is independently usable — the domain skills do not require the entry point to run first.
