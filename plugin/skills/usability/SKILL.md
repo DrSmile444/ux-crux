@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.18"
+  version: "0.1.19"
 ---
 
 Review task flow, interaction efficiency, navigation, forms, system status, and error recovery for the evidence provided (screenshot, description, code, or running build).
