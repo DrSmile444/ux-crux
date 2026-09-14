@@ -14,6 +14,12 @@ Mobile-specific addendum to `core.md`. See `../../shared/evidence-model.md` and 
 | N11R | Critical controls are not placed under system gesture areas, cutouts, or unsafe insets. | Platform contract | Major | Android system bars, Edge-to-edge design; Apple HIG Layout |
 | N12R | Large screens/foldables adapt navigation and information architecture rather than simply stretching a phone layout. | Platform contract | Moderate | Android Adapt layouts, Canonical layouts, Layouts and navigation patterns |
 
+## Forms (platform contracts)
+
+| ID | Rule | Evidence | Default severity | Sources |
+|---|---|---|---|---|
+| F24 | A mobile form field that maps to a device capability — camera-based document/card scanning, geolocation-based address autofill, or an OS-level payment sheet such as Apple Pay/Google Pay — uses that capability instead of requiring full manual entry, when the platform provides it and privacy permits. Distinct from `core.md`'s F04 (correct keyboard/input-mode/autocomplete configuration for manually-typed input, not replacing manual entry) and F10 (password-manager/non-memory authentication, scoped to authentication flows, not general form input). | Strong | Moderate | Jesmond Allen & James Chudley, *Smashing UX Design* (mobile distraction design and device-capability input) |
+
 ## Touch & ergonomics (gesture and thumb-zone heuristics)
 
 Target size, spacing, and dragging-alternative requirements are accessibility concerns and live in the `accessibility` skill's references, not here.
@@ -35,7 +41,7 @@ Target size, spacing, and dragging-alternative requirements are accessibility co
 | L04 | Navigation pattern adapts with window size where platform guidance calls for it (for example bar to rail on larger Android windows). | Platform contract | Moderate | Android Layouts and navigation patterns, Adapt layouts |
 | L05 | Light, dark, and increased-contrast appearances remain legible; custom colors define suitable variants. | Strong | Major | Apple HIG Color; Android Core app quality guidelines |
 | L06 | Layout survives portrait/landscape and resizing without losing task continuity. | Strong | Major | Apple HIG Layout; Android Core app quality guidelines |
-| L07 | Localization supports text expansion, locale formats, and right-to-left mirroring where applicable; some target languages (for example German, Italian, or Finnish translated from English) can expand a string by up to roughly 300%, so fixed-width containers sized only for the source-language string are not a safe assumption. | Strong | Major | Apple HIG Layout, Inclusion, Right to left; Android Localize your app |
+| L07 | Localization supports text expansion, locale formats, and right-to-left mirroring where applicable; some target languages (for example German, Italian, or Finnish translated from English) can expand a string by up to roughly 300%, so fixed-width containers sized only for the source-language string are not a safe assumption. Text expansion is one concrete, checkable symptom of translation/culture being the least predictable layer across territories (Giles Colborne's hierarchy of localization predictability — see `product`'s C05), which is why fixed-width assumptions break most often at exactly this layer. | Strong | Major | Apple HIG Layout, Inclusion, Right to left; Android Localize your app; Jesmond Allen & James Chudley, *Smashing UX Design* (Giles Colborne's localization-predictability hierarchy) |
 | L08 | Font sizes use scalable units and spacing/layout does not assume a single density. | Platform contract | Major | Android Grids and units; Apple HIG Typography |
 
 ## Interaction efficiency (platform APIs and focus management)
@@ -62,4 +68,4 @@ Target size, spacing, and dragging-alternative requirements are accessibility co
 
 ## How the usability skill should apply these
 
-Apply platform contracts (Navigation, Adaptive layout) only against the platform actually stated or shown in the evidence — do not average iOS and Android guidance, and do not assume a single grip/thumb-zone law over T07's contextual reality. When a search/input-reveal pattern appears, run the worked-example check explicitly: was this transition user-initiated, and does typing follow as the obvious next step? If the evidence is a static screenshot pair, report the finding at `LIKELY` rather than `VERIFIED`, and name "a live interaction trace or the running build" as the validation method per the shared evidence model.
+Apply platform contracts (Navigation, Forms, Adaptive layout) only against the platform actually stated or shown in the evidence — do not average iOS and Android guidance, and do not assume a single grip/thumb-zone law over T07's contextual reality. When the evidence includes a mobile form field that could be filled via a device capability (camera scanning, geolocation, an OS-level payment sheet), check F24 alongside `core.md`'s F04/F10 — F24 is about replacing manual entry entirely, not configuring the manual-entry experience itself. When a search/input-reveal pattern appears, run the worked-example check explicitly: was this transition user-initiated, and does typing follow as the obvious next step? If the evidence is a static screenshot pair, report the finding at `LIKELY` rather than `VERIFIED`, and name "a live interaction trace or the running build" as the validation method per the shared evidence model.

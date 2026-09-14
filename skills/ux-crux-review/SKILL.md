@@ -4,7 +4,7 @@ description: Use when the user asks for a broad, comprehensive, general, or end-
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.14"
+  version: "0.1.15"
 ---
 
 Review the user-facing product, feature, flow, screen, or implementation described or shown, across every UX dimension relevant to the evidence provided. Never invent behavior that cannot be observed — see `shared/evidence-model.md`.
