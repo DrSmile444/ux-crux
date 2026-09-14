@@ -17,6 +17,23 @@ It covers rules V01-V06 (validation methodology) from the source catalog, plus t
 
 These six rules are why the `review` skill (and every domain skill) must say `NOT ASSESSABLE` or `LIKELY` rather than asserting a defect it cannot support (V05, tied directly to the evidence model); why a full review's output should point at what still needs a running build or real users (V01, V04) instead of presenting itself as a final verdict; and why, once a finding is flagged uncertain, the reviewer names a specific, low-cost way to resolve it (V06) rather than leaving the uncertainty unaddressed. V04's stress-case framing is why an adverse state should not be waved through as an acceptable exclusion merely because it looks rare — it may be a real population the current design silently locks out.
 
+## Interaction Cycle & Gulfs (root-cause classification)
+
+A separate concern from V01-V06's validation methodology: once a breakdown has been observed, *where* in the interaction it originates determines what actually fixes it. Norman's stages-of-action model, via Hartson & Pyla, splits a single user action into five stages, grouped into two gulfs:
+
+```
+Gulf of Execution                              Gulf of Evaluation
+  Planning -> Translation -> Physical Action -> Outcome -> Assessment
+  (what?)     (how, on this  (doing it)          (system    (did it
+               specific UI)                       state)     work?)
+```
+
+| ID | Rule | Evidence | Default severity | Sources |
+|---|---|---|---|---|
+| IC01 | When diagnosing the root cause of a usability breakdown, classify which Interaction Cycle stage it originates in — Planning (does the user know WHAT to do to reach their goal), Translation (does the user know HOW to do it on the specific UI objects in front of them), Physical Action (can the user physically perform it), Outcome (did the underlying system state actually change correctly), or Assessment (can the user perceive and confirm whether it worked) — rather than reporting a generic complaint. Because the large majority of real-world breakdowns occur at the Translation stage, consider a Translation-stage cause (ambiguous labeling, an unclear control-to-goal mapping) before concluding a breakdown is an Outcome-stage (backend/system) defect. | Research principle | Major | Hartson & Pyla, *The UX Book* (Norman's Stages-of-Action Model; Interaction Cycle & Gulfs) |
+
+Classification must stay grounded in what the evidence actually shows: a user's hesitation or a wrong-selection pattern supports a Translation-stage finding, while a confirmed state-change failure supports an Outcome-stage finding. Do not use the Translation-stage bias to override evidence that already confirms a genuine backend defect — it exists to correct an *unsupported* assumption of one, not to relabel a confirmed one.
+
 ## Lens-selection procedure
 
 The `review` skill does not run all five domain skills mechanically as a fixed pipeline. It reasons about which lenses are relevant to the evidence and request in front of it:
@@ -45,4 +62,4 @@ When multiple lenses produce findings on the same reviewed evidence:
 
 ## How the review skill should apply this file
 
-Use the lens-selection procedure before reading any `domains/<lens>/` file in depth — decide scope first, then load only the references needed for the applicable lenses, consistent with progressive disclosure (do not load all five domains' full reference sets for a narrowly-scoped request). Apply V01-V06 as a standing constraint on every report this skill produces, regardless of which lenses were selected.
+Use the lens-selection procedure before reading any `domains/<lens>/` file in depth — decide scope first, then load only the references needed for the applicable lenses, consistent with progressive disclosure (do not load all five domains' full reference sets for a narrowly-scoped request). Apply V01-V06 as a standing constraint on every report this skill produces, regardless of which lenses were selected. When stating the root cause of a breakdown (not merely that one exists), apply IC01 to name the Interaction Cycle stage it originates in, so the recommended fix targets the actual failing stage rather than a generic complaint.
