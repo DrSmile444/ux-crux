@@ -2,7 +2,7 @@
 
 Platform-agnostic. Covers rules AF01-AF02. See `../../../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
 
-This file is a cross-cutting diagnostic framework, not a new set of symptom-level rules competing with `core.md`'s Actions section or `accessibility`'s contrast/target-size rules. It gives the reviewer a shared vocabulary — Hartson & Pyla's Four Kinds of Affordances — for stating *which part* of an interaction step failed once a control-level finding has already been identified, and one rule (AF02) about a specific, high-confidence kind of evidence to look for.
+This file is a cross-cutting diagnostic framework, not a new set of symptom-level rules competing with `core.md`'s Actions section or `accessibility`'s contrast/target-size rules. It gives the reviewer a shared vocabulary — Hartson & Pyla's Four Kinds of Affordances — for stating *which part* of an interaction step failed once a control-level finding has already been identified, and one rule (AF02) about a specific, high-confidence kind of evidence to look for. Gillian Crampton Smith's six basics of interaction design (a clear mental model, reassuring feedback, strong navigability, system-wide consistency, intuitive effortless operation, and context-appropriate responsiveness) describe the same underlying territory this file's affordance vocabulary and `core.md`'s Actions/System-status rules jointly cover, from an earlier, complementary framing — cited here as additional named-source backing, not a competing rule set.
 
 ## The four affordance types
 

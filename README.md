@@ -4,7 +4,7 @@
 [![Codex plugin](https://img.shields.io/badge/Codex-plugin-000000)](#install)
 [![skills.sh compatible](https://img.shields.io/badge/skills.sh-compatible-2EA44F)](#install)
 
-Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score.
+Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score. The catalog behind that review currently holds **294 named-source rules across all six skills** (see "Evidence base" below) — this isn't a handful of house opinions, it's a deliberately researched, continually cross-checked body of UX knowledge.
 
 Quickest way in — works with any agent `npx skills` supports:
 
@@ -54,6 +54,7 @@ From there, the catalog has grown through deliberate research-comparison passes,
 - Jesse James Garrett, *The Elements of User Experience: User-Centered Design for the Web and Beyond* (2nd ed., New Riders)
 - Rex Hartson & Pardha Pyla, *The UX Book: Agile UX Design for a Quality User Experience* (2nd ed., Morgan Kaufmann/Elsevier)
 - Jesmond Allen & James Chudley, *Smashing UX Design: Foundations for Designing Online User Experiences* (Wiley, Smashing Magazine book series)
+- Mark Wells, *User Experience Design: An Introduction to Creating Interactive Digital Spaces* (Laurence King Publishing, 2023)
 - additional passes against other well-known UX-psychology reference works, where each added rule is attributed to the underlying named primary study or guideline rather than to the secondary text that surfaced it
 
 Individual rules also carry citations to specific named studies and frameworks behind them — among others, Melanie Polkosky's usability factor-analysis study, Doherty & Thadani's response-time research, Kahneman et al.'s Peak-End research, Reber/Schwarz/Winkielman's processing-fluency research, Matteo Penzo's label-placement study, the Fogg Behavior Model, Donna Spencer's tree-testing methodology, Christine Perfetti's Five-Second Test, Edward de Bono's Six Thinking Hats, Rosenfeld/Morville/Arango's *Information Architecture for the Web and Beyond*, Dan Klyn's IA-materials framework, S.R. Ranganathan's faceted classification theory, Abby Covert's corporate-language-disambiguation practice, Jef Raskin & Don Norman's mode-error/quasimode research, Marcia Bates' and Card & Pirolli's information-foraging research, danah boyd's networked-publics properties, and Lev Kuleshov's film-editing juxtaposition research.

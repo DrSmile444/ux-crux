@@ -108,6 +108,14 @@ rules:
       CHANGELOG.md entry task - per this repo's CLAUDE.md rule to cite every
       book used, README.md's Evidence base list is the other place that
       applies, and it is easy to update the changelog while forgetting it.
+    - Any task list that adds, removes, or renumbers a rule row in
+      src/skills/**/references/*.md must include a task to recount every
+      rule-table row across that tree (a row matching the `| <ID> | ... |`
+      pattern this project's rule tables use; folk-rule-guard tables and
+      other non-rule tables are excluded) and update the total rule count
+      stated in README.md's opening paragraph - that count is a deliberate
+      first-paragraph signal of how thoroughly researched and cross-domain
+      this catalog is, so it must never go stale after a rule-adding change.
 
 # Per-operation guidance
 operations:
