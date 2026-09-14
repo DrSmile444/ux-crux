@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.17"
+  version: "0.1.18"
 ---
 
 Review permission/onboarding/interruption timing, destructive-action safety, and trust signals for the evidence provided.
