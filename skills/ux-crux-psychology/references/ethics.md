@@ -1,6 +1,6 @@
 # Psychology: evaluating psychological findings (required reading)
 
-Read this file before applying any mechanism from `cognitive.md`, `attention.md`, `motivation.md`, `emotion.md`, `behavioral-economics.md`, `social.md`, or `habits.md`. It is the meta-layer that keeps this skill from turning a descriptive psychological fact into a manipulative recommendation.
+Read this file before applying any mechanism from `cognitive.md`, `attention.md`, `motivation.md`, `emotion.md`, `behavioral-economics.md`, `social.md`, `habits.md`, or `gamification.md`. It is the meta-layer that keeps this skill from turning a descriptive psychological fact into a manipulative recommendation.
 
 See `../shared/evidence-model.md` and `severity-model.md` for how to report findings from these rules.
 
@@ -45,6 +45,7 @@ Use this table to resist treating a famous-sounding effect as an automatic best 
 | Von Restorff/isolation | Useful attention heuristic, not a rule that every screen needs a visually unique CTA — see `attention.md` PA04. |
 | Variable rewards | Not a general UX best practice; require an explicit wellbeing/ethics review — see `behavioral-economics.md` PB12, `habits.md` PH03. |
 | Deliberate friction / Slanty Design | Legitimate when it protects a shared resource or a third party from the acting user's own action, not the acting user's own choice on their own behalf; distinguish from `trust`'s E08 (friction as a trust signal to the acting user themselves) and from dark-pattern friction that serves the business alone at the user's expense — see PX05. |
+| Choice overload / the "jam study" (Iyengar & Lepper) | Contested replication: Scheibehenne, Greifeneder & Todd's meta-analysis found the choice-overload effect is inconsistent and often small or absent depending on context. Treat "limit initial choices to roughly 3-4 options" as a low-confidence, contextual heuristic, not a hard rule — do not fail a design solely for offering more options without task-specific evidence that overload is actually occurring. |
 
 ## How the psychology skill should apply these
 

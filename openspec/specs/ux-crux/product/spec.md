@@ -251,3 +251,10 @@ The product skill SHALL check whether the level of visual production polish (pho
 #### Scenario: Luxury-consumer styling applied to a trade wholesale platform
 - **WHEN** the reviewed evidence is a B2B wholesale ordering platform styled with high-gloss, luxury-consumer visual treatment, and the evidence establishes that the target audience is professional trade buyers who read high polish as a sign of inflated margins
 - **THEN** the product skill flags the visual-polish mismatch as a finding, distinct from a general aesthetic-usability observation, because the mismatch is specifically about audience-appropriate trust signaling
+
+### Requirement: Dynamic outcome-explicit button copy
+The product skill SHALL flag a primary action button (for example a checkout or upgrade submission) that uses only generic verb copy ("Submit," "Continue," "OK") when a concrete, dynamically computed outcome is available to state directly in the button label (for example a real order total), distinct from the existing requirement that action labels use descriptive action language in general, which does not require real-time value substitution.
+
+#### Scenario: Checkout button uses generic label despite a known order total
+- **WHEN** the reviewed evidence shows a final checkout/submission button labeled only "Submit" or "Continue" while the order total or other concrete outcome is already known at that point in the flow
+- **THEN** the product skill flags the generic label and recommends substituting the real computed outcome directly into the button copy
