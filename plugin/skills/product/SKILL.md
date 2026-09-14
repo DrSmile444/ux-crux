@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.20"
+  version: "0.1.22"
 ---
 
 Review goal clarity, information architecture, and content for the evidence provided.
