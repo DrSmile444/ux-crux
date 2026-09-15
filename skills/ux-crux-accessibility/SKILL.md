@@ -1,15 +1,17 @@
 ---
 name: ux-crux-accessibility
-description: Use when accessibility, WCAG conformance, screen readers (VoiceOver/TalkBack), keyboard/switch access, color contrast, touch target size, text scaling, or gesture alternatives are the primary concern. Not for general task-flow review (use `usability`) or persuasive-mechanism ethics (use `psychology`).
+description: Use when accessibility, WCAG conformance, screen readers (VoiceOver/TalkBack), keyboard/switch access, color contrast, touch target size, text scaling, or gesture alternatives are the primary concern. Not for general task-flow review (use `usability`) or persuasive-mechanism ethics (use `psychology`). Accepts an optional "smart" or "full" argument: "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.22"
+  version: "0.1.23"
 ---
 
 Review WCAG conformance and inclusive interaction for the evidence provided.
 
 ## Procedure
+
+**Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which rules to check using judgment, as described in the steps below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep: for every rule row in `core.md` and the platform-applicable rows of `mobile.md`, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
 
 1. Identify the target platform (iOS, Android, web/hybrid). This determines which target-size minimum applies — see `references/mobile.md` for the platform-specific numbers (iOS 44x44pt, Android 48x48dp) versus `references/core.md` for the WCAG 2.2 web/hybrid criteria. Never apply one platform's number to another.
 2. Check color/contrast (never color-alone), text-scaling resilience (Dynamic Type / Android scalable units — platform-specific in `references/mobile.md`), and non-gesture access (no essential function locked behind a gesture with no alternative) using `references/core.md`.

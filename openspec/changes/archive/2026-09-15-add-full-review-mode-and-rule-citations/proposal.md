@@ -1,0 +1,32 @@
+## Why
+
+An exploration session plus two empirical experiments (a 21-rule accessibility fixture and a 134-rule usability fixture, each with a known set of planted violations, run blind through fresh subagents) surfaced three concrete gaps in how `review` and the domain skills report findings and decide what to check:
+
+1. The shared report contract's wording is asymmetric: sections 1-2 (Blockers, Major) require listing "every" finding, while section 6 (Moderate/minor) only says "for completeness" — and the contract's worked example shows rule-code citations only for Blockers/Major, never for Category Health or the Top-3 list. Real runs reproduced exactly this pattern: individual findings cited their rule ID correctly, but Category Health and Top-3 stayed prose-only with no traceable code, and a user reported receiving a review with no way to look up which specific rule generated a given point.
+2. The experiment surfaced a real, non-hypothetical coverage gap: `usability`'s platform-resolution step reads "native minimums don't apply to non-native evidence" as license to skip `mobile.md` entirely for mobile-web evidence, when several of that file's rules (safe-area insets, dark/increased-contrast appearance, localization text-expansion, scalable font units) are general mobile-viewport concerns that apply to mobile web too, not native-API-specific contracts. A Smart-mode run wholesale-skipped the whole file; a forced full-sweep run caught four real, valid findings there.
+3. There is currently no way for a user to request an exhaustive, mechanical rule-by-rule sweep instead of the skills' default judgment-driven rule selection. The experiment showed default (Smart) judgment-driven selection already achieves full recall on directly-evidenced violations (13/13 and 22/22 across the two fixtures) and costs far less on a small rule catalog (+3% tokens on accessibility's 21 rules) but meaningfully more on a large one (+28% tokens / +91% wall time on usability's 134 rules) when forced to be exhaustive — so exhaustive coverage should be an explicit, costed opt-in, not a silent default, and a way to request it does not exist today.
+
+## What Changes
+
+- Strengthen `src/shared/report-contract.md` (propagates to all six skills via `scripts/build.mjs`) so that: every report section — including Category Health summary lines and the Top-3 highest-impact list, not only individual Blockers/Major/Moderate/Minor finding blocks — cites the rule ID(s) (`source_ids`) behind what it states; and the Moderate/minor findings section carries the same "every finding, not a curated subset" guarantee already stated for Blockers/Major, so no report truncates to a top-N summary instead of listing everything actually found. The contract's worked example is extended to demonstrate both changes.
+- Clarify `src/skills/usability/references/mobile.md`'s applicability guidance to distinguish rules that require a genuinely native platform (tab bars, Android `NavigationBar`, native back-gesture behavior, custom gesture ergonomics) from rules whose concern is inherent to any mobile-viewport rendering regardless of native-vs-web (safe-area/inset handling, dark/increased-contrast appearance, localization text-expansion, scalable font units) — the latter group applies to mobile web evidence too and must not be skipped just because the evidence is a web page rather than a native app.
+- Add an explicit, opt-in "Full" review mode to `review` and to each of the five domain skills (`usability`, `psychology`, `accessibility`, `product`, `trust`): when invoked with a plain-text argument recognizable as "full" (for example `/ux-crux-review full`, or `args: "full"` via the Skill tool), the skill performs a mandatory rule-by-rule sweep — for every rule in every reference file it would read for the request's scope, it explicitly records violated / not violated / not assessable / not applicable before writing the narrative report — instead of the default judgment-driven selection. Default behavior (no argument, or an explicit "smart" argument) is unchanged. Accepted argument values are documented in each skill's `description` frontmatter (true CLI `argument-hint` autocomplete is not available to a marketplace-distributed `SKILL.md` package today — confirmed via research against Claude Code's own docs and open issue tracker); an unrecognized argument value prompts the skill to ask for clarification rather than guessing.
+
+## Capabilities
+
+### New Capabilities
+
+(none — this change extends existing behavior, it does not introduce a new lens or skill)
+
+### Modified Capabilities
+
+- `ux-crux/review`: the report-contract requirement gains an exhaustive-listing and rule-code-citation guarantee across every report section; a new requirement establishes the opt-in Full review mode, phrased (consistent with this spec's existing pattern) to cover the review skill and every domain skill applying the same shared report contract and rule-selection behavior.
+- `ux-crux/usability`: a new requirement establishes that mobile-viewport-general rules in `mobile.md` (safe-area, dark/increased-contrast appearance, localization text-expansion, scalable units) apply to mobile web evidence, distinct from the file's genuinely native-only platform contracts.
+
+## Impact
+
+- `src/shared/report-contract.md` — wording and worked example changes, propagated by `npm run build` into `skills/*/shared/report-contract.md` and `plugin/skills/*/shared/report-contract.md` (generated copies; never hand-edited).
+- `src/skills/review/SKILL.md` and `src/skills/{usability,psychology,accessibility,product,trust}/SKILL.md` — each gains argument-handling instructions for the opt-in Full mode, plus a `description` frontmatter update documenting the accepted `full`/`smart` values.
+- `src/skills/usability/references/mobile.md` — applicability-guidance wording only; no rule IDs are added, removed, or renumbered, so the rule-table-row recount task does not apply.
+- No runtime dependency, build-script, or distribution-pipeline change; `npm run build && npm run sync-version && npm run validate` remains the release gate for the touched distributed content.
+- The throwaway fixtures and answer keys used to validate this proposal live in the repo's private, gitignored research folder and are out of scope for implementation; per this repo's CLAUDE.md, they are not referenced by path from any shipped artifact.

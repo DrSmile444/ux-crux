@@ -1,6 +1,6 @@
 ---
 name: review
-description: Use when the user asks for a broad, comprehensive, general, or end-to-end UX review of a feature, screen, flow, app, or implementation — across multiple dimensions (usability, accessibility, psychology, product, trust) rather than one specific angle. If the request already narrows to one angle (e.g. "check accessibility", "is this manipulative"), prefer the matching domain skill instead.
+description: Use when the user asks for a broad, comprehensive, general, or end-to-end UX review of a feature, screen, flow, app, or implementation — across multiple dimensions (usability, accessibility, psychology, product, trust) rather than one specific angle. If the request already narrows to one angle (e.g. "check accessibility", "is this manipulative"), prefer the matching domain skill instead. Accepts an optional "smart" or "full" argument: "smart" (the default) selects applicable lenses and rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable lens instead.
 license: MIT
 metadata:
   author: ux-crux
@@ -10,6 +10,8 @@ metadata:
 Review the user-facing product, feature, flow, screen, or implementation described or shown, across every UX dimension relevant to the evidence provided. Never invent behavior that cannot be observed — see `../../shared/evidence-model.md`.
 
 ## Procedure
+
+**Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which lenses and rules to apply using judgment, as described below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep across every applicable lens: for every rule row in every `domains/<lens>/...` file loaded for the request's scope, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
 
 1. **Determine scope.** Read `references/review-model.md`'s lens-selection procedure. Decide which of usability, psychology, accessibility, product, and trust apply, and what evidence is actually available (screenshot, description, running build, code).
 2. **State the scope before findings.** Name which lenses you applied and why, and which you could not apply due to the evidence type.

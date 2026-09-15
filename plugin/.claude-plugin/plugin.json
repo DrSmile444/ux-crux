@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "ux-crux",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "Evidence-driven UX review skills for AI coding agents: a full-audit entry point plus usability, psychology, accessibility, product, and trust lenses.",
   "author": {
     "name": "Dmytro Vakulenko",
