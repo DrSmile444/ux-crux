@@ -4,7 +4,7 @@ description: Use when accessibility, WCAG conformance, screen readers (VoiceOver
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.23"
+  version: "0.1.24"
 ---
 
 Review WCAG conformance and inclusive interaction for the evidence provided.
@@ -15,8 +15,8 @@ Review WCAG conformance and inclusive interaction for the evidence provided.
 
 1. Identify the target platform (iOS, Android, web/hybrid). This determines which target-size minimum applies — see `references/mobile.md` for the platform-specific numbers (iOS 44x44pt, Android 48x48dp) versus `references/core.md` for the WCAG 2.2 web/hybrid criteria. Never apply one platform's number to another.
 2. Check color/contrast (never color-alone), text-scaling resilience (Dynamic Type / Android scalable units — platform-specific in `references/mobile.md`), and non-gesture access (no essential function locked behind a gesture with no alternative) using `references/core.md`.
-3. Check accessible names/roles/reading order and assistive-technology semantics; flag anything that would break VoiceOver/TalkBack navigation.
-4. If the evidence cannot show real hit-region size, actual reading order, or live text-scaling behavior (e.g. a static screenshot), mark those findings `NOT ASSESSABLE` rather than guessing — see `shared/evidence-model.md`.
+3. Check accessible names/roles/reading order and assistive-technology semantics; flag anything that would break VoiceOver/TalkBack navigation. This includes `core.md`'s X17-X22: hover-only affordances with no tap/focus equivalent (X17), visited-link color distinction (X18), front-loaded link/heading text for screen-reader ear-scanning (X19), a skip-to-main-content link ahead of persistent header navigation (X20), an unskipped and structurally-accurate heading hierarchy (X21), and alt text matching each image's informative-vs-decorative role (X22).
+4. If the evidence cannot show real hit-region size, actual reading order, live text-scaling behavior, or underlying markup (e.g. a static screenshot with no code or DOM access), mark those findings `NOT ASSESSABLE` rather than guessing — see `shared/evidence-model.md`. Most of X17-X22 fall in this category when only a rendered screenshot is available.
 5. Tag every finding with evidence status, severity, and confidence (most accessibility findings default to `blocker` or `major` — do not soften them without reason), and report using `shared/report-contract.md`.
 
 ## References
