@@ -43,6 +43,15 @@ A review never collapses to one opaque score. It reports blockers and majors fir
 
 Every skill in this plugin — the `review` entry point and each of the five lenses — takes an optional `smart` or `full` argument. Say nothing and you get `smart`.
 
+In practice, for the `review` skill, that's the entire prompt:
+
+```
+/ux-crux-review           →  smart (default) — just ask, no argument needed
+/ux-crux-review full      →  full — one word turns on the rule-by-rule sweep
+```
+
+(Installed the Claude/Codex plugin instead of the skills.sh package? Same idea, shorter name: `/review` and `/review full`.) Natural language works too — "review this checkout screen" is `smart`; add the word "full" anywhere in the request ("do a full review...") and the skill switches modes the same way.
+
 | | `smart` (default) | `full` |
 |---|---|---|
 | **How it decides** | Uses judgment to pick the rules that actually apply, the way an experienced reviewer sizes up a screen. | Walks every rule row in every applicable reference file and records an explicit `VIOLATED` / `NOT VIOLATED` / `NOT ASSESSABLE` / `NOT APPLICABLE` verdict, shown as a checklist before the report. Nothing is skipped by judgment. |
