@@ -2,6 +2,13 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.25 — smart/full mode guidance made discoverable
+
+Documentation-only change — no rule IDs added, removed, or renumbered, and no behavioral change to either mode (0.1.23 already shipped the `smart`/`full` mechanics themselves; this pass makes the choice between them legible to people who haven't read the source). Prompted by a user question that surfaced the gap: the `smart`/`full` argument was already functional and named in each skill's `description` field, but nothing explained when a reviewer should reach for one over the other, and `README.md` didn't mention the distinction at all.
+
+- `README.md`: new "Two modes: smart (default) and full" section — a comparison table plus concrete triggers for `full` (release gates, compliance/safety-sensitive surfaces, re-checks after a missed issue, reporting to an external stakeholder) framed around what each mode is *for*, not just how it's implemented, reusing the cost figures already measured in 0.1.23's Smart-vs-Full experiment (+28% tokens/+91% wall time on the 134-rule `usability` fixture, +3% tokens on the 21-rule `accessibility` fixture).
+- All six `SKILL.md` files (`review`, `usability`, `psychology`, `accessibility`, `product`, `trust`): a new "When to choose" paragraph immediately after each existing "Mode" paragraph, giving the same decision guidance directly to the agent running the skill, not only to a human reading `README.md`.
+
 ## 0.1.24 — navigation, accessibility, and a Reservoir of Goodwill trust model from a Don't Make Me Think comparison pass
 
 Added a larger-than-usual set of specific, named-source rule additions found while comparing this project's existing catalog against Steve Krug, *Don't Make Me Think, Revisited: A Common Sense Approach to Web Usability* (3rd ed., New Riders). This foundational usability text is unusually rule-dense — many of its points are concrete, binary, screenshot-checkable "never do X" statements rather than the process/philosophy content that made most comparison-pass sources contribute only a handful of rules, which is why this pass adds 15 rules across four domains plus one shared-model clarification rather than the usual 1-3.

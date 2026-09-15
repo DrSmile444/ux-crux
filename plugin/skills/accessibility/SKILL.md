@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.24"
+  version: "0.1.25"
 ---
 
 Review WCAG conformance and inclusive interaction for the evidence provided.
@@ -13,6 +13,8 @@ Review WCAG conformance and inclusive interaction for the evidence provided.
 ## Procedure
 
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which rules to check using judgment, as described in the steps below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep: for every rule row in `core.md` and the platform-applicable rows of `mobile.md`, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
+
+**When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
 
 1. Identify the target platform (iOS, Android, web/hybrid). This determines which target-size minimum applies — see `references/mobile.md` for the platform-specific numbers (iOS 44x44pt, Android 48x48dp) versus `references/core.md` for the WCAG 2.2 web/hybrid criteria. Never apply one platform's number to another.
 2. Check color/contrast (never color-alone), text-scaling resilience (Dynamic Type / Android scalable units — platform-specific in `references/mobile.md`), and non-gesture access (no essential function locked behind a gesture with no alternative) using `references/core.md`.

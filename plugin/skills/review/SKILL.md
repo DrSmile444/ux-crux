@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.24"
+  version: "0.1.25"
 ---
 
 Review the user-facing product, feature, flow, screen, or implementation described or shown, across every UX dimension relevant to the evidence provided. Never invent behavior that cannot be observed — see `shared/evidence-model.md`.
@@ -13,6 +13,8 @@ Review the user-facing product, feature, flow, screen, or implementation describ
 ## Procedure
 
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which lenses and rules to apply using judgment, as described below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep across every applicable lens: for every rule row in every `domains/<lens>/...` file loaded for the request's scope, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
+
+**When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
 
 1. **Determine scope.** Read `references/review-model.md`'s lens-selection procedure. Decide which of usability, psychology, accessibility, product, and trust apply, and what evidence is actually available (screenshot, description, running build, code).
 2. **State the scope before findings.** Name which lenses you applied and why, and which you could not apply due to the evidence type.

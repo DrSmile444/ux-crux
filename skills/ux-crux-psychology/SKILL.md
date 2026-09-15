@@ -4,7 +4,7 @@ description: Use when the user wants analysis of attention, cognitive load, moti
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.24"
+  version: "0.1.25"
 ---
 
 Analyze the psychological mechanisms present in the reviewed evidence — cognitive, attentional, motivational, emotional, behavioral-economic, social, and habit-related — and evaluate whether their use is ethical, not just whether it is effective.
@@ -12,6 +12,8 @@ Analyze the psychological mechanisms present in the reviewed evidence — cognit
 ## Procedure
 
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which rules to check using judgment, as described in the steps below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep: for every rule row in every topic file (`cognitive.md`, `attention.md`, `motivation.md`, `emotion.md`, `behavioral-economics.md`, `social.md`, `habits.md`, `gamification.md`) and `ethics.md` relevant to the mechanisms present in this evidence, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
+
+**When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
 
 1. **Identify the mechanism(s) present**, not just the surface pattern. Consult the relevant topic file in `references/`: `cognitive.md`, `attention.md`, `motivation.md`, `emotion.md`, `behavioral-economics.md`, `social.md`, `habits.md`, or `gamification.md`.
 2. **Describe before you prescribe.** State what the mechanism is and its likely behavioral effect, separately from judging whether this specific use is good. A described effect is not automatically a recommendation — see `references/ethics.md`.

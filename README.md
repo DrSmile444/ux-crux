@@ -39,6 +39,27 @@ Every finding carries:
 
 A review never collapses to one opaque score. It reports blockers and majors first, category health per lens, what states/context couldn't be assessed, and a top-3 highest-impact list. See `src/shared/evidence-model.md`, `severity-model.md`, and `report-contract.md` for the full model.
 
+## Two modes: smart (default) and full
+
+Every skill in this plugin — the `review` entry point and each of the five lenses — takes an optional `smart` or `full` argument. Say nothing and you get `smart`.
+
+| | `smart` (default) | `full` |
+|---|---|---|
+| **How it decides** | Uses judgment to pick the rules that actually apply, the way an experienced reviewer sizes up a screen. | Walks every rule row in every applicable reference file and records an explicit `VIOLATED` / `NOT VIOLATED` / `NOT ASSESSABLE` / `NOT APPLICABLE` verdict, shown as a checklist before the report. Nothing is skipped by judgment. |
+| **What it costs** | Negligible overhead — on a fixture-based comparison it already caught every directly-evidenced planted issue at essentially no extra cost. | Meaningfully more on a large rule catalog (+28% tokens / +91% wall time on a 134-rule domain in testing), barely more on a small one (+3% tokens on a 21-rule domain) — the cost scales with how many rules there are to check off. |
+| **What you get** | A fast, actionable read: the issues worth fixing, ranked, without a rule-by-rule paper trail. | A complete, defensible record: proof that every applicable rule was actually checked, not just that nothing obvious jumped out. |
+
+**Use `smart` for velocity** — this is the mode for day-to-day work: reviewing a PR, sanity-checking a screen before you ship it, or getting a quick read on something you're actively iterating on. You want fixes, not a paper trail, and `smart` already finds what a careful reviewer would find.
+
+**Reach for `full` when the review itself is the deliverable, not just its findings** — the moments where "we looked and it seemed fine" isn't good enough and you need "every applicable rule was checked" instead:
+
+- **gating a release** — a pre-launch or ship/no-ship review where a missed issue is expensive to find after the fact
+- **compliance- or safety-sensitive surfaces** — accessibility/legal exposure, payment flows, health data, anything a regulator, legal team, or auditor might later ask about
+- **re-checking after something was missed** — a `smart` review, or a human review, turned out to have a gap, and you need certainty nothing else is hiding
+- **reporting to someone outside the immediate team** — legal, compliance, a client, an auditor — who needs a record they can point to, not a sampling they have to trust
+
+If you ask for a mode that isn't recognizable as either `smart` or `full`, the skill will ask which you meant rather than silently guessing — a `full`-mode audit trail is worthless if the mode itself was a guess.
+
 ## Evidence base
 
 Every rule in ux-crux is traced to a named, independently verifiable source, cited in the `Sources` column right next to the rule — this isn't a list of opinions or folk rules an author wrote down. The initial catalog was a ~190-rule base spanning platform contracts, accessibility, usability, and ethically-gated psychology, backed by 125 cited sources: Nielsen Norman Group research articles, WCAG 2.1/2.2 success criteria, Apple Human Interface Guidelines, Android/Material Design guidance, ISO 9241-210, and Google Research's HEART framework.

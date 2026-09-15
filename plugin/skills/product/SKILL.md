@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.24"
+  version: "0.1.25"
 ---
 
 Review goal clarity, information architecture, and content for the evidence provided.
@@ -13,6 +13,8 @@ Review goal clarity, information architecture, and content for the evidence prov
 ## Procedure
 
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which rules to check using judgment, as described in the steps below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep: for every rule row in `core.md`, `information-architecture.md`, `voice-tone.md`, and (when the evidence is text-heavy or web-rendered) `web.md`, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
+
+**When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
 
 1. Identify the single primary user goal for the reviewed screen/flow. If none is identifiable, that is itself a finding (see `references/core.md`'s P01).
 2. Check whether the primary action is visually prioritized over secondary actions, and whether content/controls serve the stated goal rather than internal product structure.
