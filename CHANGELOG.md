@@ -2,6 +2,12 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.26 — fix invalid frontmatter YAML in all six SKILL.md files
+
+Bug fix — no rule or content changes. Every skill's `description` frontmatter field contained the plain-scalar text `argument: "smart"` — an unquoted colon-space sequence followed by a quoted word, which strict YAML frontmatter parsers (including the one used by `npx skills`) read as the start of a nested mapping inside a compact mapping, which YAML disallows. This broke installation of every skill in this repo via `npx skills` with a `YAMLException`/parse error on line 2, while `claude plugin` installs (which use a more lenient parser) were unaffected. Reported by a user hitting the error while installing into an external repo.
+
+- All six `src/skills/<domain>/SKILL.md` files: reworded `argument: "smart" (the default) ...` to `argument — "smart" (the default) ...`, removing the colon-space-quote sequence while keeping the sentence's meaning unchanged.
+
 ## 0.1.25 — smart/full mode guidance made discoverable
 
 Documentation-only change — no rule IDs added, removed, or renumbered, and no behavioral change to either mode (0.1.23 already shipped the `smart`/`full` mechanics themselves; this pass makes the choice between them legible to people who haven't read the source). Prompted by a user question that surfaced the gap: the `smart`/`full` argument was already functional and named in each skill's `description` field, but nothing explained when a reviewer should reach for one over the other, and `README.md` didn't mention the distinction at all.

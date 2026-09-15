@@ -1,10 +1,10 @@
 ---
 name: ux-crux-product
-description: Use when the user wants review of a screen or flow's primary goal clarity, information hierarchy, content/UX writing, or whether onboarding/registration is justified before value is shown — whether the design serves user intent vs. internal product structure. Not for interaction mechanics (use `usability`) or persuasive-mechanism ethics (use `psychology`). Accepts an optional "smart" or "full" argument: "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
+description: Use when the user wants review of a screen or flow's primary goal clarity, information hierarchy, content/UX writing, or whether onboarding/registration is justified before value is shown — whether the design serves user intent vs. internal product structure. Not for interaction mechanics (use `usability`) or persuasive-mechanism ethics (use `psychology`). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.25"
+  version: "0.1.26"
 ---
 
 Review goal clarity, information architecture, and content for the evidence provided.

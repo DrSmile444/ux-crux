@@ -1,11 +1,11 @@
 ---
 name: usability
-description: Use when the user wants to review task flow, interaction friction/efficiency, navigation, forms, system status/feedback, or error handling in a UI or feature — not a full multi-lens review, and not primarily an accessibility, psychology, product-goal, or trust/permissions concern (use the matching sibling skill for those instead). Accepts an optional "smart" or "full" argument: "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
+description: Use when the user wants to review task flow, interaction friction/efficiency, navigation, forms, system status/feedback, or error handling in a UI or feature — not a full multi-lens review, and not primarily an accessibility, psychology, product-goal, or trust/permissions concern (use the matching sibling skill for those instead). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
 license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.25"
+  version: "0.1.26"
 ---
 
 Review task flow, interaction efficiency, navigation, forms, system status, and error recovery for the evidence provided (screenshot, description, code, or running build).

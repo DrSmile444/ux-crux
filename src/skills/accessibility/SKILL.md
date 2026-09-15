@@ -1,6 +1,6 @@
 ---
 name: accessibility
-description: Use when accessibility, WCAG conformance, screen readers (VoiceOver/TalkBack), keyboard/switch access, color contrast, touch target size, text scaling, or gesture alternatives are the primary concern. Not for general task-flow review (use `usability`) or persuasive-mechanism ethics (use `psychology`). Accepts an optional "smart" or "full" argument: "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
+description: Use when accessibility, WCAG conformance, screen readers (VoiceOver/TalkBack), keyboard/switch access, color contrast, touch target size, text scaling, or gesture alternatives are the primary concern. Not for general task-flow review (use `usability`) or persuasive-mechanism ethics (use `psychology`). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
 license: MIT
 metadata:
   author: ux-crux
