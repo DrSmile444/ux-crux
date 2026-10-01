@@ -82,7 +82,7 @@ Add `report` to any review and you also get one HTML file to hand to a designer,
 
 (Plugin install: `/review report`, `/review full report`, `/report`.) Plain language works too: "review the sign-up flow and make a report".
 
-![Visual report: flow map and the first finding of a registration review](assets/report-preview.png)
+![Visual report: a finding card with its rule, the rule's source, the captured screen, and the proposed fix](assets/report-preview.png)
 
 Each finding in the report shows:
 
@@ -261,7 +261,7 @@ lists what's discoverable without installing anything — should show exactly th
 ```bash
 npx playwright install chromium   # once; playwright is a dev dependency only
 npm run test:report               # renders every report fixture and checks it in headless Chromium
-npm run test:report -- --preview  # also regenerates assets/report-preview.png
+npm run test:report -- --preview  # also writes ux-crux-reports/report-preview.png for a quick look
 ```
 
 ### 6. Keep versions in sync

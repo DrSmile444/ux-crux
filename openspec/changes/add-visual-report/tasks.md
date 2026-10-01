@@ -33,7 +33,7 @@
 
 ## 6. Docs
 
-- [x] 6.1 Generate `assets/report-preview.png` with `npm run test:report` from the `signup-flow` fixture; leave it uncommitted for the owner's review
+- [x] 6.1 Add `assets/report-preview.png` from the `signup-flow` fixture report (the owner captured the final image; `npm run test:report -- --preview` writes a draft to `ux-crux-reports/`)
 - [x] 6.2 Add a "Visual report" section to README.md (what it is, `/review full report` and `/report` examples, triage loop, flow capture and consent gate, the preview image); update the skill table and the "six skills" wording to seven where it counts packages; verify the README renders the image locally
 - [x] 6.3 Add a CHANGELOG.md entry for 0.2.0 that lists the new skill, the `report` argument, flow capture, and the build change; verify it names no rule IDs as added (no rule content changed)
 
