@@ -3,7 +3,7 @@
 // checks it in headless Chromium: structure, labels, triage round trip,
 // offline loading, phone width, and dark mode. Costs no model credits.
 //   npm run test:report               run the checks
-//   npm run test:report -- --preview  also write assets/report-preview.png
+//   npm run test:report -- --preview  also write ux-crux-reports/report-preview.png
 // Needs the playwright dev dependency and its Chromium (`npx playwright install chromium`).
 import fs from "node:fs";
 import os from "node:os";
@@ -64,7 +64,7 @@ for (const name of fs.readdirSync(fixturesDir).filter((f) => f.endsWith(".findin
     const card = page.locator(`article[id="${f.id}"]`);
     const text = await card.innerText();
     for (const id of f.source_ids) {
-      if (!text.includes(short(id))) fail(`${f.id}: rule ${short(id)} not shown`);
+      if (!text.toLowerCase().includes(short(id).toLowerCase())) fail(`${f.id}: rule ${short(id)} not shown`);
       if (!text.includes(d.rules[id].sources)) fail(`${f.id}: sources of ${id} not shown`);
     }
     if ((await card.locator(".rec").count()) !== 1) fail(`${f.id}: expected exactly one Recommended badge`);
@@ -125,7 +125,8 @@ for (const name of fs.readdirSync(fixturesDir).filter((f) => f.endsWith(".findin
       document.getElementById("dock").hidden = true;
       window.scrollTo(0, 0);
     });
-    const target = path.join(ROOT, "assets", "report-preview.png");
+    const target = path.join(ROOT, "ux-crux-reports", "report-preview.png");
+    fs.mkdirSync(path.dirname(target), { recursive: true });
     await page.screenshot({ path: target, clip: { x: 0, y: 0, width: 1100, height: 1480 }, fullPage: true });
     console.log(`test:report: wrote ${path.relative(ROOT, target)}`);
   }
