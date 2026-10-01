@@ -16,7 +16,7 @@ npx skills add DrSmile444/ux-crux
 
 ## What's in the plugin
 
-One full-audit entry point plus five domain lenses. Every one of the six is independently usable — the domain skills do not require the entry point to run first.
+One full-audit entry point, five domain lenses, and a report renderer. Every review skill is independently usable — the domain skills do not require the entry point to run first.
 
 | Skill | Use it for |
 |---|---|
@@ -26,6 +26,7 @@ One full-audit entry point plus five domain lenses. Every one of the six is inde
 | `accessibility` | WCAG conformance and inclusive interaction (contrast, touch targets, text scaling, screen readers, gesture alternatives). |
 | `product` | Primary goal clarity, information architecture, content/UX writing. |
 | `trust` | Permission/onboarding timing, destructive-action safety, notification honesty. |
+| `report` | Rendering an existing review as a visual HTML triage report (see "Visual report" below). It never reviews by itself. |
 
 v1 covers mobile UX (iOS/Android) in full. Web is in scope too — most rules are platform-agnostic and already apply to web as-is; a domain gains its own `web.md` addendum only when a rule is genuinely web-specific (see `product/references/web.md`, added from an eye-tracking-research comparison pass). Each domain's reference material is split into a platform-agnostic core, a mobile addendum, and — where warranted — a web addendum, so a future desktop addendum can follow the same pattern without restructuring.
 
@@ -68,6 +69,31 @@ In practice, for the `review` skill, that's the entire prompt:
 - **reporting to someone outside the immediate team** — legal, compliance, a client, an auditor — who needs a record they can point to, not a sampling they have to trust
 
 If you ask for a mode that isn't recognizable as either `smart` or `full`, the skill will ask which you meant rather than silently guessing — a `full`-mode audit trail is worthless if the mode itself was a guess.
+
+## Visual report
+
+Add `report` to any review and you also get one HTML file to hand to a designer, product owner, or client:
+
+```
+/ux-crux-review report         →  smart review + HTML report
+/ux-crux-review full report    →  full review + HTML report (with the rule-by-rule checklist as an appendix)
+/ux-crux-report                →  render (or re-render) a review you already ran
+```
+
+(Plugin install: `/review report`, `/review full report`, `/report`.) Plain language works too: "review the sign-up flow and make a report".
+
+![Visual report: flow map and the first finding of a registration review](assets/report-preview.png)
+
+Each finding in the report shows:
+
+- what was observed, why it matters, and where in the flow it happens;
+- the rule ID (`usability · F03`), the rule text, and the rule's source, quoted from the catalog;
+- a picture — an annotated screenshot when one was captured, a rebuilt fragment of the UI when the code or DOM is available, or a simple schematic otherwise. Rebuilt "before" pictures are labeled **Reconstruction** and every "after" picture is labeled **Proposal**, so a picture is never mistaken for evidence;
+- one to three fix options with one marked **Recommended**, plus "won't fix", "not an issue" (with the conditions under which the finding would not apply), "defer", and "verify first" for findings that still need confirmation, and a comment field.
+
+The reader picks one option per finding and presses **Copy decisions**. Paste the lines back to the agent (`UX-FRM-001 (F03): a`); it records each decision in the review's `findings.json` and re-renders the same page. The report is a single self-contained HTML file: it opens offline, loads nothing from the network, works at phone width and in dark mode, and is written in the language you used with the agent. Reports go to `ux-crux-reports/<date>-<slug>/` (add that folder to `.gitignore`); the agent publishes or uploads one only if you say so.
+
+**Flow capture.** When you give a review skill a live web page or a running build and name a flow ("review our registration"), it walks the flow by itself with whatever browser tool your agent has (Playwright MCP, Chrome DevTools MCP, the Playwright CLI), captures every step and its error states, and evaluates the rules that only show up between steps — data lost on Back, a button label that does not match the next screen. It stops and asks before anything that changes data (submitting a form, creating an account, paying). Steps it cannot reach, such as an email code, are reported as not assessable with what would resolve them. With no browser tool, it asks you for screenshots or continues with schematic pictures only.
 
 ## Evidence base
 
@@ -117,7 +143,7 @@ Individual rules also carry citations to specific named studies and frameworks b
 
 ## Install
 
-Each of these installs the whole plugin/repo by default — a skills.sh install lets you (or, if you're scripting it non-interactively, installs) pick from the skills it finds; Claude/Codex installs bring all six skills together as one plugin, same as any Claude/Codex plugin.
+Each of these installs the whole plugin/repo by default — a skills.sh install lets you (or, if you're scripting it non-interactively, installs) pick from the skills it finds; Claude/Codex installs bring all seven skills together as one plugin, same as any Claude/Codex plugin.
 
 ### skills.sh (any agent `npx skills` supports)
 
@@ -125,7 +151,7 @@ Each of these installs the whole plugin/repo by default — a skills.sh install 
 npx skills add DrSmile444/ux-crux
 ```
 
-Only picks up the six `ux-crux-<domain>` skills — the plugin's own short-named copies and this repo's OpenSpec tooling are both marked internal and excluded. If you already know you only want one lens:
+Only picks up the seven `ux-crux-<name>` skills — the plugin's own short-named copies and this repo's OpenSpec tooling are both marked internal and excluded. If you already know you only want one lens:
 
 ```bash
 npx skills add DrSmile444/ux-crux --skill ux-crux-review
@@ -151,7 +177,8 @@ All three are verified end to end against the real public repo (marketplace add 
 
 ```
 src/skills/<domain>/        canonical source: SKILL.md + references/ (edit here)
-src/shared/                 evidence, severity, and report models (single source of truth)
+src/shared/                 evidence, severity, report and findings models, report template and renderer,
+                              flow-capture steps (single source of truth, copied into every package)
 skills/                     generated — standalone distribution (ux-crux-<domain>), for skills.sh
 plugin/                     generated — Claude/Codex plugin distribution:
   .claude-plugin/plugin.json   Claude plugin manifest
@@ -160,8 +187,9 @@ plugin/                     generated — Claude/Codex plugin distribution:
                                true so skills.sh doesn't also list these under their short names
 .claude-plugin/marketplace.json   repo-root marketplace pointer: "source": "./plugin" —
                                     the only reason this one file lives at the root
-evals/                      trigger evals (routing) and output evals (one fixture per domain)
-scripts/                    build.mjs, sync-version.mjs, validate.mjs, test.mjs
+evals/                      trigger evals (routing), output evals, report fixtures (evals/report/fixtures/),
+                              and a static sign-up site for flow-capture evals (evals/fixtures/)
+scripts/                    build.mjs, sync-version.mjs, validate.mjs, test.mjs, test-report.mjs
 skills.sh.json              skills.sh marketplace page grouping
 ```
 
@@ -192,7 +220,7 @@ From the repository root:
 claude --plugin-dir ./plugin
 ```
 
-This loads the six skills without installing anything or touching a marketplace. Inside that session, either ask a UX question naturally (the skills are model-invocable and route themselves) or invoke one explicitly, e.g. "review the UX of this screen" or "use the accessibility skill to check this button".
+This loads the seven skills without installing anything or touching a marketplace. Inside that session, either ask a UX question naturally (the skills are model-invocable and route themselves) or invoke one explicitly, e.g. "review the UX of this screen" or "use the accessibility skill to check this button".
 
 To validate the manifest itself without starting a session:
 
@@ -226,9 +254,17 @@ codex plugin add ux-crux@ux-crux
 npx skills add . --list
 ```
 
-lists what's discoverable without installing anything — should show exactly the six `ux-crux-<domain>` skills (not the OpenSpec tooling, not the plugin's short-named copies) after a build.
+lists what's discoverable without installing anything — should show exactly the seven `ux-crux-<name>` skills (not the OpenSpec tooling, not the plugin's short-named copies) after a build.
 
-### 5. Keep versions in sync
+### 5. Check the report renderer
+
+```bash
+npx playwright install chromium   # once; playwright is a dev dependency only
+npm run test:report               # renders every report fixture and checks it in headless Chromium
+npm run test:report -- --preview  # also regenerates assets/report-preview.png
+```
+
+### 6. Keep versions in sync
 
 If you change any distributed skill content, bump `package.json`'s `version`, then run:
 
