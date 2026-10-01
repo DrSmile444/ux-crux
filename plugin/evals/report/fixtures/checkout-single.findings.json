@@ -175,11 +175,11 @@
         "panels": [
           {
             "role": "before",
-            "html": "<style>.w{display:grid;place-items:center;height:120px}.t{width:30px;height:30px;border-radius:6px;background:#4b3ba8}.n{font:12px system-ui;color:#6b6770;margin-top:8px}</style><div class=\"w\"><div><div class=\"t\"></div><div class=\"n\">30 x 30 dp</div></div></div>"
+            "html": "<style>.w{display:grid;place-items:center;height:120px}.t{width:30px;height:30px;border-radius:6px;background:#045CB1}.n{font:12px system-ui;color:#506078;margin-top:8px}</style><div class=\"w\"><div><div class=\"t\"></div><div class=\"n\">30 x 30 dp</div></div></div>"
           },
           {
             "role": "after",
-            "html": "<style>.w{display:grid;place-items:center;height:120px}.z{width:48px;height:48px;border:2px dashed #4b3ba8;display:grid;place-items:center;border-radius:8px}.t{width:30px;height:30px;border-radius:6px;background:#4b3ba8}.n{font:12px system-ui;color:#6b6770;margin-top:8px;text-align:center}</style><div class=\"w\"><div><div class=\"z\"><div class=\"t\"></div></div><div class=\"n\">48 x 48 dp</div></div></div>"
+            "html": "<style>.w{display:grid;place-items:center;height:120px}.z{width:48px;height:48px;border:2px dashed #045CB1;display:grid;place-items:center;border-radius:8px}.t{width:30px;height:30px;border-radius:6px;background:#045CB1}.n{font:12px system-ui;color:#506078;margin-top:8px;text-align:center}</style><div class=\"w\"><div><div class=\"z\"><div class=\"t\"></div></div><div class=\"n\">48 x 48 dp</div></div></div>"
           }
         ]
       }
@@ -222,11 +222,11 @@
         "panels": [
           {
             "role": "before",
-            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Checkout</b><div class=\"muted\">2 items · $42.00</div><div class=\"row\"><div class=\"b p\">Place order</div></div><div class=\"ban\">Card charged at once</div></div>"
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #022D53;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#045CB1;color:#fff}.s{background:#F6F0E2;color:#022D53}.muted{color:#506078;font-size:12px}.ban{background:#FFE3E0;color:#B3261E;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Checkout</b><div class=\"muted\">2 items · $42.00</div><div class=\"row\"><div class=\"b p\">Place order</div></div><div class=\"ban\">Card charged at once</div></div>"
           },
           {
             "role": "after",
-            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Review and pay</b><div class=\"muted\">$42.00 · Visa ·· 4242</div><div class=\"row\"><div class=\"b s\">Back</div><div class=\"b p\">Pay $42.00</div></div></div>"
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #022D53;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#045CB1;color:#fff}.s{background:#F6F0E2;color:#022D53}.muted{color:#506078;font-size:12px}.ban{background:#FFE3E0;color:#B3261E;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Review and pay</b><div class=\"muted\">$42.00 · Visa ·· 4242</div><div class=\"row\"><div class=\"b s\">Back</div><div class=\"b p\">Pay $42.00</div></div></div>"
           }
         ]
       }
@@ -265,11 +265,11 @@
         "panels": [
           {
             "role": "before",
-            "html": "<style>.r{display:flex;gap:6px;align-items:center;font:13px system-ui;flex-wrap:wrap}.n{border:1px solid #c9c5cf;border-radius:8px;padding:6px 8px;background:#fff}.bad{border-color:#b3261e;background:#fde8e6}</style><div class=\"r\"><span class=\"n\">Launch</span>→<span class=\"n bad\">Location?</span><span class=\"n bad\">Camera?</span><span class=\"n bad\">Notifications?</span></div>"
+            "html": "<style>.r{display:flex;gap:6px;align-items:center;font:13px system-ui;flex-wrap:wrap}.n{border:1px solid #c9c5cf;border-radius:8px;padding:6px 8px;background:#fff}.bad{border-color:#b3261e;background:#FFE3E0}</style><div class=\"r\"><span class=\"n\">Launch</span>→<span class=\"n bad\">Location?</span><span class=\"n bad\">Camera?</span><span class=\"n bad\">Notifications?</span></div>"
           },
           {
             "role": "after",
-            "html": "<style>.r{display:flex;flex-direction:column;gap:6px;font:13px system-ui}.n{border:1px solid #c9c5cf;border-radius:8px;padding:6px 8px;background:#fff}.ok{border-color:#1d6b45;background:#e3f3ea}</style><div class=\"r\"><span class=\"n\">Find nearby → <b>Location?</b></span><span class=\"n\">Scan card → <b>Camera?</b></span><span class=\"n ok\">Order placed → <b>Notify about delivery?</b></span></div>"
+            "html": "<style>.r{display:flex;flex-direction:column;gap:6px;font:13px system-ui}.n{border:1px solid #c9c5cf;border-radius:8px;padding:6px 8px;background:#fff}.ok{border-color:#045CB1;background:#E4EEF8}</style><div class=\"r\"><span class=\"n\">Find nearby → <b>Location?</b></span><span class=\"n\">Scan card → <b>Camera?</b></span><span class=\"n ok\">Order placed → <b>Notify about delivery?</b></span></div>"
           }
         ]
       }
@@ -312,11 +312,11 @@
         "panels": [
           {
             "role": "before",
-            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><div class=\"ban\">Only 2 left · 10:00</div><div class=\"muted\">reload</div><div class=\"ban\">Only 2 left · 10:00</div></div>"
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #022D53;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#045CB1;color:#fff}.s{background:#F6F0E2;color:#022D53}.muted{color:#506078;font-size:12px}.ban{background:#FFE3E0;color:#B3261E;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><div class=\"ban\">Only 2 left · 10:00</div><div class=\"muted\">reload</div><div class=\"ban\">Only 2 left · 10:00</div></div>"
           },
           {
             "role": "after",
-            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><div class=\"muted\">In stock</div><div class=\"row\"><div class=\"b p\">Place order</div></div></div>"
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #022D53;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#045CB1;color:#fff}.s{background:#F6F0E2;color:#022D53}.muted{color:#506078;font-size:12px}.ban{background:#FFE3E0;color:#B3261E;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><div class=\"muted\">In stock</div><div class=\"row\"><div class=\"b p\">Place order</div></div></div>"
           }
         ]
       }

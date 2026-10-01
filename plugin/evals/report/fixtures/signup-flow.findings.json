@@ -374,7 +374,7 @@
           {
             "role": "after",
             "title": "Step 2",
-            "html": "<style>.b{font:600 15px system-ui;background:#4b3ba8;color:#fff;border-radius:10px;padding:12px;text-align:center;max-width:300px;margin:0 auto}</style><div class=\"b\">Continue to plan</div>"
+            "html": "<style>.b{font:600 15px system-ui;background:#045CB1;color:#fff;border-radius:10px;padding:12px;text-align:center;max-width:300px;margin:0 auto}</style><div class=\"b\">Continue to plan</div>"
           }
         ]
       }
