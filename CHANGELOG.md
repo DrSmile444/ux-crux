@@ -2,6 +2,23 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.32 — mobile, web and e-commerce rules from a Baymard Institute research sweep
+
+A large pass over Baymard Institute's published research: 251 article slugs selected from 518 in its sitemap (industry benchmarks, launch notes, research-method and business articles excluded by title), each opened and compared with the catalog; the 61 surviving gaps were then re-checked on the full article text. All adopted rules apply to mobile and web interfaces; the e-commerce rules come last in priority after mobile and web.
+
+Confirmed already covered (48 articles): form labels, formats and validation (`F01`, `F02`, `F05`, `F07`-`F09`, `F14`, `F16`, `F20`-`F25`); search and filters (`D01`-`D05`, `D07`-`D10`); navigation (`N15R`, `N16R`); image accessibility (`X01`, `X22`); line length (`C27`); spec sheets (`C41`); mobile install interstitials (`O15`); undo, confirmation and accidental taps (`E05`, `T04`).
+
+Rejected or left out: 46 articles that now redirect to a hub page with no article body; claims without a stated test basis (sticky banners, badge copy length, a 10% highlighting figure, mobile dropdown navigation, desktop width use); a sticky filter Apply button, which conflicts with the checkout Apply rule; percentages and counts, which Baymard updates and which stay out of rule text. Verified but not yet added: a list item showing the active filter or sort attribute; linear checkout without repeated pages; brand, style and subtype as filters instead of categories; breadth of product types on the homepage.
+
+Scoped out (32 articles): benchmark roundups, industry verticals (SaaS, furniture, apparel-only, travel), augmented reality for furniture, site-seal surveys, research methods.
+
+- `usability`: mobile navigation and forms `N27R`-`N30R`, `F28`; back behaviour, search and autocomplete, list size `N31R`, `D13`-`D15`; forms and checkout `F29`-`F38`; overlays, chat, hit areas, account menu `S14`, `S15`, `A18R`, `N32R`; filters, sorting, search, breadcrumbs `D16`-`D23`; `F27` gains a clause on non-linear scales, handle shapes and text fallback.
+- `product`: `C44`-`C65` — image zoom and thumbnails, account creation after purchase, out-of-stock handling, accessories, descriptions, price and discount, image callouts, product video, Q&A and FAQ, suggestions, list-item information, rating counts, in-cart marks, cart cross-sells, quantity controls, inspirational images, Quick View, comparison features, review photos, rating sort, category structure.
+- `trust`: `CT04`-`CT08` — contained payment fields, cancellation-requested state, order tracking and returns, delivery dates and fulfilment options, return and shipping links.
+- `accessibility`: `X27` keyboard-operable custom drop-downs; `X28` essential text as HTML.
+- `psychology`: `PA20` carousel auto-rotation.
+- `README.md`: Baymard research added to "Evidence base". Rule total is now 438 (377 + 61).
+
 ## 0.1.31 — product-page, shipping and returns, review-image and slider rules from a ten-video comparison pass
 
 A mid-size pass: ten YouTube videos (Baymard Institute; Flux Academy; uxpeak; DesignCourse; Jesse Showalter; DesignerUp; Relab Studios; UX TV; Saptarshi Prakash; Gus Mark). The Baymard video supplied most claims; each was checked against the Baymard or NN/g article it comes from, opened during the pass. Every adopted rule applies to web and mobile alike.
