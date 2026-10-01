@@ -43,11 +43,13 @@ h3{font:600 21px/1.35 var(--body);margin:0;letter-spacing:-.005em;text-wrap:bala
 p{margin:0}
 a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
 .eyebrow{font:600 12px/1.4 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
-.brand{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
-.brand svg{width:22px;height:22px;flex:none}
-.brand b{font-weight:700;color:var(--ink)}
+.brand{display:inline-flex;align-items:center;gap:8px 14px;flex-wrap:wrap}
+.brand svg{width:36px;height:36px;flex:none}
+.brand b{font:700 18px/1 var(--body);letter-spacing:-.01em;text-transform:none;color:var(--ink);margin-left:-4px}
+.brand span{padding-left:14px;border-left:1px solid var(--line)}
+@media (max-width:560px){.brand span{flex-basis:100%;padding-left:0;border-left:0}}
 footer.sig{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
-footer.sig svg{width:20px;height:20px;flex:none}
+footer.sig svg{width:26px;height:26px;flex:none}
 footer.sig b{color:var(--ink);font-weight:600}
 footer.sig a{color:var(--muted)}
 .muted{color:var(--muted)}
