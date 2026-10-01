@@ -83,6 +83,13 @@ The report SHALL be written in the language the user writes in during the conver
 - **WHEN** the user asks in Ukrainian for a review with a report
 - **THEN** the page's headings, observations, options, and captions are in Ukrainian, and rule IDs and Sources text are unchanged
 
+### Requirement: Report carries the UX Crux mark
+The report SHALL show the UX Crux mark and name at the start of its header line, SHALL end with a "Made with UX Crux" line that links to the project repository, and SHALL use the mark as its browser-tab icon. The mark SHALL be embedded in the page, so it loads nothing from the network.
+
+#### Scenario: Opening a report
+- **WHEN** a reader opens any report
+- **THEN** the header line starts with the UX Crux mark and name, the page ends with "Made with UX Crux" and the repository link, and the browser tab shows the mark
+
 ### Requirement: Report is shared only on request
 The skill SHALL write the report to a local file and give the user its path. It SHALL publish or upload the report only after the user confirms, and it SHALL warn the user before that step when the report holds screenshots taken behind a login.
 

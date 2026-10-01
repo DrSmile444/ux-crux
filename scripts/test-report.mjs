@@ -58,6 +58,9 @@ for (const name of fs.readdirSync(fixturesDir).filter((f) => f.endsWith(".findin
   if ((await page.getAttribute("html", "lang")) !== d.language) fail("html lang does not match the findings language");
   if (d.strings?.copy && (await page.textContent("#copy")) !== d.strings.copy) fail("UI strings are not translated");
 
+  if (!(await page.locator("#brand svg").count()) || !(await page.locator("footer.sig svg").count())) fail("UX Crux mark missing from the header or the footer");
+  if (!(await page.locator('link[rel="icon"][href^="data:image/svg+xml"]').count())) fail("favicon missing");
+
   const cards = page.locator("article.f");
   if ((await cards.count()) !== d.findings.length) fail(`expected ${d.findings.length} cards, got ${await cards.count()}`);
   for (const f of d.findings) {
