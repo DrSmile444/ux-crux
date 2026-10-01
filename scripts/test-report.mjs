@@ -60,6 +60,9 @@ for (const name of fs.readdirSync(fixturesDir).filter((f) => f.endsWith(".findin
 
   if (!(await page.locator("#brand svg").count()) || !(await page.locator("footer.sig svg").count())) fail("UX Crux mark missing from the header or the footer");
   if (!(await page.locator('link[rel="icon"][href^="data:image/svg+xml"]').count())) fail("favicon missing");
+  if (!(await page.locator("main#main article.f").count())) fail("findings are not inside the main landmark");
+  await page.keyboard.press("Tab");
+  if ((await page.evaluate(() => document.activeElement.id)) !== "skip") fail("first focus stop is not the skip link");
 
   const cards = page.locator("article.f");
   if ((await cards.count()) !== d.findings.length) fail(`expected ${d.findings.length} cards, got ${await cards.count()}`);
@@ -106,10 +109,22 @@ for (const name of fs.readdirSync(fixturesDir).filter((f) => f.endsWith(".findin
     await page.locator(`article[id="${f2.id}"] textarea`).fill("already handled");
   }
   await page.click("#copy");
+  await page.waitForFunction(() => document.getElementById("status").textContent.length > 0, null, { timeout: 3000 }).catch(() => {});
+  if (!(await page.locator("#outbox").isHidden())) fail("copied text should stay folded once the clipboard write succeeds");
+  const status = await page.textContent("#status");
+  if (!status.includes(String(f2 ? 2 : 1))) fail(`status does not report the copied count: ${status}`);
+  if (f2 && (await page.getAttribute(`article[id="${f2.id}"] textarea`, "aria-label")) !== (d.strings?.reason_needed || "Why? (needed for this choice)")) fail("reason-needing choice keeps the optional placeholder");
   const ids = (f) => f.source_ids.map((s) => s.split("#")[1]).join(", ");
   const expected = [`${f1.id} (${ids(f1)}): a`].concat(f2 ? [`${f2.id} (${ids(f2)}): not-an-issue — already handled`] : []).join("\n");
   if ((await page.inputValue("#out")) !== expected) fail(`copied decisions differ:\n${await page.inputValue("#out")}\nexpected:\n${expected}`);
   if ((await page.evaluate(() => navigator.clipboard.readText())) !== expected) fail("clipboard does not hold the decisions");
+  if (f2) {
+    await page.locator(`article[id="${f2.id}"] textarea`).fill("");
+    await page.click("#copy");
+    const noReason = (d.strings?.no_reason || "Without a reason: {k}.").replace("{k}", "1");
+    await page.waitForFunction((s) => document.getElementById("status").textContent.includes(s), noReason, { timeout: 3000 }).catch(() => {});
+    if (!(await page.textContent("#status")).includes(noReason)) fail("status does not report decisions without a reason");
+  }
 
   // Phone width and dark mode.
   await page.setViewportSize({ width: 375, height: 800 });
