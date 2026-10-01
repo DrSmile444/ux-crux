@@ -2,6 +2,23 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.30 — trial terms, genuine reference prices, iOS contracts, motion, ecommerce and chart-baseline rules from a 23-video comparison pass
+
+A large pass: 23 YouTube videos (Wyatt Feaster; uxpeak; Kole Jain; Tim Gabe; Enrico Tartarotti; Mobbin; Amir Moradi; Chainlift; Juxtopposed; Joseph Todaro; Jesse Showalter; Saptarshi Prakash; DesignerUp) on paywalls, ecommerce redesigns, iOS UI, UX laws, onboarding, gamification and SaaS design. The videos mostly cite no studies, so every claim was checked against a primary source opened during the pass; fourteen survived.
+
+Confirmed already covered: trial notice and cancellation parity (`O14`, `PT04`); fake urgency and scarcity (`PB06`-`PB08`); streaks, variable rewards and leaderboards (`PB11`, `PB12`, `PG02`); icon-only controls (`N08R`, now also citing NN/g "Icon Usability"); small option sets as visible controls (`F20`); input-format tolerance (`F05`); autofill (`F24`, `F25`); response-time thresholds (`R01R`, `R06R`) and skeletons (`S03`); action feedback (`S01`); empty states (`C04`, `S06`); Gestalt grouping (`PA05`-`PA07`); aesthetic-usability (`V01`, `PE06`); touch targets (`T01`, `T02`); computed button outcome (`C24`); hover-only content (`X17`). `A01R` now also cites Baymard on a distinct add-to-cart style.
+
+Rejected or uncorroborated: price ranges anchoring on the high end, "round numbers feel fake" and "evaluative ease" (no primary source); a premium-lock badge before click (blog sources only); removing swipe-hint arrows (conflicts with gesture-discoverability rules); gradients and shadows as beginner markers (taste); emoji as icons and rounded bar tops (no primary source); a spacing scale and optical corrections (no authoritative source opened); review-summary and save-and-resume onboarding steps (no source opened); Miller's 7±2 (Cowan 2001 reports about four); preselected subscription cards (a default that needs ethics review); company-reported figures for Strava, Peloton, League of Legends, Opal and Blinkist (no primary data). The FTC Negative Option rule is not cited because the Eighth Circuit vacated it on 2025-07-08.
+
+Scoped out: A/B-test methodology and trial-length experiments, vendor promotion, course advertising, "levels of UX" career framing, design-process steps, Parkinson/Pareto/Occam principles, landing-page graphics.
+
+- `trust`: new `O19` — trial terms stated before the trial starts, distinct from `O14` (Apple App Review Guidelines 3.1.1, 3.1.2; 15 U.S.C. §8403); new `CT02` — a struck-through "was" price is a genuine former price (16 CFR 233.1).
+- `accessibility`: new `X25` in `references/core.md` — text and icons over images keep contrast on the worst-case region (WCAG 2.2 SC 1.4.3, F83, SC 1.4.11); new `X26` in `references/mobile.md` — iOS 17 pt default, 11 pt minimum, no light weights at small sizes (Apple HIG Typography).
+- `usability`: new `R07R` — purposeful, brief, eased, optional motion (NN/g Laubheimer 2020; Apple HIG Motion); `D10` — load-more instead of infinite scroll for goal-directed lists (NN/g Neusesser 2022); `D11` — ratings distribution summary (Baymard Scott 2017); in `references/mobile.md`, `N25R` (iOS sheets), `N26R` (iOS tab bar stays visible) and `L09` (Dark Mode layers, softened whites, contrast) from Apple HIG.
+- `product`: new `C35` — product page core elements (NN/g Sherwin 2019); `C36` — comparison tables (NN/g Moran & Dykes 2024); `C37` — all colour swatches in mobile lists (Baymard Scott 2023).
+- `psychology`: new `PA19` — bar charts start at zero (Yang et al., 2021).
+- `README.md`: new sources added to "Evidence base". Rule total is now 368 (354 + 14).
+
 ## 0.1.29 — an Expert practice source level and data-display, form, and readability rules from a Stephen Few *Information Dashboard Design* comparison pass
 
 A larger-than-usual pass: Stephen Few, *Information Dashboard Design: The Effective Visual Communication of Data* (O'Reilly, 2006), plus several form, typography, and readability claims checked against standards and studies. The book cites no study with numeric results, so its claims were each checked for contradicting evidence before adoption.

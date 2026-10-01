@@ -5,7 +5,7 @@ license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.29"
+  version: "0.1.30"
 ---
 
 Review permission/onboarding/interruption timing, destructive-action safety, and trust signals for the evidence provided.
@@ -21,7 +21,7 @@ Review permission/onboarding/interruption timing, destructive-action safety, and
 3. For high-stakes or security-sensitive actions specifically, check whether deliberate brief friction/staging is used (or missing) as a trust signal — see `references/core.md`'s E08, and apply it narrowly in both directions (not a license for friction on routine actions; missing friction on genuinely high-stakes actions is a finding).
 4. Check notifications for honesty: marketing content must not be framed as urgent/system-critical, and users should be able to manage notification categories when notifications matter to the product — see `references/mobile.md`'s interruption rules. Beyond categories, check whether controls also support time-based quiet hours and sender/contact-level allowlisting (O11).
 5. Check whether a badge or unread indicator's color/visual intensity matches the actual criticality of its content, rather than borrowing a high-arousal alarm color to drive compulsive checking of routine updates (I06).
-6. For a free trial or subscription signup, check that payment-method entry isn't required upfront and that any trial-to-paid conversion gives clear advance notice with self-service cancellation (O14). For a mobile web page, check that content isn't blocked behind a full-screen app-install interstitial (O15). For any priced flow (checkout, subscription, service enrollment), check that mandatory fees are disclosed at the earliest point they can be known rather than only at final commitment (CT01).
+6. For a free trial or subscription signup, check that payment-method entry isn't required upfront and that any trial-to-paid conversion gives clear advance notice with self-service cancellation (O14), and that the trial's duration, what ends with it, and the later charge are stated before it starts (O19). For a struck-through "was" price, check that it is a genuine former price (CT02). For a mobile web page, check that content isn't blocked behind a full-screen app-install interstitial (O15). For any priced flow (checkout, subscription, service enrollment), check that mandatory fees are disclosed at the earliest point they can be known rather than only at final commitment (CT01).
 7. For a feature that can publish a user's activity to a broader or different audience, check that consent is an explicit active opt-in rather than a passive opt-out default (O16). For a messaging/posting/reply UI, check that the public-vs-private destination is unambiguous right at the send control (O17). For a cloud-sync/storage toggle warning, check that it states file location and local-copy impact rather than vague removal language (O18).
 8. If the evidence cannot show actual permission-flow behavior or notification content (e.g. a single static screenshot), mark those findings `NOT ASSESSABLE` — see `shared/evidence-model.md`.
 9. Tag every finding with evidence status, severity, and confidence, and report using `shared/report-contract.md`.

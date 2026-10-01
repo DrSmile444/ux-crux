@@ -4,7 +4,7 @@
 [![Codex plugin](https://img.shields.io/badge/Codex-plugin-000000)](#install)
 [![skills.sh compatible](https://img.shields.io/badge/skills.sh-compatible-2EA44F)](#install)
 
-Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score. The catalog behind that review currently holds **354 named-source rules across all six skills** (see "Evidence base" below) — this isn't a handful of house opinions, it's a deliberately researched, continually cross-checked body of UX knowledge.
+Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score. The catalog behind that review currently holds **368 named-source rules across all six skills** (see "Evidence base" below) — this isn't a handful of house opinions, it's a deliberately researched, continually cross-checked body of UX knowledge.
 
 Quickest way in — works with any agent `npx skills` supports:
 
@@ -97,6 +97,11 @@ From there, the catalog has grown through deliberate research-comparison passes,
 - Stephen Few, *Information Dashboard Design: The Effective Visual Communication of Data* (O'Reilly Media, 2006)
 - William S. Cleveland & Robert McGill, "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods" (*Journal of the American Statistical Association* 79(387), 1984)
 - Jamie Holst, "Form Field Usability: Matching User Expectations" (Baymard Institute, 2010)
+- Nielsen Norman Group articles: Page Laubheimer, "Executing UX Animations: Duration and Motion Characteristics" (2020); Tim Neusesser, "Infinite Scrolling: When to Use It, When to Avoid It" (2022); Katie Sherwin, "UX Guidelines for Ecommerce Product Pages" (2019); Kate Moran & Taylor Dykes, "Comparison Tables for Products, Services, and Features" (2024); Aurora Harley, "Icon Usability" (2014)
+- Baymard Institute: Edward Scott, "5 Requirements for the Ratings Distribution Summary" (2017) and "Make All Color Swatches Available in Mobile List Items for Visually Driven Product Types (57% Don't)" (2023)
+- Apple, Human Interface Guidelines (Sheets, Tab bars, Dark Mode, Typography, Motion) and App Review Guidelines 3.1.1 and 3.1.2
+- U.S. Federal Trade Commission, Guides Against Deceptive Pricing, 16 CFR 233.1; Restore Online Shoppers' Confidence Act, 15 U.S.C. §8403
+- Brian W. Yang, Camila Vargas Restrepo, Matthew L. Stanley & Elizabeth J. Marsh, "Truncating Bar Graphs Persistently Misleads Viewers" (*Journal of Applied Research in Memory and Cognition* 10(2), 2021)
 - Kellen Mrkva, Eric J. Johnson, Simon Gächter & Andreas Herrmann, "Moderating Loss Aversion: Loss Aversion Has Moderators, But Reports of its Death are Greatly Exaggerated" (*Journal of Consumer Psychology* 30(3), 2020)
 - additional passes against other well-known UX-psychology reference works, where each added rule is attributed to the underlying named primary study or guideline rather than to the secondary text that surfaced it
 
