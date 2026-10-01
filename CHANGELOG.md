@@ -2,6 +2,21 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.31 — product-page, shipping and returns, review-image and slider rules from a ten-video comparison pass
+
+A mid-size pass: ten YouTube videos (Baymard Institute; Flux Academy; uxpeak; DesignCourse; Jesse Showalter; DesignerUp; Relab Studios; UX TV; Saptarshi Prakash; Gus Mark). The Baymard video supplied most claims; each was checked against the Baymard or NN/g article it comes from, opened during the pass. Every adopted rule applies to web and mobile alike.
+
+Confirmed already covered: current-location marking (`N24R`); clear button labels (`C01`); clickable-looking elements (`PA06`, `A17R`); contrast over images (`X25`); restrained accent colour (`PA04`); first-use versus repeat-use screens (`P07`); order status and waiting (`PR01`, `S06`); visible size buttons (`F20`); guest use for the core task (`P06`, `O11`); ratings summary, product page core and comparison tables (`D11`, `C35`, `C36`).
+
+Rejected or uncorroborated: responding to negative reviews (a support process, not a screen property); right-aligned numbers, table header tint, row height, border weight, status chips and selected-row tint (no primary source opened); "video lifts conversion 80%" and "76% buy more" (unopened, possibly misquoted); easy promo codes, distraction-free checkout and live chat (no source opened); red and green reserved for system states (no source); consistency of spec units and jargon tooltips (only secondary summaries seen); category-tile imagery, shadows and 2026 style trends (taste).
+
+Scoped out: portfolio reviews, lists of inspiration sites, course and tool promotion, career-level framing, form whitespace and illustration advice.
+
+- `product`: new `C38` — main product-page sections not behind horizontal tabs; `C39` — an in-scale image and a model for worn products; `C40` — price per unit; `C41` — long spec sheets grouped; `C42` — buyers' social-media images with attribution; `C43` — save and wishlist for guests (Baymard Institute).
+- `trust`: new `CT03` — estimated shipping cost and a return-policy link on the product page (Baymard Institute; the return-policy guideline was read by its public summary only).
+- `usability`: new `D12` — one gallery across reviewer images (Baymard Institute); `F27` — sliders for approximate values, exact values by text input, labels beside the thumb (NN/g, Harley, 2015, also cited on `F18`).
+- `README.md`: new sources added to "Evidence base". Rule total is now 377 (368 + 9).
+
 ## 0.1.30 — trial terms, genuine reference prices, iOS contracts, motion, ecommerce and chart-baseline rules from a 23-video comparison pass
 
 A large pass: 23 YouTube videos (Wyatt Feaster; uxpeak; Kole Jain; Tim Gabe; Enrico Tartarotti; Mobbin; Amir Moradi; Chainlift; Juxtopposed; Joseph Todaro; Jesse Showalter; Saptarshi Prakash; DesignerUp) on paywalls, ecommerce redesigns, iOS UI, UX laws, onboarding, gamification and SaaS design. The videos mostly cite no studies, so every claim was checked against a primary source opened during the pass; fourteen survived.
