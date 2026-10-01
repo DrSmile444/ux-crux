@@ -2,6 +2,19 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.34 — natural-mapping and sensibility-check rules from a *Design of Everyday Things* comparison pass
+
+A small pass over Don Norman, *The Design of Everyday Things* (Revised and Expanded Edition, 2013). Most of the book's reviewable ideas were already in the catalog through NN/g and Apple HIG sources; the book is now cited where it states the same practice.
+
+Confirmed already covered: discoverability and signifiers (`AF01`, `A13R`), feedback (`S01`, `S02`), mode errors (`A11R`), look-alike signifiers and controls (`A12R`, `A16R`), undo over repeated confirmation (`A04R`-`A06R`), error prevention by constraints (`E01`), non-blaming error copy (`E03`), lock-in against losing work (`E07`), activity-centered controls (`IA10`), complexity against complicatedness (`PC08`). Citations to the book were added to `A04R`, `A11R`, `A12R`, `A16R`, `E01`, `E03`, `S01`, `AF01`, `E07` and `IA10`.
+
+Rejected or left out: a claim that a flow must hold the primary reward until a secondary step is done (it describes a cash-machine example the book text does not contain; digital lock-ins are `E07`); capture slips (not checkable from static evidence); creeping featurism and the three levels of processing (not reviewable properties of a screen).
+
+Scoped out: the Double Diamond, the human-centered design loop, the five-user rule, Norman's Law of Product Development, hill-climbing, root-cause analysis (design process); acoustic signifiers and physical hardware examples.
+
+- `usability`: `A32R` natural mapping — controls for spatially arranged targets sit on or next to them or repeat their layout (`Strong`, from Fitts and Seeger, 1953, with the book); `E10` sensibility checks on high-consequence values (`Expert practice`, author's stated practice; no study cited).
+- `README.md`: the book and Fitts and Seeger added to "Evidence base". Rule total is now 581 (579 + 2).
+
 ## 0.1.33 — mobile, web and e-commerce rules from a Nielsen Norman Group research sweep
 
 A large pass over Nielsen Norman Group's published articles: 1,196 article slugs from its sitemap were triaged by title and the relevant ones opened in full and compared with the catalog. Every rule is a property of a screen, flow or text that a reviewer can check from a screenshot, design, code or copy.

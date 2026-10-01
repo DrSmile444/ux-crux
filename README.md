@@ -4,7 +4,7 @@
 [![Codex plugin](https://img.shields.io/badge/Codex-plugin-000000)](#install)
 [![skills.sh compatible](https://img.shields.io/badge/skills.sh-compatible-2EA44F)](#install)
 
-Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score. The catalog behind that review currently holds **579 named-source rules across all six skills** (see "Evidence base" below) — this isn't a handful of house opinions, it's a deliberately researched, continually cross-checked body of UX knowledge.
+Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score. The catalog behind that review currently holds **581 named-source rules across all six skills** (see "Evidence base" below) — this isn't a handful of house opinions, it's a deliberately researched, continually cross-checked body of UX knowledge.
 
 Quickest way in — works with any agent `npx skills` supports:
 
@@ -90,12 +90,14 @@ From there, the catalog has grown through deliberate research-comparison passes,
 - Jeff Patton with Peter Economy, *User Story Mapping: Discover the Whole Story, Build the Right Product* (O'Reilly Media)
 - Sean Adams, *How Design Makes Us Think and Feel and Do Things* (Adams Morioka / Chronicle Books, 2021)
 - Don Norman, *Living with Complexity* (MIT Press, 2010)
+- Don Norman, *The Design of Everyday Things* (Revised and Expanded Edition, Basic Books, 2013)
 - Steve Krug, *Don't Make Me Think, Revisited: A Common Sense Approach to Web Usability* (3rd ed., New Riders)
 - Ran Kivetz, Oleg Urminsky & Yuhuang Zheng, "The Goal-Gradient Hypothesis Resurrected: Purchase Acceleration, Illusionary Goal Progress, and Customer Retention" (*Journal of Marketing Research* 43, 2006)
 - Ryan W. Buell & Michael I. Norton, "The Labor Illusion: How Operational Transparency Increases Perceived Value" (*Management Science* 57(9), 2011)
 - Michael I. Norton, Daniel Mochon & Dan Ariely, "The IKEA Effect: When Labor Leads to Love" (*Journal of Consumer Psychology* 22(3), 2012)
 - Stephen Few, *Information Dashboard Design: The Effective Visual Communication of Data* (O'Reilly Media, 2006)
 - William S. Cleveland & Robert McGill, "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods" (*Journal of the American Statistical Association* 79(387), 1984)
+- Paul M. Fitts and Charles M. Seeger, "S-R compatibility: Spatial characteristics of stimulus and response codes" (*Journal of Experimental Psychology* 46(3), 1953)
 - Jamie Holst, "Form Field Usability: Matching User Expectations" (Baymard Institute, 2010)
 - Nielsen Norman Group articles: Page Laubheimer, "Executing UX Animations: Duration and Motion Characteristics" (2020); Tim Neusesser, "Infinite Scrolling: When to Use It, When to Avoid It" (2022); Katie Sherwin, "UX Guidelines for Ecommerce Product Pages" (2019); Kate Moran & Taylor Dykes, "Comparison Tables for Products, Services, and Features" (2024); Aurora Harley, "Icon Usability" (2014)
 - Baymard Institute: Edward Scott, "5 Requirements for the Ratings Distribution Summary" (2017) and "Make All Color Swatches Available in Mobile List Items for Visually Driven Product Types (57% Don't)" (2023)
