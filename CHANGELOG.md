@@ -2,6 +2,16 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.27 — goal-gradient framing and labor-illusion transparency from a Wyatt Feaster "psychology trick that makes any app feel 10x better" comparison pass
+
+A small pass: Wyatt Feaster's short video covers five behavioral principles and cites no studies, so each rule traces to the primary research behind the principle: Kivetz, Urminsky & Zheng, "The Goal-Gradient Hypothesis Resurrected" (*Journal of Marketing Research*, 2006; original hypothesis Hull, 1932) and Buell & Norton, "The Labor Illusion" (*Management Science*, 2011).
+
+Confirmed already covered and not duplicated: Peak-End (`PE02`-`PE04`, `ethics.md`), Von Restorff / isolation (`PA04`, `ethics.md`), and choice overload (`ethics.md` records the contested meta-analysis, so the video's unqualified claim is not adopted). Scoped out or rejected: the author's consulting call-to-action; the onboarding-completion-rate claim, which gives no figure or study; and the advice to pad instant tasks with extra waiting, which conflicts with `E08` and `PM07` and is not what the cited experiments tested.
+
+- `psychology`: new `PM10` in `references/motivation.md` — progress toward a real goal is shown as concrete distance covered and remaining ("5 of 7 steps", "about 3 minutes left") rather than an abstract instruction, distinct from `PM09` (where an indicator starts) and `PM07` (truthfulness).
+- `psychology`: new `PB15` in `references/behavioral-economics.md` — a genuine wait shows the work being done instead of a bare spinner; labelled work must match real work, and artificial delay stays an `E08`/`PM07` finding.
+- `README.md`: both works added to "Evidence base". Rule total is now 347 (345 + 2).
+
 ## 0.1.26 — fix invalid frontmatter YAML in all six SKILL.md files
 
 Bug fix — no rule or content changes. Every skill's `description` frontmatter field contained the plain-scalar text `argument: "smart"` — an unquoted colon-space sequence followed by a quoted word, which strict YAML frontmatter parsers (including the one used by `npx skills`) read as the start of a nested mapping inside a compact mapping, which YAML disallows. This broke installation of every skill in this repo via `npx skills` with a `YAMLException`/parse error on line 2, while `claude plugin` installs (which use a more lenient parser) were unaffected. Reported by a user hitting the error while installing into an external repo.

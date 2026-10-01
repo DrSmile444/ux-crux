@@ -4,7 +4,7 @@ description: Use when the user wants review of a screen or flow's primary goal c
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.26"
+  version: "0.1.27"
 ---
 
 Review goal clarity, information architecture, and content for the evidence provided.
