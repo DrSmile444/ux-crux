@@ -1,0 +1,447 @@
+{
+  "contract": "ux-crux-findings/1",
+  "report_id": "2026-10-01-signup-flow",
+  "title": "Registration flow",
+  "language": "en",
+  "created": "2026-10-01",
+  "skill": "review",
+  "mode": "smart",
+  "subject": {
+    "summary": "Four-step web registration, walked in a mobile browser at 390px wide. The final submit was not pressed.",
+    "evidence": [
+      "live pages walked with a browser tool",
+      "captures of each step"
+    ],
+    "platform": "web"
+  },
+  "overall": "Needs revision",
+  "lenses": [
+    {
+      "lens": "usability",
+      "applied": true,
+      "reason": "Forms, errors and step transitions were observed."
+    },
+    {
+      "lens": "accessibility",
+      "applied": false,
+      "reason": "Covered only through the error-message rule; no screen-reader run."
+    },
+    {
+      "lens": "psychology",
+      "applied": false,
+      "reason": "No persuasive mechanism in the flow."
+    },
+    {
+      "lens": "product",
+      "applied": false,
+      "reason": "No goal or content question beyond the usability findings."
+    },
+    {
+      "lens": "trust",
+      "applied": false,
+      "reason": "No permission or destructive action before the final submit."
+    }
+  ],
+  "flows": [
+    {
+      "id": "signup",
+      "title": "Registration",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Create your account",
+          "url": "index.html",
+          "status": "captured",
+          "image": "step-1"
+        },
+        {
+          "n": 2,
+          "title": "Personal details",
+          "url": "profile.html",
+          "status": "captured",
+          "image": "step-2"
+        },
+        {
+          "n": 3,
+          "title": "Choose your plan",
+          "url": "plan.html",
+          "status": "captured",
+          "image": "step-3"
+        },
+        {
+          "n": 4,
+          "title": "Review and create",
+          "url": "review.html",
+          "status": "captured",
+          "image": "step-4"
+        },
+        {
+          "n": 5,
+          "title": "Enter the email code",
+          "status": "not_reached",
+          "reason": "Needs the account to be created and a code from an inbox the agent cannot open."
+        }
+      ]
+    }
+  ],
+  "images": {
+    "step-1": {
+      "file": "img/step-1.jpg"
+    },
+    "step-1-error": {
+      "file": "img/step-1-error.jpg"
+    },
+    "step-1-back": {
+      "file": "img/step-1-back.jpg"
+    },
+    "step-2": {
+      "file": "img/step-2.jpg"
+    },
+    "step-3": {
+      "file": "img/step-3.jpg"
+    },
+    "step-4": {
+      "file": "img/step-4.jpg"
+    }
+  },
+  "category_health": [
+    {
+      "lens": "usability",
+      "summary": "2 major (form cleared on Back, F03; vague email error, F07), 1 moderate (label does not match destination, A13R), 2 minor (F09, F04 not assessable).",
+      "source_ids": [
+        "usability/core.md#F03",
+        "usability/core.md#F07",
+        "usability/core.md#A13R",
+        "usability/core.md#F09",
+        "usability/core.md#F04"
+      ]
+    }
+  ],
+  "missing_context": [
+    {
+      "text": "Step 5 (email code) and the account-created state were not reached: the final submit was not pressed.",
+      "resolves_with": "A test account or a staging environment with an inbox the agent can read."
+    },
+    {
+      "text": "Screen-reader announcement of the email error was not checked.",
+      "resolves_with": "A VoiceOver or TalkBack pass over step 1."
+    }
+  ],
+  "top3": [
+    {
+      "finding_id": "UX-FRM-001",
+      "text": "Keep step 1 values when the person goes back.",
+      "source_ids": [
+        "usability/core.md#F03"
+      ]
+    },
+    {
+      "finding_id": "UX-FRM-002",
+      "text": "Rewrite the email error to say what is missing.",
+      "source_ids": [
+        "usability/core.md#F07"
+      ]
+    },
+    {
+      "finding_id": "UX-ACT-001",
+      "text": "Rename \"Verify email\" to \"Continue to plan\".",
+      "source_ids": [
+        "usability/core.md#A13R"
+      ]
+    }
+  ],
+  "rules": {
+    "usability/core.md#A13R": {
+      "text": "A button or link's label text matches, word-for-word, the heading of the screen or section it navigates to. Distinct from N07R, which addresses broader terminology/synonym consistency across a product, not a specific control's exact string matching its own destination's heading.",
+      "sources": "Hartson & Pyla, *The UX Book* (terminology/label consistency)"
+    },
+    "usability/core.md#F03": {
+      "text": "Previously entered information is not requested again in the same process unless essential/security-related; reuse or offer selection.",
+      "sources": "WCAG 2.2 Redundant Entry (SC 3.3.7)"
+    },
+    "usability/core.md#F04": {
+      "text": "The correct keyboard/input mode, autocorrect, autocapitalization, and autocomplete behavior is used for each field.",
+      "sources": "Baymard mobile checkout forms, Touch Keyboard Types Cheat Sheet"
+    },
+    "usability/core.md#F07": {
+      "text": "Validation errors appear next to the source, remain visible, use plain language, and explain how to fix the problem.",
+      "sources": "WCAG 2.2 Error Suggestion (SC 3.3.3); NN/g Error-Message Guidelines; Apple HIG Writing; Baymard Ecommerce Checkout UX Guide"
+    },
+    "usability/core.md#F09": {
+      "text": "Required/optional status is unambiguous and consistent throughout the flow.",
+      "sources": "Baymard mobile checkout forms, form design best practices"
+    }
+  },
+  "findings": [
+    {
+      "id": "UX-FRM-001",
+      "title": "Back from step 2 clears the account form",
+      "category": "usability",
+      "severity": "major",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "location": {
+        "flow": "signup",
+        "from": 2,
+        "to": 1
+      },
+      "observation": "After Continue on step 1, pressing Back on step 2 shows the account form empty. The email and password must be typed again.",
+      "why_it_matters": "People who go back to fix one field must re-enter everything, and some give up.",
+      "recommendation": "Keep the entered email (and keep the password for the session) when the person returns to step 1.",
+      "source_ids": [
+        "usability/core.md#F03"
+      ],
+      "false_positive_conditions": [
+        "The form clears the password on purpose for security, and the email is kept."
+      ],
+      "validation_method": [
+        "Fill step 1, continue, press Back, and check each field."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Restore the email and password from the current session when step 1 is shown again. Small front-end change.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Restore only the email and ask for the password again, with a note that says why. Keeps the password out of session storage."
+        }
+      ],
+      "picture": {
+        "tier": "capture",
+        "caption": "The dashed frame marks the email field: empty after Back, although it was filled before Continue.",
+        "panels": [
+          {
+            "role": "before",
+            "title": "Step 1 after Back",
+            "image": "step-1-back",
+            "markers": [
+              {
+                "type": "dash",
+                "x": 9.2,
+                "y": 35.1,
+                "w": 81.5,
+                "h": 8.7,
+                "label": "email cleared"
+              }
+            ]
+          },
+          {
+            "role": "after",
+            "title": "Step 1 after Back",
+            "html": "<style>.f{font:14px system-ui;display:flex;flex-direction:column;gap:6px;max-width:300px;margin:0 auto}.i{border:1px solid #c9c5cf;border-radius:8px;padding:8px 10px}</style><div class=\"f\"><b>Email</b><div class=\"i\">anna.k@example.com</div><b>Password</b><div class=\"i\">•••••••••••••</div></div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-FRM-002",
+      "title": "Email error says \"Invalid input\"",
+      "category": "usability",
+      "severity": "major",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "location": {
+        "flow": "signup",
+        "step": 1
+      },
+      "observation": "After leaving the email field with \"anna.k@example\", the error reads \"Invalid input\". It does not say what is wrong or how to fix it.",
+      "why_it_matters": "People cannot tell which part of the address is wrong and retry by guessing.",
+      "recommendation": "Say what is missing and show the expected form: \"Add the domain ending, for example anna@example.com.\"",
+      "source_ids": [
+        "usability/core.md#F07"
+      ],
+      "false_positive_conditions": [
+        "The message is only a placeholder in a test build and production copy is different."
+      ],
+      "validation_method": [
+        "Enter three invalid addresses (no @, no domain ending, a space) and read each message."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Write one message per error type that says what is missing and shows an example. Copy change plus a small validation split.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Use one general message that shows the expected form: \"Enter an email like anna@example.com.\" Copy change only."
+        }
+      ],
+      "picture": {
+        "tier": "capture",
+        "caption": "The frame marks the error text under the email field.",
+        "panels": [
+          {
+            "role": "before",
+            "title": "Step 1",
+            "image": "step-1-error",
+            "markers": [
+              {
+                "type": "box",
+                "x": 9.2,
+                "y": 46.3,
+                "w": 30,
+                "h": 5.4,
+                "label": "Invalid input"
+              }
+            ]
+          },
+          {
+            "role": "after",
+            "title": "Step 1",
+            "html": "<style>.f{font:14px system-ui;display:flex;flex-direction:column;gap:6px;max-width:300px;margin:0 auto}.i{border:1px solid #b3261e;border-radius:8px;padding:8px 10px}.e{color:#b3261e;font-size:13px}</style><div class=\"f\"><b>Email</b><div class=\"i\">anna.k@example</div><div class=\"e\">Add the domain ending, for example anna@example.com.</div></div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-ACT-001",
+      "title": "\"Verify email\" leads to \"Choose your plan\"",
+      "category": "usability",
+      "severity": "moderate",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "location": {
+        "flow": "signup",
+        "from": 2,
+        "to": 3
+      },
+      "observation": "The step 2 button reads \"Verify email\". It opens a screen headed \"Choose your plan\"; no email is verified.",
+      "why_it_matters": "The label promises a different next step, so people wait for an email or think they skipped something.",
+      "recommendation": "Label the button with its destination: \"Continue to plan\".",
+      "source_ids": [
+        "usability/core.md#A13R"
+      ],
+      "false_positive_conditions": [
+        "The plan screen also sends a verification email and says so."
+      ],
+      "validation_method": [
+        "Check whether any request on this transition sends an email."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Rename the button to \"Continue to plan\". One string.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Rename the plan screen heading to match a single wording across steps, and label every Continue button with its destination. Copy pass over four screens."
+        }
+      ],
+      "picture": {
+        "tier": "capture",
+        "caption": "The frame on the left marks the button; the frame on the right marks the heading it leads to.",
+        "panels": [
+          {
+            "role": "before",
+            "title": "Step 2",
+            "image": "step-2",
+            "markers": [
+              {
+                "type": "box",
+                "x": 9.2,
+                "y": 69.7,
+                "w": 81.5,
+                "h": 9.1,
+                "label": "Verify email"
+              }
+            ]
+          },
+          {
+            "role": "before",
+            "title": "Step 3",
+            "image": "step-3",
+            "markers": [
+              {
+                "type": "box",
+                "x": 4.1,
+                "y": 19.1,
+                "w": 91.8,
+                "h": 7.8,
+                "label": "Choose your plan"
+              }
+            ]
+          },
+          {
+            "role": "after",
+            "title": "Step 2",
+            "html": "<style>.b{font:600 15px system-ui;background:#045CB1;color:#fff;border-radius:10px;padding:12px;text-align:center;max-width:300px;margin:0 auto}</style><div class=\"b\">Continue to plan</div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-FRM-003",
+      "title": "Country has no required or optional mark",
+      "category": "usability",
+      "severity": "minor",
+      "confidence": "medium",
+      "evidence_status": "LIKELY",
+      "location": {
+        "flow": "signup",
+        "step": 2
+      },
+      "observation": "Full name and Country show no required or optional status; Country defaults to \"Select…\".",
+      "why_it_matters": "People cannot tell whether they may skip the field until an error appears.",
+      "recommendation": "Mark optional fields \"(optional)\" and leave required ones unmarked, the same way on every step.",
+      "source_ids": [
+        "usability/core.md#F09"
+      ],
+      "false_positive_conditions": [
+        "Both fields are required and the form says \"All fields are required\" above them."
+      ],
+      "validation_method": [
+        "Submit step 2 with Country unset and see whether it is accepted."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Mark each optional field \"(optional)\" on every step. Copy change on two screens.",
+          "recommended": true
+        }
+      ]
+    },
+    {
+      "id": "UX-FRM-004",
+      "title": "Email code entry not reviewed",
+      "category": "usability",
+      "severity": "minor",
+      "confidence": "low",
+      "evidence_status": "NOT_ASSESSABLE",
+      "location": {
+        "flow": "signup",
+        "step": 5
+      },
+      "observation": "Step 4 says a 6-digit code is sent by email. The code screen was not reached, so its keyboard, autofill and paste behavior are unknown.",
+      "why_it_matters": "A code field without numeric input and one-time-code autofill slows the last step of registration.",
+      "recommendation": "Use a numeric one-time-code field that accepts paste and autofill.",
+      "source_ids": [
+        "usability/core.md#F04"
+      ],
+      "false_positive_conditions": [
+        "The code field already uses numeric input with one-time-code autocomplete."
+      ],
+      "validation_method": [
+        "Walk the flow with a test account and a staging inbox, and capture the code screen."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Use a single numeric field with one-time-code autocomplete that accepts a pasted code. Small front-end change.",
+          "recommended": true
+        }
+      ]
+    }
+  ]
+}

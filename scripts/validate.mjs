@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Three checks:
-//   1. Shared-model drift: every generated shared/*.md must be byte-identical
-//      to src/shared/*.md (it should only ever be produced by build.mjs).
+//   1. Shared drift: every generated shared/ file must be byte-identical to
+//      its src/shared/ source (it should only ever be produced by build.mjs).
 //   2. Review-bundle drift: every file under a review package's domains/<d>/
 //      must match that domain's real src/skills/<d>/references/ content
 //      (after the same path rewrite build.mjs applies).
@@ -10,17 +10,17 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
-import { ROOT, DOMAINS, readPackageVersion, walkFiles, rewriteSharedPathsNestedDomainReference } from "./lib.mjs";
+import { ROOT, DOMAINS, SKILLS, readPackageVersion, walkFiles, rewriteSharedPathsNestedDomainReference } from "./lib.mjs";
 
 const SNAPSHOT_PATH = path.join(ROOT, ".build-snapshot.json");
 const version = readPackageVersion();
 let failures = [];
 
-// --- 1. Shared-model drift check ---
+// --- 1. Shared drift check ---
 const sharedDir = path.join(ROOT, "src", "shared");
-const sharedFiles = fs.readdirSync(sharedDir).filter((f) => f.endsWith(".md"));
+const sharedFiles = fs.readdirSync(sharedDir).filter((f) => fs.statSync(path.join(sharedDir, f)).isFile());
 
-for (const domain of DOMAINS) {
+for (const domain of SKILLS) {
   for (const genRoot of [
     path.join(ROOT, "skills", `ux-crux-${domain}`),
     path.join(ROOT, "plugin", "skills", domain),
@@ -32,9 +32,7 @@ for (const domain of DOMAINS) {
         failures.push(`drift: ${path.relative(ROOT, genFile)} is missing (run npm run build)`);
         continue;
       }
-      const genContent = fs.readFileSync(genFile, "utf8");
-      const srcContent = fs.readFileSync(srcFile, "utf8");
-      if (genContent !== srcContent) {
+      if (!fs.readFileSync(genFile).equals(fs.readFileSync(srcFile))) {
         failures.push(
           `drift: ${path.relative(ROOT, genFile)} does not match src/shared/${file} — edit the source, not the generated copy, then rebuild`
         );

@@ -1,7 +1,7 @@
 {
   "name": "ux-crux",
-  "version": "0.1.34",
-  "description": "Evidence-driven UX review skills for AI coding agents: a full-audit entry point plus usability, psychology, accessibility, product, and trust lenses.",
+  "version": "0.2.0",
+  "description": "Evidence-driven UX review skills for AI coding agents: a full-audit entry point plus usability, psychology, accessibility, product, and trust lenses, and a visual HTML triage report.",
   "author": {
     "name": "Dmytro Vakulenko",
     "email": "drsmile444@gmail.com"
@@ -28,7 +28,8 @@
     "defaultPrompt": [
       "Review the UX of this screen",
       "Check accessibility of this flow",
-      "Is this onboarding flow manipulative?"
+      "Is this onboarding flow manipulative?",
+      "Review the sign-up flow and make a report"
     ]
   }
 }

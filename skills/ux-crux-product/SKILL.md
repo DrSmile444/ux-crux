@@ -1,10 +1,10 @@
 ---
 name: ux-crux-product
-description: Use when the user wants review of a screen or flow's primary goal clarity, information hierarchy, content/UX writing, or whether onboarding/registration is justified before value is shown — whether the design serves user intent vs. internal product structure. Not for interaction mechanics (use `usability`) or persuasive-mechanism ethics (use `psychology`). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
+description: Use when the user wants review of a screen or flow's primary goal clarity, information hierarchy, content/UX writing, or whether onboarding/registration is justified before value is shown — whether the design serves user intent vs. internal product structure. Not for interaction mechanics (use `usability`) or persuasive-mechanism ethics (use `psychology`). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead. Also accepts "report", alone or with a mode (for example "full report"), to also write a findings file and an HTML triage report; a plain-language request for a visual or HTML report works the same way.
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.34"
+  version: "0.2.0"
 ---
 
 Review goal clarity, information architecture, and content for the evidence provided.
@@ -14,6 +14,10 @@ Review goal clarity, information architecture, and content for the evidence prov
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which rules to check using judgment, as described in the steps below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep: for every rule row in `core.md`, `information-architecture.md`, `voice-tone.md`, and (when the evidence is text-heavy or web-rendered) `web.md`, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
 
 **When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
+
+**Report.** When the arguments include "report" (alone or with a mode, for example `full report`), or the user asks for a visual or HTML report, finish the review and its text report as usual, then write the findings file per `shared/findings-contract.md` and render it per `shared/report-render.md`. Without it, write no findings file and no page. "report" is not a mode: alone it means `smart` with a report, and `full report` means `full` with a report.
+
+**Live evidence.** When the evidence is a live web page or a running build, follow `shared/flow-capture.md` before evaluating rules: it says when to walk the flow, how to capture each step, and when to stop and ask before any data change.
 
 1. Identify the single primary user goal for the reviewed screen/flow. If none is identifiable, that is itself a finding (see `references/core.md`'s P01).
 2. Check whether the primary action is visually prioritized over secondary actions, and whether content/controls serve the stated goal rather than internal product structure.
@@ -31,4 +35,4 @@ Review goal clarity, information architecture, and content for the evidence prov
 - `references/information-architecture.md` — information-architecture rules (IA01-IA08): user-mental-model/situational-entry-point structure, tree testing, faceted classification, corporate-language/organizational-structure leaks, UI-metaphor/merged-source label fidelity, IA topology selection (tree/matrix/organic/sequential), controlled-vocabulary/thesaurus and audience-facet fit, and cross-product conceptual-model consistency/literal-metaphor limits; apply in addition to `core.md`, not instead of it.
 - `references/web.md` — text-scanning and typography rules (C07-C12, C27) for text-heavy or web-rendered content; apply in addition to `core.md`, not instead of it.
 - `references/voice-tone.md` — voice and tone rules (VT01-VT06): the Clear/Concise/Human priority triad, tone as a contextual spectrum, tone as a measured usability factor, anti-idiom/global-scalability, the Brand-vs-Product-Voice guardrail, and light-tone permission for non-error administrative bad news; apply in addition to `core.md`, not instead of it.
-- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`.
+- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`, `findings-contract.md`, `report-render.md`, `flow-capture.md`.

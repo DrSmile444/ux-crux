@@ -1,10 +1,10 @@
 ---
 name: ux-crux-review
-description: Use when the user asks for a broad, comprehensive, general, or end-to-end UX review of a feature, screen, flow, app, or implementation — across multiple dimensions (usability, accessibility, psychology, product, trust) rather than one specific angle. If the request already narrows to one angle (e.g. "check accessibility", "is this manipulative"), prefer the matching domain skill instead. Accepts an optional "smart" or "full" argument — "smart" (the default) selects applicable lenses and rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable lens instead.
+description: Use when the user asks for a broad, comprehensive, general, or end-to-end UX review of a feature, screen, flow, app, or implementation — across multiple dimensions (usability, accessibility, psychology, product, trust) rather than one specific angle. If the request already narrows to one angle (e.g. "check accessibility", "is this manipulative"), prefer the matching domain skill instead. Accepts an optional "smart" or "full" argument — "smart" (the default) selects applicable lenses and rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable lens instead. Also accepts "report", alone or with a mode (for example "full report"), to also write a findings file and an HTML triage report; a plain-language request for a visual or HTML report works the same way.
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.34"
+  version: "0.2.0"
 ---
 
 Review the user-facing product, feature, flow, screen, or implementation described or shown, across every UX dimension relevant to the evidence provided. Never invent behavior that cannot be observed — see `shared/evidence-model.md`.
@@ -14,6 +14,10 @@ Review the user-facing product, feature, flow, screen, or implementation describ
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which lenses and rules to apply using judgment, as described below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep across every applicable lens: for every rule row in every `domains/<lens>/...` file loaded for the request's scope, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
 
 **When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
+
+**Report.** When the arguments include "report" (alone or with a mode, for example `full report`), or the user asks for a visual or HTML report, finish the review and its text report as usual, then write the findings file per `shared/findings-contract.md` and render it per `shared/report-render.md`. Without it, write no findings file and no page. "report" is not a mode: alone it means `smart` with a report, and `full report` means `full` with a report.
+
+**Live evidence.** When the evidence is a live web page or a running build, follow `shared/flow-capture.md` before evaluating rules: it says when to walk the flow, how to capture each step, and when to stop and ask before any data change.
 
 1. **Determine scope.** Read `references/review-model.md`'s lens-selection procedure. Decide which of usability, psychology, accessibility, product, and trust apply, and what evidence is actually available (screenshot, description, running build, code).
 2. **State the scope before findings.** Name which lenses you applied and why, and which you could not apply due to the evidence type.
@@ -26,7 +30,7 @@ Review the user-facing product, feature, flow, screen, or implementation describ
 
 - `references/review-model.md` — lens selection, cross-lens synthesis, and the validation-methodology rules (V01-V06) that govern how confident this skill is allowed to be.
 - `domains/usability/`, `domains/psychology/`, `domains/accessibility/`, `domains/product/`, `domains/trust/` — a generated, self-contained copy of each domain skill's own reference material (kept in sync with that domain's `src/skills/<domain>/references/` by the build step). Read these directly; do not assume the sibling domain skills are installed alongside this one.
-- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md` — shared across every ux-crux skill; read these once, they are not repeated here.
+- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`, `findings-contract.md`, `report-render.md`, `flow-capture.md` — shared across every ux-crux skill; read these once, they are not repeated here.
 
 ## Boundaries
 

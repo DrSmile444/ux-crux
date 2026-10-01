@@ -14,6 +14,10 @@ export const DOMAINS = [
   "trust",
 ];
 
+// Every generated skill package: the six review skills plus the report renderer.
+// DOMAINS stays the set whose references/ review bundles under domains/.
+export const SKILLS = [...DOMAINS, "report"];
+
 export function readPackageVersion() {
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
   return pkg.version;
@@ -79,4 +83,32 @@ export function markFrontmatterInternal(content) {
 export function ensureEmptyDir(dir) {
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
+}
+
+// Parses every rule table under src/skills/<domain>/references/ into a map
+// from qualified rule id ("usability/core.md#A08R") to { text, sources }.
+// A rule table is one whose header starts with "| ID |" and has Rule and
+// Sources columns.
+export function readRuleCatalog() {
+  const catalog = new Map();
+  const splitRow = (line) => line.trim().replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map((c) => c.trim());
+  for (const domain of DOMAINS) {
+    const refsDir = path.join(ROOT, "src", "skills", domain, "references");
+    for (const file of walkFiles(refsDir).filter((f) => f.endsWith(".md"))) {
+      const rel = path.relative(refsDir, file);
+      let cols = null;
+      for (const line of fs.readFileSync(file, "utf8").split("\n")) {
+        if (!line.startsWith("|")) { cols = null; continue; }
+        const cells = splitRow(line);
+        if (cells[0] === "ID") {
+          const rule = cells.indexOf("Rule"), sources = cells.indexOf("Sources");
+          cols = rule > 0 && sources > 0 ? { rule, sources } : null;
+          continue;
+        }
+        if (!cols || /^-+$/.test(cells[0]) || !/^[A-Z0-9]+$/.test(cells[0])) continue;
+        catalog.set(`${domain}/${rel}#${cells[0]}`, { text: cells[cols.rule], sources: cells[cols.sources] });
+      }
+    }
+  }
+  return catalog;
 }

@@ -1,10 +1,10 @@
 ---
 name: ux-crux-usability
-description: Use when the user wants to review task flow, interaction friction/efficiency, navigation, forms, system status/feedback, or error handling in a UI or feature — not a full multi-lens review, and not primarily an accessibility, psychology, product-goal, or trust/permissions concern (use the matching sibling skill for those instead). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
+description: Use when the user wants to review task flow, interaction friction/efficiency, navigation, forms, system status/feedback, or error handling in a UI or feature — not a full multi-lens review, and not primarily an accessibility, psychology, product-goal, or trust/permissions concern (use the matching sibling skill for those instead). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead. Also accepts "report", alone or with a mode (for example "full report"), to also write a findings file and an HTML triage report; a plain-language request for a visual or HTML report works the same way.
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.34"
+  version: "0.2.0"
 ---
 
 Review task flow, interaction efficiency, navigation, forms, system status, and error recovery for the evidence provided (screenshot, description, code, or running build).
@@ -14,6 +14,10 @@ Review task flow, interaction efficiency, navigation, forms, system status, and 
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which rules to check using judgment, as described in the steps below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep: for every rule row in every reference file below that this request's scope would otherwise load (`core.md`, and whichever of `mobile.md`, `visual-hierarchy.md`, `affordances.md`, `voice.md` apply per steps 5-8), explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
 
 **When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
+
+**Report.** When the arguments include "report" (alone or with a mode, for example `full report`), or the user asks for a visual or HTML report, finish the review and its text report as usual, then write the findings file per `shared/findings-contract.md` and render it per `shared/report-render.md`. Without it, write no findings file and no page. "report" is not a mode: alone it means `smart` with a report, and `full report` means `full` with a report.
+
+**Live evidence.** When the evidence is a live web page or a running build, follow `shared/flow-capture.md` before evaluating rules: it says when to walk the flow, how to capture each step, and when to stop and ask before any data change.
 
 1. Identify the primary task and check whether the flow adds unnecessary steps, decisions, or mode switches (see `references/core.md`'s Actions/Forms/System status rules) — including whether a persistent mode is visibly indicated (A11R) and whether a reused icon/signifier carries conflicting meanings nearby (A12R).
 2. Check whether any explicit user-initiated action (e.g. tapping Search) is followed by immediate readiness for the implied next action — see `references/mobile.md`'s worked example on autofocus after Search, and the interaction-efficiency rules in both files. If the evidence includes a search/discovery flow, also check that query terms and context persist across a non-linear session (D07), and if it spans multiple devices, check that scoping/containment defaults stay consistent (N17R).
@@ -34,4 +38,4 @@ Review task flow, interaction efficiency, navigation, forms, system status, and 
 - `references/affordances.md` — the Four Kinds of Affordances (AF01) as a diagnostic vocabulary for control-level findings, plus user-created affordance artifacts as a diagnostic signal (AF02); apply after a control-level finding is already identified, not as a standalone source of new findings.
 - `references/web.md` — hover-menu and hover-reveal rules (N55R-N56R) for desktop and other pointer-hover interfaces; apply in addition to `core.md`.
 - `references/voice.md` — Voice UI (VUI) command-scope and sonic-persona-alignment rules (VU01-VU02); applies only when the evidence includes a voice interaction.
-- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`.
+- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`, `findings-contract.md`, `report-render.md`, `flow-capture.md`.

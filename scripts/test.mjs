@@ -11,7 +11,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { ROOT, walkFiles } from "./lib.mjs";
+import { ROOT, walkFiles, readRuleCatalog } from "./lib.mjs";
+import { validateFindings } from "../src/shared/render-report.mjs";
 
 const args = process.argv.slice(2);
 const runLive = args.includes("--live") || process.env.RUN_LIVE_EVALS === "1";
@@ -83,13 +84,43 @@ for (const caseDir of caseDirs) {
   }
 }
 
+// Report checks: every findings fixture follows the contract and quotes the
+// catalog verbatim, and the report template loads nothing external.
+const fixturesDir = path.join(ROOT, "evals", "report", "fixtures");
+const fixtureFiles = fs.existsSync(fixturesDir) ? fs.readdirSync(fixturesDir).filter((f) => f.endsWith(".findings.json")) : [];
+if (fixtureFiles.length === 0) failures.push("evals/report/fixtures/: no *.findings.json fixtures");
+const catalog = readRuleCatalog();
+for (const name of fixtureFiles) {
+  const rel = `evals/report/fixtures/${name}`;
+  let d;
+  try {
+    d = JSON.parse(fs.readFileSync(path.join(fixturesDir, name), "utf8"));
+  } catch (err) {
+    failures.push(`${rel}: invalid JSON (${err.message})`);
+    continue;
+  }
+  for (const e of validateFindings(d)) failures.push(`${rel}: ${e}`);
+  for (const [id, r] of Object.entries(d.rules || {})) {
+    const c = catalog.get(id);
+    if (!c) failures.push(`${rel}: ${id} is not a rule row in src/skills/**/references/`);
+    else if (c.text !== r.text || c.sources !== r.sources) failures.push(`${rel}: ${id} text or sources differ from the catalog`);
+  }
+  for (const [id, im] of Object.entries(d.images || {})) {
+    if (im.file && !fs.existsSync(path.join(fixturesDir, im.file))) failures.push(`${rel}: images.${id} file ${im.file} is missing`);
+  }
+}
+const template = fs.readFileSync(path.join(ROOT, "src", "shared", "report-template.html"), "utf8");
+if (!template.includes("/*FINDINGS_JSON*/")) failures.push("src/shared/report-template.html: findings placeholder is missing");
+if (/(?:src|href)\s*=\s*["']?\s*(?:https?:)?\/\/|url\(\s*["']?\s*(?:https?:)?\/\/|@import/i.test(template))
+  failures.push("src/shared/report-template.html: loads an external resource");
+
 if (failures.length > 0) {
   console.error(`test: preflight FAILED (${caseDirs.length} case(s) scanned)\n`);
   for (const f of failures) console.error(`  - ${f}`);
   process.exit(1);
 }
 
-console.log(`test: preflight passed — ${caseDirs.length} eval case(s) structurally valid.`);
+console.log(`test: preflight passed — ${caseDirs.length} eval case(s) structurally valid, ${fixtureFiles.length} report fixture(s) follow the findings contract.`);
 
 if (!runLive) {
   console.log("test: skipping live grading (pass --live or set RUN_LIVE_EVALS=1 to run real `claude plugin eval`, which spends real model credits on your account).");
@@ -98,7 +129,10 @@ if (!runLive) {
 
 console.log("test: running live evals via `claude plugin eval` ...");
 try {
-  execFileSync("claude", ["plugin", "eval", "./plugin", "--trust-plugin", "--threshold", "1.0"], {
+  // Report and flow-capture cases write files, run the renderer, and drive a
+  // browser; each case still lists the tools it may use in allowed_tools.
+  const grants = ["--allow-tools", "Write", "Edit", "Bash", "mcp__playwright__*"];
+  execFileSync("claude", ["plugin", "eval", "./plugin", "--trust-plugin", "--threshold", "1.0", ...grants], {
     stdio: "inherit",
     cwd: ROOT,
   });

@@ -1,11 +1,11 @@
 ---
 name: psychology
-description: Use when the user wants analysis of attention, cognitive load, motivation, emotion, behavioral economics (defaults, anchoring, loss aversion, scarcity, urgency), social proof, habit formation, gamification/game mechanics, or persuasive/dark-pattern ethics in a UI or feature — including questions like "is this manipulative" or "why would this motivate users". Not for general task-flow/navigation review (use `usability`) or accessibility (use `accessibility`). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead.
+description: Use when the user wants analysis of attention, cognitive load, motivation, emotion, behavioral economics (defaults, anchoring, loss aversion, scarcity, urgency), social proof, habit formation, gamification/game mechanics, or persuasive/dark-pattern ethics in a UI or feature — including questions like "is this manipulative" or "why would this motivate users". Not for general task-flow/navigation review (use `usability`) or accessibility (use `accessibility`). Accepts an optional "smart" or "full" argument — "smart" (the default) selects rules using judgment; "full" performs a mandatory, exhaustive rule-by-rule sweep of every applicable rule instead. Also accepts "report", alone or with a mode (for example "full report"), to also write a findings file and an HTML triage report; a plain-language request for a visual or HTML report works the same way.
 license: MIT
 metadata:
   internal: true
   author: ux-crux
-  version: "0.1.34"
+  version: "0.2.0"
 ---
 
 Analyze the psychological mechanisms present in the reviewed evidence — cognitive, attentional, motivational, emotional, behavioral-economic, social, and habit-related — and evaluate whether their use is ethical, not just whether it is effective.
@@ -15,6 +15,10 @@ Analyze the psychological mechanisms present in the reviewed evidence — cognit
 **Mode.** By default (no argument, or an explicit "smart" argument) this skill selects which rules to check using judgment, as described in the steps below. When invoked with an argument recognizable as "full" (case-insensitive), it instead performs a mandatory, exhaustive sweep: for every rule row in every topic file (`cognitive.md`, `attention.md`, `motivation.md`, `emotion.md`, `behavioral-economics.md`, `social.md`, `habits.md`, `gamification.md`) and `ethics.md` relevant to the mechanisms present in this evidence, explicitly record VIOLATED / NOT VIOLATED / NOT ASSESSABLE / NOT APPLICABLE before writing the narrative report, rather than relying on judgment to select a subset. Show this checklist before the report. If the argument is present but is neither "full" nor "smart", ask the user which mode they intended rather than guessing.
 
 **When to choose.** Default to `smart` for everyday review work — it already reaches full recall on directly-evidenced violations, at negligible extra cost. Reach for `full` when the report itself needs to be defensible as a complete audit trail rather than a sampling: a pre-launch/release gate, a compliance- or safety-sensitive surface (payments, health data, legal/accessibility exposure), a re-check after a prior review turned out to have missed something, or handing findings to a stakeholder — legal, compliance, a client — who needs proof every rule was checked. `full` costs meaningfully more on a large rule catalog and only marginally more on a small one; weigh that against how much an audit trail is worth for this particular review.
+
+**Report.** When the arguments include "report" (alone or with a mode, for example `full report`), or the user asks for a visual or HTML report, finish the review and its text report as usual, then write the findings file per `shared/findings-contract.md` and render it per `shared/report-render.md`. Without it, write no findings file and no page. "report" is not a mode: alone it means `smart` with a report, and `full report` means `full` with a report.
+
+**Live evidence.** When the evidence is a live web page or a running build, follow `shared/flow-capture.md` before evaluating rules: it says when to walk the flow, how to capture each step, and when to stop and ask before any data change.
 
 1. **Identify the mechanism(s) present**, not just the surface pattern. Consult the relevant topic file in `references/`: `cognitive.md`, `attention.md`, `motivation.md`, `emotion.md`, `behavioral-economics.md`, `social.md`, `habits.md`, or `gamification.md`.
 2. **Describe before you prescribe.** State what the mechanism is and its likely behavioral effect, separately from judging whether this specific use is good. A described effect is not automatically a recommendation — see `references/ethics.md`.
@@ -27,4 +31,4 @@ Analyze the psychological mechanisms present in the reviewed evidence — cognit
 
 - `references/cognitive.md`, `attention.md`, `motivation.md`, `emotion.md`, `behavioral-economics.md`, `social.md`, `habits.md`, `gamification.md` — the mechanism catalog, one topic per file.
 - `references/ethics.md` — the four-gate test and evidence-strength corrections; read this before treating any mechanism as a recommendation.
-- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`.
+- `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`, `findings-contract.md`, `report-render.md`, `flow-capture.md`.

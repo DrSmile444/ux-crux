@@ -2,6 +2,19 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.2.0 — visual report, `report` skill, and automatic flow capture
+
+A review can now end in a visual HTML triage report, and a review of a live web flow walks the flow by itself. No rule content changed: no rule rows were added, moved or renumbered, so the rule total stays 581 and the Evidence base list is unchanged.
+
+- `report` argument on all six review skills (`/review report`, `/review full report`, or "make a report"): after the text report, the skill writes `findings.json` and renders one self-contained HTML page. Each finding shows its rule ID, rule text and quoted Sources, a picture (annotated capture, reconstruction, or schematic, labeled as such), one to three fix options with one recommended, and the triage options "won't fix", "not an issue", "defer" and "verify first". "Copy decisions" produces lines the agent records back into the findings file before re-rendering the same page. Full-mode reports carry the rule-by-rule checklist as a collapsed appendix. The report language follows the user.
+- New `report` skill (`ux-crux-report` on skills.sh): renders an existing findings file and runs the decision round; it never reviews.
+- Flow capture in all six review skills: with a live page or running build and a named flow, the skill walks the steps with the host's browser tool, captures each step and its non-mutating states, builds a flow map, and locates every finding on a step or a transition. It asks before any data-changing action and reports unreachable steps as `NOT ASSESSABLE`.
+- `src/shared/`: `findings-contract.md`, `report-render.md`, `flow-capture.md`, `report-template.html`, `render-report.mjs` (no dependencies). `report-contract.md` names the findings file as the machine-readable form of the same report.
+- Build and validation: every `src/shared/` file (not only Markdown) ships in every package and is checked for drift; the build generates seven packages.
+- Tests: `npm run test` checks every report fixture against the findings contract and checks that each quoted rule and Sources cell equals the catalog; `npm run test:report` renders the fixtures in headless Chromium (dev dependency `playwright`) and checks labels, triage round trip, offline loading, phone width and dark mode. New live eval cases for the report, the decision round, Ukrainian output and flow capture against a static sign-up fixture, plus two trigger cases.
+- Report page reviewed with ux-crux itself and fixed: small secondary text raised to at least 4.5:1 contrast (`X03`), a reason is asked for "won't fix" and "not an issue" and missing reasons are counted on copy (`F09`), copied text stays folded behind a "Show text" toggle instead of growing the bottom bar (`A19R`), "Start over" moved from beside "Copy decisions" to the footer (`A16R`), a "Skip to findings" link and a `main` landmark (`X20`), translatable confidence, table and navigation labels (`C05`), and "select" instead of "press" (`X14`). The page targets desktop reading; the phone-width focus issue (`X08`) was recorded as won't fix.
+- `README.md`: "Visual report" section with a rendered example.
+
 ## 0.1.34 — natural-mapping and sensibility-check rules from a *Design of Everyday Things* comparison pass
 
 A small pass over Don Norman, *The Design of Everyday Things* (Revised and Expanded Edition, 2013). Most of the book's reviewable ideas were already in the catalog through NN/g and Apple HIG sources; the book is now cited where it states the same practice.
