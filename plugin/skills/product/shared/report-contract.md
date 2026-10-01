@@ -1,6 +1,6 @@
 # Report contract
 
-Every ux-crux skill (the `review` entry point and each of the five domain skills) reports findings in this shape. Never collapse a review into a single opaque score — a blocker in accessibility or data loss outweighs many polished details, and an average would hide that.
+Every ux-crux skill (the `review` entry point and each of the five domain skills) reports findings in this shape. With the `report` argument, the skill also writes the same report as a findings file (`findings-contract.md`) and renders it as an HTML report (`report-render.md`). Never collapse a review into a single opaque score — a blocker in accessibility or data loss outweighs many polished details, and an average would hide that.
 
 ## Required sections, in order
 

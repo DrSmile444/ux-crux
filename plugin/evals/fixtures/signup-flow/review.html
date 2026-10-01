@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review and create</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<a class="back" href="plan.html">&larr; Back</a>
+<p class="steps">Step 4 of 4</p>
+<h1>Review and create</h1>
+<form action="https://signup.example.invalid/api/accounts" method="post">
+  <dl><dt>Email</dt><dd id="em">—</dd><dt>Plan</dt><dd>Free</dd></dl>
+  <button type="submit">Create account</button>
+</form>
+<p class="steps">Next, we send a 6-digit code to your email.</p>
+</main>
+<script>document.getElementById("em").textContent=sessionStorage.getItem("email")||"—";</script>
+</body></html>

@@ -1,0 +1,353 @@
+{
+  "contract": "ux-crux-findings/1",
+  "report_id": "2026-10-01-checkout-single",
+  "title": "Mobile checkout screen",
+  "language": "en",
+  "created": "2026-10-01",
+  "skill": "review",
+  "mode": "smart",
+  "subject": {
+    "summary": "Android checkout screen and the first-launch permission flow before it, reviewed from a written description.",
+    "evidence": [
+      "written description of the screen and the first-launch flow"
+    ],
+    "platform": "android"
+  },
+  "overall": "Needs revision",
+  "lenses": [
+    {
+      "lens": "usability",
+      "applied": true,
+      "reason": "Primary action and irreversible charge are described."
+    },
+    {
+      "lens": "psychology",
+      "applied": true,
+      "reason": "A countdown scarcity banner is described."
+    },
+    {
+      "lens": "accessibility",
+      "applied": true,
+      "reason": "Touch target size is given."
+    },
+    {
+      "lens": "product",
+      "applied": false,
+      "reason": "Covered by the usability hierarchy finding; no separate goal question."
+    },
+    {
+      "lens": "trust",
+      "applied": true,
+      "reason": "Permission timing on first launch is described."
+    }
+  ],
+  "category_health": [
+    {
+      "lens": "usability",
+      "summary": "1 blocker (irreversible charge, A05R), 1 moderate (equal-weight actions, A01R).",
+      "source_ids": [
+        "usability/core.md#A05R",
+        "usability/core.md#A01R"
+      ]
+    },
+    {
+      "lens": "psychology",
+      "summary": "1 major (resetting countdown, PB08).",
+      "source_ids": [
+        "psychology/behavioral-economics.md#PB08"
+      ]
+    },
+    {
+      "lens": "accessibility",
+      "summary": "1 blocker (touch target, T02).",
+      "source_ids": [
+        "accessibility/mobile.md#T02"
+      ]
+    },
+    {
+      "lens": "trust",
+      "summary": "1 major (permissions at launch, O04/O05).",
+      "source_ids": [
+        "trust/mobile.md#O04",
+        "trust/mobile.md#O05"
+      ]
+    }
+  ],
+  "missing_context": [
+    {
+      "text": "Color contrast and text scaling are not assessable from a written description.",
+      "resolves_with": "A screenshot and a running build with large text enabled."
+    },
+    {
+      "text": "Offline and payment-declined states were not described.",
+      "resolves_with": "Screens or a build that shows both states."
+    }
+  ],
+  "top3": [
+    {
+      "finding_id": "UX-ACT-001",
+      "text": "Add a review step before the card is charged.",
+      "source_ids": [
+        "usability/core.md#A05R"
+      ]
+    },
+    {
+      "finding_id": "UX-ACC-001",
+      "text": "Expand the Place order touch region to 48x48dp.",
+      "source_ids": [
+        "accessibility/mobile.md#T02"
+      ]
+    },
+    {
+      "finding_id": "UX-PSY-001",
+      "text": "Remove the resetting countdown.",
+      "source_ids": [
+        "psychology/behavioral-economics.md#PB08"
+      ]
+    }
+  ],
+  "score": {
+    "value": 34,
+    "note": "capped at 39: two unresolved blockers"
+  },
+  "rules": {
+    "accessibility/mobile.md#T02": {
+      "text": "Android interactive touch targets are at least 48x48 dp; visible artwork may be smaller if the focus/touch area is large enough.",
+      "sources": "Android Make apps more accessible"
+    },
+    "psychology/behavioral-economics.md#PB08": {
+      "text": "Scarcity and countdown urgency must reflect a real constraint; resetting timers or fake low-stock claims are deceptive patterns.",
+      "sources": "NN/g Deceptive Patterns in UX; NN/g The Vortex"
+    },
+    "trust/mobile.md#O04": {
+      "text": "Do not request all permissions at startup. Request a permission when the user invokes the feature that needs it.",
+      "sources": "Apple HIG Privacy; Android Request runtime permissions, App permissions best practices; NN/g 3 Design Considerations for Effective Mobile-App Permission Requests"
+    },
+    "trust/mobile.md#O05": {
+      "text": "Before an unexpected/sensitive permission, explain what is accessed and the user-facing benefit in clear language.",
+      "sources": "Apple HIG Privacy; Android Request runtime permissions; NN/g Permission Requests"
+    },
+    "usability/core.md#A01R": {
+      "text": "Each screen has a visually clear primary action when the task has a clear next step; secondary actions receive less emphasis.",
+      "sources": "Apple HIG Buttons; Android Layouts and navigation patterns; Baymard Institute, Holst, \"35 Data-Driven Ecommerce Best Practices\" (2021: the main add-to-cart control uses a style not used on other buttons)"
+    },
+    "usability/core.md#A05R": {
+      "text": "Irreversible/high-cost destructive actions use a specific confirmation that explains the consequence and names the object/action.",
+      "sources": "Apple HIG Alerts, Action sheets; NN/g Confirmation Dialogs"
+    }
+  },
+  "findings": [
+    {
+      "id": "UX-ACC-001",
+      "title": "Place order hit area is 30x30dp",
+      "category": "accessibility",
+      "severity": "blocker",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "observation": "The Place order control is 30x30dp on Android, with a small icon and no label text.",
+      "why_it_matters": "Missed and accidental taps on the main conversion action, worst for people with motor impairments.",
+      "recommendation": "Keep the icon and expand the touch region to at least 48x48dp.",
+      "source_ids": [
+        "accessibility/mobile.md#T02"
+      ],
+      "false_positive_conditions": [
+        "30x30dp is only the artwork and the touch region is already at least 48x48dp."
+      ],
+      "validation_method": [
+        "Measure the touch region with the Android layout inspector."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Keep the icon and expand the touch region to at least 48x48dp. One layout change; the screen looks the same.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Replace the icon with a full-width labeled \"Place order\" button. A larger visual change that also adds the missing label."
+        }
+      ],
+      "picture": {
+        "tier": "schematic",
+        "caption": "The solid square is the 30dp control; the dashed square is the 48dp minimum touch region.",
+        "panels": [
+          {
+            "role": "before",
+            "html": "<style>.w{display:grid;place-items:center;height:120px}.t{width:30px;height:30px;border-radius:6px;background:#4b3ba8}.n{font:12px system-ui;color:#6b6770;margin-top:8px}</style><div class=\"w\"><div><div class=\"t\"></div><div class=\"n\">30 x 30 dp</div></div></div>"
+          },
+          {
+            "role": "after",
+            "html": "<style>.w{display:grid;place-items:center;height:120px}.z{width:48px;height:48px;border:2px dashed #4b3ba8;display:grid;place-items:center;border-radius:8px}.t{width:30px;height:30px;border-radius:6px;background:#4b3ba8}.n{font:12px system-ui;color:#6b6770;margin-top:8px;text-align:center}</style><div class=\"w\"><div><div class=\"z\"><div class=\"t\"></div></div><div class=\"n\">48 x 48 dp</div></div></div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-ACT-001",
+      "title": "Place order charges the card with no confirmation or undo",
+      "category": "usability",
+      "severity": "blocker",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "observation": "Tapping Place order charges the card at once. There is no confirmation step and no undo.",
+      "why_it_matters": "An accidental tap is an unrecoverable payment.",
+      "recommendation": "Show a review step that names the amount and the card, with a \"Pay $42.00\" button.",
+      "source_ids": [
+        "usability/core.md#A05R"
+      ],
+      "false_positive_conditions": [
+        "The order can be cancelled free of charge for some minutes after placing it, and the screen says so."
+      ],
+      "validation_method": [
+        "Place a test order on a staging build and check for a confirmation or cancel window."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Add a review step that names the amount and the card, with a \"Pay $42.00\" button. One extra screen in the flow.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Keep one tap, and add a free cancel window of 5 minutes with a visible \"Cancel order\" control. Needs back-end support for cancellation."
+        }
+      ],
+      "picture": {
+        "tier": "schematic",
+        "caption": "Before: one tap charges the card. After: a review step names the amount and card first.",
+        "panels": [
+          {
+            "role": "before",
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Checkout</b><div class=\"muted\">2 items · $42.00</div><div class=\"row\"><div class=\"b p\">Place order</div></div><div class=\"ban\">Card charged at once</div></div>"
+          },
+          {
+            "role": "after",
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Review and pay</b><div class=\"muted\">$42.00 · Visa ·· 4242</div><div class=\"row\"><div class=\"b s\">Back</div><div class=\"b p\">Pay $42.00</div></div></div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-TRS-001",
+      "title": "All permissions are requested at first launch",
+      "category": "trust",
+      "severity": "major",
+      "confidence": "high",
+      "evidence_status": "SUPPORTED",
+      "observation": "On first launch the app asks for location, camera and notifications together, before any feature needs them.",
+      "why_it_matters": "People deny permissions they cannot connect to a benefit, and many never grant them later.",
+      "recommendation": "Ask for each permission when the person first uses the feature that needs it, after a one-line benefit explanation.",
+      "source_ids": [
+        "trust/mobile.md#O04",
+        "trust/mobile.md#O05"
+      ],
+      "false_positive_conditions": [
+        "The first screen of the app is a feature that needs all three permissions at once."
+      ],
+      "validation_method": [
+        "Record a first launch on a clean install and list each permission prompt with the screen that caused it."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Ask for each permission in context, when its feature is first used, after a one-line benefit explanation. Moves three prompts into three features.",
+          "recommended": true
+        }
+      ],
+      "picture": {
+        "tier": "schematic",
+        "caption": "Before: three prompts on launch. After: each prompt waits for its feature.",
+        "panels": [
+          {
+            "role": "before",
+            "html": "<style>.r{display:flex;gap:6px;align-items:center;font:13px system-ui;flex-wrap:wrap}.n{border:1px solid #c9c5cf;border-radius:8px;padding:6px 8px;background:#fff}.bad{border-color:#b3261e;background:#fde8e6}</style><div class=\"r\"><span class=\"n\">Launch</span>→<span class=\"n bad\">Location?</span><span class=\"n bad\">Camera?</span><span class=\"n bad\">Notifications?</span></div>"
+          },
+          {
+            "role": "after",
+            "html": "<style>.r{display:flex;flex-direction:column;gap:6px;font:13px system-ui}.n{border:1px solid #c9c5cf;border-radius:8px;padding:6px 8px;background:#fff}.ok{border-color:#1d6b45;background:#e3f3ea}</style><div class=\"r\"><span class=\"n\">Find nearby → <b>Location?</b></span><span class=\"n\">Scan card → <b>Camera?</b></span><span class=\"n ok\">Order placed → <b>Notify about delivery?</b></span></div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-PSY-001",
+      "title": "Stock countdown resets on every reload",
+      "category": "psychology",
+      "severity": "major",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "observation": "The banner \"Only 2 left in stock — order in the next 10 minutes!\" restarts its countdown each time the screen reloads.",
+      "why_it_matters": "A timer that restarts is fabricated urgency: a deceptive pattern that costs trust once noticed.",
+      "recommendation": "Remove the countdown; show stock only when it comes from real inventory data.",
+      "source_ids": [
+        "psychology/behavioral-economics.md#PB08"
+      ],
+      "false_positive_conditions": [
+        "The countdown is tied to a real reservation that expires, and the stock count is live."
+      ],
+      "validation_method": [
+        "Reload the screen twice and compare the timer; compare the stock count with the inventory API."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Remove the countdown and show stock only from live inventory. Removes one banner.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Tie the timer to a real cart reservation that expires once and say so (\"Reserved for 10 min\"). Needs a reservation back end."
+        }
+      ],
+      "picture": {
+        "tier": "schematic",
+        "caption": "The banner timer restarts at 10:00 after each reload.",
+        "panels": [
+          {
+            "role": "before",
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><div class=\"ban\">Only 2 left · 10:00</div><div class=\"muted\">reload</div><div class=\"ban\">Only 2 left · 10:00</div></div>"
+          },
+          {
+            "role": "after",
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><div class=\"muted\">In stock</div><div class=\"row\"><div class=\"b p\">Place order</div></div></div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-ACT-002",
+      "title": "Place order and Save for later have equal weight",
+      "category": "usability",
+      "severity": "moderate",
+      "confidence": "medium",
+      "evidence_status": "SUPPORTED",
+      "observation": "Place order and Save for later sit side by side with the same size and color.",
+      "why_it_matters": "The primary action does not stand out, so people hesitate or tap the wrong one.",
+      "recommendation": "Make Place order the single filled primary button; show Save for later as a text or outline button.",
+      "source_ids": [
+        "usability/core.md#A01R"
+      ],
+      "false_positive_conditions": [
+        "Saving for later is the main goal of this screen for most people."
+      ],
+      "validation_method": [
+        "Run a five-second test asking which button completes the purchase."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Make Place order the single filled button and Save for later an outline button. Style change only.",
+          "recommended": true
+        }
+      ]
+    }
+  ]
+}

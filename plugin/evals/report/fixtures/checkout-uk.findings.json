@@ -1,0 +1,225 @@
+{
+  "contract": "ux-crux-findings/1",
+  "report_id": "2026-10-01-checkout-uk",
+  "title": "Екран оформлення замовлення",
+  "language": "uk",
+  "created": "2026-10-01",
+  "skill": "review",
+  "mode": "smart",
+  "subject": {
+    "summary": "Екран оформлення замовлення на Android і запити дозволів під час першого запуску. Рецензія за письмовим описом.",
+    "evidence": [
+      "письмовий опис екрана і першого запуску"
+    ],
+    "platform": "android"
+  },
+  "overall": "Потрібні зміни",
+  "lenses": [
+    {
+      "lens": "usability",
+      "applied": true,
+      "reason": "Описано головну дію і списання без скасування."
+    },
+    {
+      "lens": "accessibility",
+      "applied": true,
+      "reason": "Указано розмір зони натискання."
+    }
+  ],
+  "category_health": [
+    {
+      "lens": "usability",
+      "summary": "1 блокер (списання без підтвердження, A05R).",
+      "source_ids": [
+        "usability/core.md#A05R"
+      ]
+    },
+    {
+      "lens": "accessibility",
+      "summary": "1 блокер (зона натискання, T02).",
+      "source_ids": [
+        "accessibility/mobile.md#T02"
+      ]
+    }
+  ],
+  "missing_context": [
+    {
+      "text": "Контраст і масштабування тексту не можна оцінити за описом.",
+      "resolves_with": "Скриншот і запущений build зі збільшеним текстом."
+    }
+  ],
+  "top3": [
+    {
+      "finding_id": "UX-ACT-001",
+      "text": "Додати крок перевірки перед списанням.",
+      "source_ids": [
+        "usability/core.md#A05R"
+      ]
+    },
+    {
+      "finding_id": "UX-ACC-001",
+      "text": "Збільшити зону натискання до 48x48dp.",
+      "source_ids": [
+        "accessibility/mobile.md#T02"
+      ]
+    }
+  ],
+  "strings": {
+    "lede": "Для кожної знахідки видно, що спостерігали, правило і його джерело, а також варіанти. Оберіть один варіант для кожної знахідки, за потреби додайте коментар, потім натисніть «Скопіювати рішення» і вставте текст агенту.",
+    "flow_map": "Карта flow",
+    "flow_sub": "Кожен пройдений крок і знахідки на ньому.",
+    "blockers": "Блокери",
+    "major": "Серйозні проблеми",
+    "health": "Стан за лінзами",
+    "missing": "Чого не вдалося оцінити",
+    "top3": "3 найважливіші зміни",
+    "minor": "Помірні й дрібні знахідки",
+    "checklist": "Чекліст режиму full",
+    "checklist_sub": "Кожне правило, перевірене в режимі full, з вердиктом.",
+    "observation": "Що бачимо",
+    "why": "Чому це важливо",
+    "rules": "Правила",
+    "location": "Де",
+    "source": "Джерело",
+    "recommended": "Рекомендую",
+    "fix": "Виправлення",
+    "wont_fix": "Не виправляти: прийняти ризик. Напишіть причину в коментарі.",
+    "not_an_issue": "Не проблема: діє умова хибного спрацювання. Напишіть, яка саме.",
+    "defer": "Відкласти: вирішити пізніше.",
+    "verify_first": "Спершу перевірити, потім вирішити.",
+    "applies_if": "Не проблема, якщо",
+    "how": "Як",
+    "comment": "Коментар (необов’язково)",
+    "decided": "рішення",
+    "copy": "Скопіювати рішення",
+    "clear": "Очистити",
+    "copied": "Скопійовано. Вставте агенту.",
+    "progress": "Рішення: {n} з {m}",
+    "captured": "Знімок",
+    "reconstruction": "Реконструкція",
+    "proposal": "Пропозиція",
+    "schematic": "Схема",
+    "before": "Як є",
+    "after": "З виправленням",
+    "not_reached": "Не досягнуто",
+    "observed": "Спостерігали без знімка",
+    "step": "Крок",
+    "lenses": "Застосовані лінзи",
+    "not_applied": "Не застосовано",
+    "mode": "Режим",
+    "evidence": "Докази",
+    "none": "Немає.",
+    "no_data": "У цьому звіті немає даних знахідок.",
+    "all": "Усі",
+    "score": "Оцінка",
+    "resolves": "Що допоможе",
+    "na_before": "Не можна оцінити: стану, якого не бачили, немає на картинці.",
+    "clear_confirm": "Очистити всі вибори на цій сторінці?"
+  },
+  "rules": {
+    "accessibility/mobile.md#T02": {
+      "text": "Android interactive touch targets are at least 48x48 dp; visible artwork may be smaller if the focus/touch area is large enough.",
+      "sources": "Android Make apps more accessible"
+    },
+    "usability/core.md#A05R": {
+      "text": "Irreversible/high-cost destructive actions use a specific confirmation that explains the consequence and names the object/action.",
+      "sources": "Apple HIG Alerts, Action sheets; NN/g Confirmation Dialogs"
+    }
+  },
+  "findings": [
+    {
+      "id": "UX-ACC-001",
+      "title": "Зона натискання «Оформити замовлення» — 30x30dp",
+      "category": "accessibility",
+      "severity": "blocker",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "observation": "Кнопка «Оформити замовлення» на Android має 30x30dp, маленьку іконку і не має підпису.",
+      "why_it_matters": "Люди промахуються або натискають випадково на головну дію. Найбільше це шкодить людям з порушеннями моторики.",
+      "recommendation": "Лишити іконку і збільшити зону натискання щонайменше до 48x48dp.",
+      "source_ids": [
+        "accessibility/mobile.md#T02"
+      ],
+      "false_positive_conditions": [
+        "30x30dp — це лише малюнок, а зона натискання вже щонайменше 48x48dp."
+      ],
+      "validation_method": [
+        "Виміряти зону натискання в Layout Inspector."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Лишити іконку і збільшити зону натискання до 48x48dp. Одна зміна макета, вигляд не змінюється.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Замінити іконку на широку кнопку з підписом «Оформити замовлення». Більша зміна, яка також додає підпис."
+        }
+      ],
+      "picture": {
+        "tier": "schematic",
+        "caption": "Суцільний квадрат — кнопка 30dp. Пунктирний квадрат — мінімальна зона 48dp.",
+        "panels": [
+          {
+            "role": "before",
+            "html": "<style>.w{display:grid;place-items:center;height:120px}.t{width:30px;height:30px;border-radius:6px;background:#4b3ba8}.n{font:12px system-ui;color:#6b6770;margin-top:8px}</style><div class=\"w\"><div><div class=\"t\"></div><div class=\"n\">30 x 30 dp</div></div></div>"
+          },
+          {
+            "role": "after",
+            "html": "<style>.w{display:grid;place-items:center;height:120px}.z{width:48px;height:48px;border:2px dashed #4b3ba8;display:grid;place-items:center;border-radius:8px}.t{width:30px;height:30px;border-radius:6px;background:#4b3ba8}.n{font:12px system-ui;color:#6b6770;margin-top:8px;text-align:center}</style><div class=\"w\"><div><div class=\"z\"><div class=\"t\"></div></div><div class=\"n\">48 x 48 dp</div></div></div>"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UX-ACT-001",
+      "title": "«Оформити замовлення» списує гроші без підтвердження і без скасування",
+      "category": "usability",
+      "severity": "blocker",
+      "confidence": "high",
+      "evidence_status": "VERIFIED",
+      "observation": "Натискання одразу списує гроші з картки. Немає кроку підтвердження і немає скасування.",
+      "why_it_matters": "Випадкове натискання — це платіж, який не можна повернути.",
+      "recommendation": "Додати крок перевірки, який називає суму і картку, з кнопкою «Сплатити 42,00 $».",
+      "source_ids": [
+        "usability/core.md#A05R"
+      ],
+      "false_positive_conditions": [
+        "Замовлення можна безкоштовно скасувати кілька хвилин після оформлення, і екран про це каже."
+      ],
+      "validation_method": [
+        "Оформити тестове замовлення на staging і перевірити, чи є підтвердження або вікно скасування."
+      ],
+      "options": [
+        {
+          "key": "a",
+          "kind": "fix",
+          "text": "Додати крок перевірки із сумою і карткою та кнопкою «Сплатити 42,00 $». Один додатковий екран.",
+          "recommended": true
+        },
+        {
+          "key": "b",
+          "kind": "fix",
+          "text": "Лишити одне натискання і додати 5 хвилин на безкоштовне скасування з видимою кнопкою «Скасувати замовлення». Потрібна підтримка на бекенді."
+        }
+      ],
+      "picture": {
+        "tier": "schematic",
+        "caption": "До: одне натискання списує гроші. Після: спершу крок перевірки із сумою і карткою.",
+        "panels": [
+          {
+            "role": "before",
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Checkout</b><div class=\"muted\">2 items · $42.00</div><div class=\"row\"><div class=\"b p\">Place order</div></div><div class=\"ban\">Card charged at once</div></div>"
+          },
+          {
+            "role": "after",
+            "html": "<style>.ph{width:220px;margin:0 auto;border:2px solid #1d1b20;border-radius:18px;padding:14px;font:13px system-ui;display:flex;flex-direction:column;gap:8px;background:#fff}.row{display:flex;gap:8px}.b{flex:1;padding:8px;border-radius:8px;text-align:center;font-weight:600}.p{background:#4b3ba8;color:#fff}.s{background:#e8e6ee;color:#1d1b20}.muted{color:#6b6770;font-size:12px}.ban{background:#fde8e6;color:#8c1d18;border-radius:6px;padding:6px;font-size:12px}</style><div class=\"ph\"><b>Review and pay</b><div class=\"muted\">$42.00 · Visa ·· 4242</div><div class=\"row\"><div class=\"b s\">Back</div><div class=\"b p\">Pay $42.00</div></div></div>"
+          }
+        ]
+      }
+    }
+  ]
+}
