@@ -97,6 +97,8 @@ The owner runs `/review full report` on a real registration flow of their choice
 
 ## Risks / Trade-offs
 
+- [Live evals that grant Bash cannot start where `~/.docker` holds a symlink (Docker Desktop's `cli-plugins`)] → the harness refuses those runs before turn 0; run them on a machine without such links, and stage fixture files into the case working directory first.
+- [LLM graders see only the final answer text] → routing cases assert skill calls with `tool_used` graders.
 - [Model writes inconsistent markup] → data-driven template; the model writes JSON only; L1 asserts structure.
 - [Invented alternatives to fill option slots] → spec: 1–3 options, each must satisfy the cited rule; renderer never requires more than one.
 - [Reconstruction mistaken for evidence] → mandatory labels; no "before" for `NOT_ASSESSABLE`; L1 checks the labels.

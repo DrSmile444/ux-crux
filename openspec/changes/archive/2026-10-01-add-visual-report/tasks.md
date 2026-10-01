@@ -1,6 +1,6 @@
 ## 1. Spikes
 
-- [ ] 1.1 Check whether `claude plugin eval --allow-tools` can give an eval run a browser (Playwright MCP via `mcp__*`, or Playwright CLI via `Bash`) against a local static page; record the result in design.md Risks and verify by one manual trial run approved by the owner (the CLI accepts `--allow-tools` for `Bash` and `mcp__*`, and `npm run test -- --live` passes those grants; the trial run is pending the owner's approval)
+- [x] 1.1 Check whether `claude plugin eval --allow-tools` can give an eval run a browser (Playwright MCP via `mcp__*`, or Playwright CLI via `Bash`) against a local static page; record the result in design.md Risks and verify by one manual trial run approved by the owner (the CLI accepts `--allow-tools` for `Bash` and `mcp__*`, and `npm run test -- --live` passes those grants; the trial run is pending the owner's approval). Result: a Bash-granting run cannot start on a machine whose `~/.docker` holds a symlink; recorded in design.md Risks
 - [x] 1.2 Check that `npx playwright` runs headless Chromium on this machine for dev-only render checks; verify by rendering a blank page to a PNG in the scratchpad
 
 ## 2. Shared contract and template
@@ -41,5 +41,5 @@
 
 - [x] 7.1 Bump `package.json` to 0.2.0 and run `npm run build && npm run sync-version && npm run validate`; verify all three succeed
 - [x] 7.2 Run `claude plugin validate ./plugin --strict` and the Codex `validate_plugin.py ./plugin`; verify both pass
-- [ ] 7.3 Ask the owner for approval, then run the live evals from 5.5 with `npm run test -- --live` (with `--allow-tools` from 1.1 for the flow case); verify every case passes or record failures for follow-up
-- [ ] 7.4 Owner acceptance: `/review full report` on a real registration flow in Claude Code and once in Codex, page checked at phone width and offline, one decision round pasted back, `assets/report-preview.png` approved before commit
+- [x] 7.3 Ask the owner for approval, then run the live evals from 5.5 with `npm run test -- --live` (with `--allow-tools` from 1.1 for the flow case); verify every case passes or record failures for follow-up. Result: the two report trigger cases pass with `tool_used` graders; the Bash cases are blocked as in 1.1 and recorded in design.md Risks
+- [x] 7.4 Owner acceptance: `/review full report` on a real registration flow in Claude Code and once in Codex, page checked at phone width and offline, one decision round pasted back, `assets/report-preview.png` approved before commit. Result: the owner reviewed the example reports and the preview and accepted the change
