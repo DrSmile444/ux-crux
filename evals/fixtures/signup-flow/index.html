@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Create your account</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<p class="steps">Step 1 of 4</p>
+<h1>Create your account</h1>
+<form id="f" action="profile.html" autocomplete="off" novalidate>
+  <label>Email<input id="email" name="email" type="text" autocomplete="off"></label>
+  <span class="err" id="email-err" role="alert"></span>
+  <label>Password<input id="pw" name="pw" type="password"></label>
+  <button type="submit">Continue</button>
+</form>
+</main>
+<script>
+var f=document.getElementById("f"),e=document.getElementById("email"),er=document.getElementById("email-err");
+function check(){var ok=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e.value);er.textContent=ok?"":"Invalid input";return ok;}
+e.addEventListener("blur",check);
+f.addEventListener("submit",function(ev){if(!check()){ev.preventDefault();return;}sessionStorage.setItem("email",e.value);});
+window.addEventListener("pageshow",function(){f.reset();er.textContent="";});
+</script>
+</body></html>

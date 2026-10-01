@@ -8,7 +8,11 @@
     "build": "node scripts/build.mjs",
     "sync-version": "node scripts/sync-version.mjs",
     "validate": "node scripts/validate.mjs",
-    "test": "node scripts/test.mjs"
+    "test": "node scripts/test.mjs",
+    "test:report": "node scripts/test-report.mjs"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
 }
