@@ -2,6 +2,18 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.28 — loss-aversion variability and IKEA-effect condition from a uxpeak "UX Psychology Behind Apps People Can't Stop Using" comparison pass
+
+A citation-only pass: the uxpeak video covers six principles and cites no studies, and every one was already expressed in the catalog. No rule is added.
+
+Confirmed already covered: smart defaults (`F21`, `PB01`, `PB02`), a button stating its outcome (`C24`, `A02R`), goal-gradient and head-start progress (`PM09`, `PM10`), value before sign-up (`PB09`, `PT01`, `O11`), ownership and endowment (`PB05`), loss framing (`PB04`), price anchoring and contrast (`PB03`, `CT01`), and choice overload (`ethics.md`).
+
+Rejected: the "70-90% never change defaults" and "free samples raise purchases up to 2000%" figures (no source); "even fake progress creates momentum" (conflicts with `PM07` and `PM09`); "threat wins every time"; the decision-fatigue label for the jam study (a different construct). Not cited because the papers could not be opened: Gal & Rucker (2018) on loss aversion and Cialdini on reciprocity. Scoped out: advertising for a design-reference service and a course.
+
+- `psychology`: the `ethics.md` row "Loss aversion / anchoring" now states that loss aversion varies with domain knowledge, experience, and age (Mrkva, Johnson, Gächter & Herrmann, 2020), so loss-framed copy is not treated as stronger by default.
+- `psychology`: the `PB05` Sources cell adds Norton, Mochon & Ariely (2012): self-made items gain value only when the task is completed.
+- `README.md`: both works added to "Evidence base". Rule total stays 347.
+
 ## 0.1.27 — goal-gradient framing and labor-illusion transparency from a Wyatt Feaster "psychology trick that makes any app feel 10x better" comparison pass
 
 A small pass: Wyatt Feaster's short video covers five behavioral principles and cites no studies, so each rule traces to the primary research behind the principle: Kivetz, Urminsky & Zheng, "The Goal-Gradient Hypothesis Resurrected" (*Journal of Marketing Research*, 2006; original hypothesis Hull, 1932) and Buell & Norton, "The Labor Illusion" (*Management Science*, 2011).

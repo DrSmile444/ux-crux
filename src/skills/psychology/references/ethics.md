@@ -36,7 +36,7 @@ Use this table to resist treating a famous-sounding effect as an automatic best 
 | Self-Determination Theory (autonomy, competence, relatedness) | Strong psychological foundation; translate cautiously into product context — see `motivation.md`. |
 | Processing fluency | Supported psychological mechanism; useful for clarity/aesthetics, not proof of task usability — see `emotion.md`. |
 | Default effect | Strong behavioral influence; requires a safe/user-benefiting default and transparency — see `behavioral-economics.md` PB01/PB02. |
-| Loss aversion / anchoring | Descriptive decision biases; never encode as "best practice" without ethical review — see `behavioral-economics.md` PB03/PB04. |
+| Loss aversion / anchoring | Descriptive decision biases; never encode as "best practice" without ethical review — see `behavioral-economics.md` PB03/PB04. Loss aversion is real but its size varies with domain knowledge, experience, and age (Mrkva, Johnson, Gächter & Herrmann, "Moderating Loss Aversion: Loss Aversion Has Moderators, But Reports of its Death are Greatly Exaggerated", *Journal of Consumer Psychology* 30(3), 2020, 407-428), so do not treat loss-framed or "threat" copy as stronger than gain framing by default. |
 | Peak-End | Useful for journey diagnosis and closure; contextual, not permission to ignore the rest of the flow — see `emotion.md` PE02-PE04. |
 | Information-gap curiosity | Supported theory, but use contextually and never hide decision-critical information — see `behavioral-economics.md` PB10. |
 | Social proof | Can reduce uncertainty; must be truthful, representative, and tested for distraction — see `behavioral-economics.md` PB06. |
