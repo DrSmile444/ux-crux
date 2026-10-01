@@ -3,7 +3,7 @@
 //   skills/ux-crux-<domain>/    - standalone distribution, for skills.sh / npx skills add
 //   plugin/skills/<domain>/     - plugin distribution, for the Claude/Codex plugin
 //
-// Every generated skill package is self-contained: src/shared/*.md is copied
+// Every generated skill package is self-contained: every src/shared/ file is copied
 // into a shared/ subfolder inside each generated package, and the SKILL.md /
 // references links are rewritten to point at that local copy instead of the
 // canonical src/shared/ location.
@@ -12,6 +12,7 @@ import path from "node:path";
 import {
   ROOT,
   DOMAINS,
+  SKILLS,
   readPackageVersion,
   walkFiles,
   rewriteFrontmatterName,
@@ -25,7 +26,7 @@ import {
 
 const version = readPackageVersion();
 const sharedDir = path.join(ROOT, "src", "shared");
-const sharedFiles = fs.readdirSync(sharedDir).filter((f) => f.endsWith(".md"));
+const sharedFiles = fs.readdirSync(sharedDir).filter((f) => fs.statSync(path.join(sharedDir, f)).isFile());
 
 function buildOne(domain, { outDir, skillName, internal = false }) {
   const srcDir = path.join(ROOT, "src", "skills", domain);
@@ -63,7 +64,7 @@ function buildOne(domain, { outDir, skillName, internal = false }) {
 
 const results = { standalone: [], plugin: [] };
 
-for (const domain of DOMAINS) {
+for (const domain of SKILLS) {
   results.standalone.push(
     buildOne(domain, {
       outDir: path.join(ROOT, "skills", `ux-crux-${domain}`),

@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "ux-crux",
-  "version": "0.1.34",
-  "description": "Evidence-driven UX review skills for AI coding agents: a full-audit entry point plus usability, psychology, accessibility, product, and trust lenses.",
+  "version": "0.2.0",
+  "description": "Evidence-driven UX review skills for AI coding agents: a full-audit entry point plus usability, psychology, accessibility, product, and trust lenses, and a visual HTML triage report.",
   "author": {
     "name": "Dmytro Vakulenko",
     "email": "drsmile444@gmail.com"
@@ -13,6 +13,7 @@
     "./skills/psychology",
     "./skills/accessibility",
     "./skills/product",
-    "./skills/trust"
+    "./skills/trust",
+    "./skills/report"
   ]
 }

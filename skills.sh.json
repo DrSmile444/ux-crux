@@ -5,7 +5,9 @@
     {
       "title": "Complete Review",
       "description": "Full-spectrum UX audit across every applicable lens.",
-      "skills": ["ux-crux-review"]
+      "skills": [
+        "ux-crux-review"
+      ]
     },
     {
       "title": "Specialized Reviews",
@@ -16,6 +18,13 @@
         "ux-crux-accessibility",
         "ux-crux-product",
         "ux-crux-trust"
+      ]
+    },
+    {
+      "title": "Visual Report",
+      "description": "Render a review as an HTML triage report with rule sources, pictures, and fix options.",
+      "skills": [
+        "ux-crux-report"
       ]
     }
   ]
