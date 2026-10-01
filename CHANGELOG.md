@@ -2,6 +2,23 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.29 — an Expert practice source level and data-display, form, and readability rules from a Stephen Few *Information Dashboard Design* comparison pass
+
+A larger-than-usual pass: Stephen Few, *Information Dashboard Design: The Effective Visual Communication of Data* (O'Reilly, 2006), plus several form, typography, and readability claims checked against standards and studies. The book cites no study with numeric results, so its claims were each checked for contradicting evidence before adoption.
+
+This pass introduces the `Expert practice` rule-source level (`src/shared/evidence-model.md`, "Rule source strength"): a published book by a named author who states a practice without a cited study. Findings from such a rule are reported as `RISK`, confidence `Low`, severity at most `moderate`, and name the author and work. Existing rules whose only source is a book keep their current label until a later audit.
+
+Confirmed already covered: decoration that competes with data (`VH03`, now also citing Tufte via Few), muted palette with vivid colour for exceptions (`PA04`, `X02`), no chart-type variety for its own sake (`A17R`), left-aligned body text and line length (`C10`, `C27`, now also citing WCAG 1.4.8), touch-target size and spacing (`T01`, `T02`, `T04`), empty states (`C04`).
+
+Rejected: Few's "three to nine chunks" single-screen claim (Cowan, *Behavioral and Brain Sciences* 24(1), 2001, reports about four); Few's blanket rejection of pie charts (Spence & Lewandowsky, *Applied Cognitive Psychology* 5(1), 1991, found little to choose between pie and bar); bullet-graph superiority (an unquantified test of the author's); the five-expressions limit and the colour-blindness percentages (no source given); the top-left emphasis map (the author's experience); icons in dropdown menus (NN/g, "Icon Usability", requires always-visible labels); a universal "pure black on white strains the eyes" claim (research supports dark-on-light polarity, not black versus grey). Scoped out: dashboard role taxonomy, single-prototype testing, treemaps and box plots.
+
+- `usability`: new `F26` in `references/core.md` — a text input's width matches the length of the value it expects, distinct from `F23` and `F25` (Baymard, Holst, 2010).
+- `accessibility`: new `X23` in `references/core.md` — content survives user text-spacing overrides, distinct from `X04`/`X05` (WCAG 2.2 SC 1.4.12); new `X24` — long-form text avoids pure black on pure white while meeting `X03`, with the conflict with maximum-contrast advice stated (BDA guidance via Dyslexia Scotland; NN/g polarity research).
+- `psychology`: new `PA18` in `references/attention.md` — precise comparisons use position or length, not angle, area, or colour intensity (Cleveland & McGill, 1984).
+- `product`: new `C32`, `C33`, `C34` in `references/core.md`, all `Expert practice` (Few, 2006) — metric comparison context, displayed precision, and display medium fit.
+- Shared model: `Expert practice` defined in `evidence-model.md`; matching severity ceiling in `severity-model.md`.
+- `README.md`: Few, Cleveland & McGill, and Baymard (Holst) added to "Evidence base". Rule total is now 354 (347 + 7).
+
 ## 0.1.28 — loss-aversion variability and IKEA-effect condition from a uxpeak "UX Psychology Behind Apps People Can't Stop Using" comparison pass
 
 A citation-only pass: the uxpeak video covers six principles and cites no studies, and every one was already expressed in the catalog. No rule is added.

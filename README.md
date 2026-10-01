@@ -4,7 +4,7 @@
 [![Codex plugin](https://img.shields.io/badge/Codex-plugin-000000)](#install)
 [![skills.sh compatible](https://img.shields.io/badge/skills.sh-compatible-2EA44F)](#install)
 
-Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score. The catalog behind that review currently holds **347 named-source rules across all six skills** (see "Evidence base" below) — this isn't a handful of house opinions, it's a deliberately researched, continually cross-checked body of UX knowledge.
+Evidence-driven UX review skills for AI coding agents (Claude Code, Codex). ux-crux reviews a feature, screen, or flow across usability, psychology, accessibility, product, and trust — and reports graded findings instead of a single opaque score. The catalog behind that review currently holds **354 named-source rules across all six skills** (see "Evidence base" below) — this isn't a handful of house opinions, it's a deliberately researched, continually cross-checked body of UX knowledge.
 
 Quickest way in — works with any agent `npx skills` supports:
 
@@ -94,6 +94,9 @@ From there, the catalog has grown through deliberate research-comparison passes,
 - Ran Kivetz, Oleg Urminsky & Yuhuang Zheng, "The Goal-Gradient Hypothesis Resurrected: Purchase Acceleration, Illusionary Goal Progress, and Customer Retention" (*Journal of Marketing Research* 43, 2006)
 - Ryan W. Buell & Michael I. Norton, "The Labor Illusion: How Operational Transparency Increases Perceived Value" (*Management Science* 57(9), 2011)
 - Michael I. Norton, Daniel Mochon & Dan Ariely, "The IKEA Effect: When Labor Leads to Love" (*Journal of Consumer Psychology* 22(3), 2012)
+- Stephen Few, *Information Dashboard Design: The Effective Visual Communication of Data* (O'Reilly Media, 2006)
+- William S. Cleveland & Robert McGill, "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods" (*Journal of the American Statistical Association* 79(387), 1984)
+- Jamie Holst, "Form Field Usability: Matching User Expectations" (Baymard Institute, 2010)
 - Kellen Mrkva, Eric J. Johnson, Simon Gächter & Andreas Herrmann, "Moderating Loss Aversion: Loss Aversion Has Moderators, But Reports of its Death are Greatly Exaggerated" (*Journal of Consumer Psychology* 30(3), 2020)
 - additional passes against other well-known UX-psychology reference works, where each added rule is attributed to the underlying named primary study or guideline rather than to the secondary text that surfaced it
 

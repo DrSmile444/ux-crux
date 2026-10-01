@@ -39,6 +39,14 @@ Every finding also carries a confidence level, independent of its evidence statu
 - **Medium** — likely correct but some product/audience context is missing.
 - **Low** — heuristic or contextual concern; presented as a question to investigate, not a verdict.
 
+## Rule source strength
+
+Every rule in a skill's reference tables carries an `Evidence` value that describes the source behind the rule. It is separate from the evidence status of a finding above. `Strong` marks a standard, platform contract, or study; `Contextual` marks a rule whose application depends on product or audience; `Expert practice` is defined here.
+
+`Expert practice` marks a rule whose source is a published book by a named author who states the practice without citing a study. A rule carries it only after a corroboration search found nothing that contradicts the claim; a claim contradicted by a study is not shipped. The `Sources` cell names the work and year and states "author's stated practice; no study cited". Videos, articles, e-books, and blog posts do not qualify and need independent corroboration.
+
+A finding from an `Expert practice` rule is reported with evidence status `RISK`, confidence `Low`, and a severity no higher than `moderate`, and names the author and work so the reader can weigh the claim.
+
 ## Rule for skills
 
 1. State the evidence status and confidence alongside every finding.
