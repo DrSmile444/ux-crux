@@ -2,6 +2,25 @@
 
 All notable changes to ux-crux are documented here. Versioning follows SemVer; the whole plugin is versioned as one unit (see `src/skills/review/references/review-model.md`'s sibling design note in `design.md` for why).
 
+## 0.1.33 — mobile, web and e-commerce rules from a Nielsen Norman Group research sweep
+
+A large pass over Nielsen Norman Group's published articles: 1,196 article slugs from its sitemap were triaged by title and the relevant ones opened in full and compared with the catalog. Every rule is a property of a screen, flow or text that a reviewer can check from a screenshot, design, code or copy.
+
+Confirmed already covered (166 articles): search and filters, forms and validation, checkout, navigation labels, tap targets, price transparency, reviews and accessibility basics. Their sources were added as citations where useful (`P02`, `C02`, `C08`, `C35`, `F20`, `A08R`, `A11R`, `R02R`, `IE09`, `N20R`, `F30`, `GW03`).
+
+Rejected or left out: Contextual-rated claims of Minor severity (right-rail ad placement, glyph ambiguity, notification bursts, tutorial recall and similar), a radio-button default that conflicts with `F21`, and claims that duplicated an existing rule. Where a draft clashed with an existing rule (`C09`, `C65`, `N25R`, `N31R`, `F21`), the new rule was narrowed or dropped.
+
+Scoped out (821 articles): history, essays, research methods, UX process and careers, AI-product and voice/VR topics, industry verticals, showcases and roundups.
+
+Evidence: `Strong` where the article reports NN/g's own usability-test finding; `Contextual` where the guidance depends on site type, task or audience, or comes from expert guidance without a reported test. Desktop-pointer hover rules live in a new `usability/references/web.md`.
+
+- `usability`: overlays, menus and controls `A19R`-`A31R`; forms `F39`-`F48`; system status and chat `S16`-`S23`; search and filters `D24`-`D35`; scrolling `R08R`, `R09R`; navigation and links `N33R`-`N56R`; accelerators `IE15`; mobile `T10`, `L10`-`L15`; visual hierarchy `VH05`-`VH10`.
+- `product`: `C66`-`C102` — attribute selectors, product-in-cart state, listing photos, size guides, add-to-cart confirmation, cart line items, promotions and discounts, checkout payment methods, B2B pricing, store locators, localisation, recommendations, video, and content writing; `IA11`-`IA13` navigation structure.
+- `trust`: `O20`-`O22` cookie choices and policy pages; `CT09`, `CT10` basket and quote-form price transparency; `PR03`, `PR04` transactional messages; `GW04`, `GW05` About and Contact pages; `I07` notification channel by urgency.
+- `accessibility`: `X29`-`X35` keyboard focus, screen-reader focus into new surfaces, redundant and functional image alt text, visible-but-untappable targets, glanceable text.
+- `psychology`: `PA21` needed content kept apart from ads.
+- `README.md`: Nielsen Norman Group research added to "Evidence base". Rule total is now 579 (438 + 141).
+
 ## 0.1.32 — mobile, web and e-commerce rules from a Baymard Institute research sweep
 
 A large pass over Baymard Institute's published research: 251 article slugs selected from 518 in its sitemap (industry benchmarks, launch notes, research-method and business articles excluded by title), each opened and compared with the catalog; the 61 surviving gaps were then re-checked on the full article text. All adopted rules apply to mobile and web interfaces; the e-commerce rules come last in priority after mobile and web.

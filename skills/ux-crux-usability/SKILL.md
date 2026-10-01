@@ -4,7 +4,7 @@ description: Use when the user wants to review task flow, interaction friction/e
 license: MIT
 metadata:
   author: ux-crux
-  version: "0.1.32"
+  version: "0.1.33"
 ---
 
 Review task flow, interaction efficiency, navigation, forms, system status, and error recovery for the evidence provided (screenshot, description, code, or running build).
@@ -23,7 +23,8 @@ Review task flow, interaction efficiency, navigation, forms, system status, and 
 6. If the evidence includes a visual layout (a screenshot, design comp, or description of one), also check `references/visual-hierarchy.md`'s VH01-VH03 (deliberate contrast, grid-based consistency, and decorative-clutter avoidance), applying its Squint test alongside `product`'s P02.
 7. When a control-level finding is identified (from `core.md`'s Actions section or an accessibility concern), classify it by affordance type using `references/affordances.md`'s AF01 (Cognitive/Physical/Sensory/Functional) to sharpen the stated cause; if the evidence shows a user-created workaround artifact (a taped label, sticky note, cheat-sheet), apply AF02 as a strong signal of a missing built-in affordance.
 8. If the evidence includes a voice user interface or voice-assistant interaction, apply `references/voice.md`'s VU01-VU02 (command-scope limiting, sonic-persona alignment) — this modality addendum does not apply to screen-only evidence.
-9. Tag every finding with evidence status, severity, and confidence, and report using `shared/report-contract.md`.
+9. If the evidence is a desktop or other hover-capable pointer interface (menus that open on hover, hover-revealed controls), also check `references/web.md`; evidence limited to touch input reports those rules `NOT APPLICABLE`.
+10. Tag every finding with evidence status, severity, and confidence, and report using `shared/report-contract.md`.
 
 ## References
 
@@ -31,5 +32,6 @@ Review task flow, interaction efficiency, navigation, forms, system status, and 
 - `references/mobile.md` — iOS/Android navigation, gesture/thumb-zone ergonomics, adaptive layout, and platform-API focus-management rules, plus the Search-autofocus worked example.
 - `references/visual-hierarchy.md` — visual hierarchy/consistency rules (VH01-VH03): deliberate contrast vs. confusing near-uniformity, grid-based internal/external consistency, decorative-clutter avoidance, plus the Squint test technique; apply in addition to `core.md`, not instead of it.
 - `references/affordances.md` — the Four Kinds of Affordances (AF01) as a diagnostic vocabulary for control-level findings, plus user-created affordance artifacts as a diagnostic signal (AF02); apply after a control-level finding is already identified, not as a standalone source of new findings.
+- `references/web.md` — hover-menu and hover-reveal rules (N55R-N56R) for desktop and other pointer-hover interfaces; apply in addition to `core.md`.
 - `references/voice.md` — Voice UI (VUI) command-scope and sonic-persona-alignment rules (VU01-VU02); applies only when the evidence includes a voice interaction.
 - `shared/evidence-model.md`, `severity-model.md`, `report-contract.md`.
